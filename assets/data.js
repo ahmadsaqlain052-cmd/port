@@ -14,7 +14,7 @@ const DEFAULT_PORTFOLIO_DATA = {
     location: "Worldwide / Remote Collaboration",
     focus: "Video Editing + Logo Animation",
     availability: "Available for freelance & remote projects",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+    avatar: "pic/hub.jpg",
     hireText: "Ready to turn raw ideas into scroll-stopping video content?",
     stats: [
       { num: "6+", label: "Years Video Editing" },
@@ -32,118 +32,162 @@ const DEFAULT_PORTFOLIO_DATA = {
   videos: [
     {
       id: 1,
-      title: "Cinematic Long-Form Reel",
-      dur: "02:15",
+      title: "Beth Wood — YouTube Short & Viral Reel",
+      dur: "01:26",
       num: "01",
-      cat: "Video Editing",
-      company: "Commercial Reel",
-      desc: "Dynamic narrative pacing, high-impact cuts, sound design, and color grading for commercial productions.",
-      poster: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=800&auto=format&fit=crop",
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+      cat: "Short-Form Video",
+      company: "Beth Wood",
+      desc: "High-retention mobile short edit with punchy hook pacing, custom sound design, dynamic zooms, and kinetic subtitles.",
+      poster: "pic/beth-wood.jpg",
+      src: "vid/Beth Wood - YT Short 1.mp4"
     },
     {
       id: 2,
-      title: "Brand Logo Reveal Animation",
-      dur: "00:15",
+      title: "Guga Gotsadze — Viral Short-Form Edit",
+      dur: "00:45",
       num: "02",
-      cat: "Logo Animation",
-      company: "Identity Motion",
-      desc: "2D kinetic motion, sleek transitions, and custom brand stingers crafted in Adobe After Effects.",
-      poster: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop",
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4"
+      cat: "Short-Form Video",
+      company: "Guga Gotsadze",
+      desc: "Fast-paced visual storytelling, seamless B-roll cut-ins, motion graphic accents, and animated captions optimized for YouTube Shorts.",
+      poster: "pic/guga-gotsadze.jpg",
+      src: "vid/Guga Gotsadze - YT Short 2_V05.mp4"
     },
     {
       id: 3,
-      title: "Full Podcast Production",
-      dur: "04:30",
+      title: "Hub — 3D & 2D Animated Logo Reveal",
+      dur: "00:07",
       num: "03",
-      cat: "Podcast Editing",
-      company: "Studio Podcast",
-      desc: "Multi-cam sync, audio enhancement, filler word removal, engaging B-roll overlays, and graphic inserts.",
-      poster: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+      cat: "Logo Animation",
+      company: "Hub Identity",
+      desc: "Fluid vector logo reveal with smooth kinetic motion and brand audio synchronization crafted in Adobe After Effects.",
+      poster: "pic/hub.jpg",
+      src: "vid/hub.mp4"
     },
     {
       id: 4,
-      title: "Social Media Short-Form Viral Cuts",
-      dur: "00:45",
+      title: "Jeffrey Bowers — Podcast & Short-Form Cut",
+      dur: "00:40",
       num: "04",
-      cat: "Short-Form",
-      company: "TikTok & Reels",
-      desc: "Fast-paced hooks, animated captions, kinetic sound effects, and retention-focused visual pacing.",
-      poster: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+      cat: "Podcast & Shorts",
+      company: "Jeffrey Bowers",
+      desc: "Episodic podcast clipping, filler word removal, clear audio mixing, and engaging vertical framing for viral social sharing.",
+      poster: "pic/jeffrey-bowers.jpg",
+      src: "vid/Jeffrey Bowers - YT Short 3.mp4"
     },
     {
       id: 5,
-      title: "2D Geometric Logo Motion",
-      dur: "00:20",
+      title: "Joseph Lee — Narrative Storytelling Reel",
+      dur: "00:39",
       num: "05",
-      cat: "Motion Graphics",
-      company: "Brand Systems",
-      desc: "Vector animation, fluid shape morphing, and polished intros that elevate brand identity.",
-      poster: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+      cat: "Short-Form Video",
+      company: "Joseph Lee",
+      desc: "Retention-first narrative editing, smooth transitions, atmospheric soundscapes, and bold graphic callouts.",
+      poster: "pic/joseph-lee.jpg",
+      src: "vid/Joseph Lee - YT Short 2.mp4"
     },
     {
       id: 6,
-      title: "Custom Title & Lower Thirds Package",
-      dur: "01:10",
+      title: "Roddy Kok — High-Retention Reel",
+      dur: "00:32",
       num: "06",
-      cat: "Visual Effects",
-      company: "Post Production",
-      desc: "Custom animated lower thirds, clean transition stingers, and title cards for YouTube and broadcast.",
-      poster: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
+      cat: "Short-Form Video",
+      company: "Roddy Kok",
+      desc: "Dynamic hook construction, fast rhythm cuts, animated captions, and sound effects built to maximize viewer completion rate.",
+      poster: "pic/roddy-kok.jpg",
+      src: "vid/Roddy Kok - YT Short 1.mp4"
+    },
+    {
+      id: 7,
+      title: "Kinetic Brand Stinger & Motion Reveal",
+      dur: "00:07",
+      num: "07",
+      cat: "Logo Animation",
+      company: "Brand Systems",
+      desc: "Energetic 2D motion graphics stinger with custom sound effects designed for video intros and YouTube branding.",
+      poster: "pic/whatsapp-logo-1.jpg",
+      src: "vid/WhatsApp Video 2026-10-06 at 4.04.32 PM.mp4"
+    },
+    {
+      id: 8,
+      title: "2D Vector Identity Reveal",
+      dur: "00:04",
+      num: "08",
+      cat: "Logo Animation",
+      company: "Motion Identity",
+      desc: "Minimalist vector logo animation with elegant easing curves, shape morphs, and clean brand delivery.",
+      poster: "pic/whatsapp-logo-2.jpg",
+      src: "vid/WhatsApp Video 2026-10-06 at 4.04.32 PM (1).mp4"
+    },
+    {
+      id: 9,
+      title: "Dynamic Social Stinger Sting",
+      dur: "00:03",
+      num: "09",
+      cat: "Brand Motion",
+      company: "Social Branding",
+      desc: "Short-form brand stinger for Instagram Reels, YouTube Shorts, and corporate digital presentations.",
+      poster: "pic/whatsapp-logo-3.jpg",
+      src: "vid/WhatsApp Video 2026-10-06 at 4.04.32 PM (2).mp4"
+    },
+    {
+      id: 10,
+      title: "Micro Logo Accent Bump",
+      dur: "00:01",
+      num: "10",
+      cat: "Motion Graphics",
+      company: "Micro Branding",
+      desc: "Ultra-fast kinetic logo bumper for rapid video transitions and channel watermarks.",
+      poster: "pic/whatsapp-logo-4.jpg",
+      src: "vid/WhatsApp Video 2026-10-06 at 4.04.31 PM.mp4"
     }
   ],
   projects: [
     {
       id: 1,
       videoId: 1,
-      company: "Video Production",
-      name: "Long-Form Storytelling & Finishing",
-      desc: "High-retention editing, cinematic color pass, narrative sound design, and clean transitions designed for maximum audience engagement.",
-      typeBadge: "Long-Form · Pacing · B-Roll",
+      company: "Short-Form Video Production",
+      name: "Viral Social Media & YouTube Shorts",
+      desc: "High-retention client edits engineered for YouTube Shorts and Instagram Reels with kinetic subtitles, fast pacing, B-roll overlays, and custom sound design.",
+      typeBadge: "Short-Form · Retention · Captions",
       countBadge: "01",
-      tags: ["Premiere Pro", "Color Grading", "Sound Design"],
-      mainImg: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=800&auto=format&fit=crop",
+      tags: ["YouTube Shorts", "Pacing & Retention", "Sound Design", "Captions"],
+      mainImg: "pic/beth-wood.jpg",
       stripImages: [
-        "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop"
+        "pic/beth-wood.jpg",
+        "pic/guga-gotsadze.jpg",
+        "pic/roddy-kok.jpg"
       ]
     },
     {
       id: 2,
-      videoId: 2,
-      company: "Motion Design",
-      name: "Brand Logo Reveals & Animation",
-      desc: "Transforming static vectors and typography into memorable, fluid brand statements with custom sound synchronization.",
+      videoId: 3,
+      company: "Motion Design & 2D Animation",
+      name: "2D & 3D Brand Logo Reveals",
+      desc: "Transforming static identity marks into memorable kinetic moments. Fluid shape morphs, vector reveals, and synchronized audio stingers crafted in After Effects.",
       typeBadge: "2D Motion · Stings · Identity",
       countBadge: "02",
-      tags: ["After Effects", "Illustrator", "Kinetic Motion"],
-      mainImg: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop",
+      tags: ["After Effects", "Logo Reveals", "2D Motion", "Stingers"],
+      mainImg: "pic/hub.jpg",
       stripImages: [
-        "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop"
+        "pic/hub.jpg",
+        "pic/whatsapp-logo-1.jpg",
+        "pic/whatsapp-logo-2.jpg"
       ]
     },
     {
       id: 3,
-      videoId: 3,
-      company: "Content Production",
-      name: "Full Podcast Series & Micro-Snippets",
-      desc: "Clean episodic cutting, audio noise gating, multicam switching, and high-impact micro-clips optimized for TikTok and YouTube Shorts.",
-      typeBadge: "Full Episodes · Multi-Cam · Audio",
+      videoId: 4,
+      company: "Podcast & Narrative Editing",
+      name: "Podcast Micro-Content & Storytelling",
+      desc: "Full episode post-production and short-form snippet extraction. Filler removal, multi-camera rhythm, audio noise gating, and mobile-optimized visual framing.",
+      typeBadge: "Podcasts · Storytelling · Audio",
       countBadge: "03",
-      tags: ["Multicam", "Audio Polish", "Shorts Conversion"],
-      mainImg: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
+      tags: ["Podcast Editing", "Storytelling", "Color Grading", "Multicam"],
+      mainImg: "pic/jeffrey-bowers.jpg",
       stripImages: [
-        "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=800&auto=format&fit=crop"
+        "pic/jeffrey-bowers.jpg",
+        "pic/joseph-lee.jpg",
+        "pic/roddy-kok.jpg"
       ]
     }
   ],
@@ -197,7 +241,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       period: "CURRENT",
       role: "Lead Video Editor & Motion Designer",
       company: "Freelance Collaboration",
-      desc: "Directing full post-production on long-form YouTube series, studio podcasts, viral vertical reels, B-roll grading, kinetic captions, and promotional video campaigns with international creators and production collaborators.",
+      desc: "Directing full post-production on long-form YouTube series, client shorts (Beth Wood, Guga Gotsadze, Roddy Kok), viral reels, B-roll grading, kinetic captions, and promotional video campaigns.",
       color: "#E8451A"
     },
     {
@@ -205,7 +249,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       period: "2025—2026",
       role: "Logo Animator & Video Editor",
       company: "SN Solution",
-      desc: "Delivered custom 2D logo animations, brand identity reveal stingers, and short-form marketing content built directly from brand guidelines and client production notes.",
+      desc: "Delivered custom 2D logo animations, brand identity reveal stingers (Hub Logo, Kinetic Stings), and short-form marketing content built directly from brand guidelines.",
       color: "#E8451A"
     },
     {
@@ -229,6 +273,11 @@ function getPortfolioData() {
       return DEFAULT_PORTFOLIO_DATA;
     }
     const parsed = JSON.parse(raw);
+    // If the stored data is still pointing to old Unsplash video placeholders, upgrade it to the new real videos
+    if (parsed.videos && parsed.videos.length > 0 && parsed.videos[0].poster && parsed.videos[0].poster.includes('unsplash')) {
+      savePortfolioData(DEFAULT_PORTFOLIO_DATA);
+      return DEFAULT_PORTFOLIO_DATA;
+    }
     return { ...DEFAULT_PORTFOLIO_DATA, ...parsed };
   } catch (e) {
     console.warn("Could not load from localStorage, falling back to defaults.", e);
