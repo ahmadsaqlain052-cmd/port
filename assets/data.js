@@ -1,16 +1,16 @@
 /* ========================================================
-   HAMZA KHAN PORTFOLIO — CENTRAL DATA STORE & CMS ENGINE
+   HAMZA IRFAN PORTFOLIO — CENTRAL DATA STORE & CMS ENGINE
    Supports real-time localStorage persistence, import & export
    ======================================================== */
 
 const DEFAULT_PORTFOLIO_DATA = {
   profile: {
-    name: "Hamza Khan",
-    initials: "HK",
+    name: "Hamza Irfan",
+    initials: "HI",
     badge: "Video Editor · Motion Designer · Logo Animator",
     headline: "I edit stories.<br>I animate identities.",
     subhead: "I turn raw footage into polished, engaging content — and bring static logos to life with clean, memorable motion.",
-    email: "hamzakhan.edits@gmail.com",
+    email: "hamzairfan.edits@gmail.com",
     location: "Worldwide / Remote Collaboration",
     focus: "Video Editing + Logo Animation",
     availability: "Available for freelance & remote projects",

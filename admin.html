@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamza Khan — Portfolio Content Management Dashboard</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%23E8451A%27/><text x=%2750%27 y=%2770%27 font-size=%2758%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27 font-weight=%27bold%27>HK</text></svg>">
+  <title>Hamza Irfan — Portfolio Content Management Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%23E8451A%27/><text x=%2750%27 y=%2770%27 font-size=%2758%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27 font-weight=%27bold%27>HI</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -471,9 +471,9 @@
   <!-- TOP HEADER -->
   <header>
     <a href="index.html" class="brand">
-      <div class="brand-badge" id="headerInitials">HK</div>
+      <div class="brand-badge" id="headerInitials">HI</div>
       <div>
-        <div class="brand-title" id="headerName">Hamza Khan Portfolio</div>
+        <div class="brand-title" id="headerName">Hamza Irfan Portfolio</div>
         <div class="brand-sub">Real-Time Content Manager</div>
       </div>
     </a>
@@ -559,11 +559,11 @@
           <div class="form-row">
             <div class="form-group">
               <label>Full Name</label>
-              <input type="text" id="profName" placeholder="e.g. Hamza Khan" required />
+              <input type="text" id="profName" placeholder="e.g. Hamza Irfan" required />
             </div>
             <div class="form-group">
               <label>Initials / Monogram</label>
-              <input type="text" id="profInitials" placeholder="e.g. HK" maxlength="4" required />
+              <input type="text" id="profInitials" placeholder="e.g. HI" maxlength="4" required />
             </div>
           </div>
 
@@ -585,7 +585,7 @@
           <div class="form-row-3">
             <div class="form-group">
               <label>Email Address</label>
-              <input type="email" id="profEmail" placeholder="hamzakhan.edits@gmail.com" required />
+              <input type="email" id="profEmail" placeholder="hamzairfan.edits@gmail.com" required />
             </div>
             <div class="form-group">
               <label>Location</label>
@@ -917,8 +917,8 @@
 
     // Populate Overview
     function renderOverview() {
-      document.getElementById('headerInitials').textContent = appData.profile.initials || 'HK';
-      document.getElementById('headerName').textContent = (appData.profile.name || 'Hamza Khan') + ' Portfolio';
+      document.getElementById('headerInitials').textContent = appData.profile.initials || 'HI';
+      document.getElementById('headerName').textContent = (appData.profile.name || 'Hamza Irfan') + ' Portfolio';
       document.getElementById('statTotalVideos').textContent = appData.videos.length;
       document.getElementById('statTotalProjects').textContent = appData.projects.length;
       document.getElementById('statTotalSkills').textContent = appData.skills.length;
@@ -1337,7 +1337,7 @@
     });
 
     document.getElementById('btnReset').addEventListener('click', () => {
-      if (!confirm("Are you sure you want to reset everything back to Hamza Khan's original defaults?")) return;
+      if (!confirm("Are you sure you want to reset everything back to Hamza Irfan's original defaults?")) return;
       appData = resetPortfolioData();
       initAll();
       showToast("Reset to defaults complete.");

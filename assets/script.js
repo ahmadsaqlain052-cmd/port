@@ -1,5 +1,5 @@
 /* ========================================================
-   HAMZA KHAN — PORTFOLIO CORE SCRIPT & DYNAMIC RENDERER
+   HAMZA IRFAN — PORTFOLIO CORE SCRIPT & DYNAMIC RENDERER
    3D Motion Graphics, Curved Slider, Tilt, Lightbox & Live CMS Sync
    ======================================================== */
 
@@ -416,7 +416,7 @@ document.querySelectorAll('.cc').forEach(card => {
 const copyBtn = document.getElementById('copyMail');
 if (copyBtn) {
   copyBtn.addEventListener('click', () => {
-    const email = copyBtn.dataset.mail || 'hamzakhan.edits@gmail.com';
+    const email = copyBtn.dataset.mail || 'hamzairfan.edits@gmail.com';
     const originalText = copyBtn.textContent;
     const showCopied = () => {
       copyBtn.textContent = 'Copied ✓';
@@ -449,7 +449,7 @@ function init3DCurvedSlider() {
   items.splice(centerPos, 0, {
     me: true,
     src: data.profile.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
-    title: data.profile.name || "Hamza Khan"
+    title: data.profile.name || "Hamza Irfan"
   });
 
   const TOTAL_ITEMS = items.length;
@@ -468,7 +468,7 @@ function init3DCurvedSlider() {
     card.innerHTML = `
       <img alt="${item.title}" draggable="false" src="${item.src}">
       ${item.me 
-        ? `<div class="cf-me"><b>${data.profile.name || 'Hamza Khan'}</b><span>Lead Editor & Motion</span></div>` 
+        ? `<div class="cf-me"><b>${data.profile.name || 'Hamza Irfan'}</b><span>Lead Editor & Motion</span></div>` 
         : `<span class="cf-play" title="Play"></span>`
       }
     `;
