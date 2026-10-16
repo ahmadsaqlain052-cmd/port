@@ -411,6 +411,86 @@ nav.scrolled {
   box-shadow: 0 0 10px #1dbf73;
 }
 
+/* UPWORK BRANDED BUTTONS & PILLS */
+.pill-upwork {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #14a800;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(20, 168, 0, 0.38);
+  transition: all 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-family: inherit;
+}
+
+.pill-upwork:hover {
+  background: #108a00;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(20, 168, 0, 0.58);
+  color: #fff;
+}
+
+.upwork-badge-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  color: #14a800;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.nav-upwork {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  color: #14a800 !important;
+  font-weight: 700 !important;
+}
+
+.nav-upwork:hover {
+  color: #2ed815 !important;
+}
+
+.upwork-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #14a800;
+  box-shadow: 0 0 10px #14a800;
+}
+
+.btn-upwork {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #14a800;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(20, 168, 0, 0.4);
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.btn-upwork:hover {
+  background: #108a00;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(20, 168, 0, 0.6);
+  color: #fff;
+}
+
 /* 3D CURVED CAROUSEL / SLIDER */
 .cf {
   position: relative;
@@ -1151,7 +1231,30 @@ section {
   color: #1dbf73;
 }
 
-/* Contact Card Fiverr Styling */
+/* Contact Card Upwork & Fiverr Styling */
+.cc-upwork {
+  border-color: rgba(20, 168, 0, 0.45) !important;
+  background: linear-gradient(135deg, rgba(20, 168, 0, 0.14), rgba(20, 20, 20, 0.9)) !important;
+}
+
+.cc-upwork:hover {
+  border-color: #14a800 !important;
+  box-shadow: 0 12px 30px rgba(20, 168, 0, 0.3) !important;
+}
+
+.cc-icon-upwork {
+  background: rgba(20, 168, 0, 0.2) !important;
+  border: 1px solid rgba(20, 168, 0, 0.4) !important;
+  color: #14a800 !important;
+}
+
+.upwork-badge-symbol {
+  font-size: 16px;
+  font-weight: 900;
+  color: #14a800;
+  font-family: 'Inter', sans-serif;
+}
+
 .cc-fiverr {
   border-color: rgba(29, 191, 115, 0.4) !important;
   background: linear-gradient(135deg, rgba(29, 191, 115, 0.1), rgba(20, 20, 20, 0.85)) !important;

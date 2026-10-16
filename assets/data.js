@@ -12,13 +12,14 @@ const DEFAULT_PORTFOLIO_DATA = {
     headline: "I edit stories.<br>I animate identities.",
     subhead: "Freelance video editor for Fame (fame.so) for more than 2+ years. I turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
     email: "hamzairfan.edits@gmail.com",
+    upwork: "https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5",
     fiverr: "https://www.fiverr.com/hamzairfaan",
     fame: "https://fame.so",
     location: "Worldwide / Remote Collaboration",
     focus: "Commercial Editing · Fame (fame.so) Editor · Logo Animation",
-    availability: "Available for freelance & remote contracts (Direct & Fiverr)",
+    availability: "Available for freelance contracts on Upwork & Remote Projects",
     avatar: "pic/intro-showreel.jpg",
-    hireText: "Ready to turn raw ideas into scroll-stopping video content? Order on Fiverr or reach out directly.",
+    hireText: "Ready to turn raw ideas into scroll-stopping video content? Hire directly on Upwork or check past client reviews on Fiverr.",
     stats: [
       { num: "2+ Yrs", label: "Editor at Fame (fame.so)" },
       { num: "6+", label: "Years Video Editing" },
@@ -26,12 +27,13 @@ const DEFAULT_PORTFOLIO_DATA = {
     ]
   },
   marquee: [
-    "FREELANCE VIDEO EDITOR FOR FAME (FAME.SO)", "2+ YEARS AT FAME.SO", "ORDER ON FIVERR: FIVERR.COM/HAMZAIRFAAN",
-    "COMMERCIAL EDITING", "LOGO ANIMATION", "VIRAL SHORTS & REELS", "PODCAST PRODUCTION",
+    "HIRE ON UPWORK: UPWORK.COM/FREELANCERS/~01EA31FF7F87E0ACB5", "FREELANCE VIDEO EDITOR FOR FAME (FAME.SO)",
+    "2+ YEARS AT FAME.SO", "CHECK CLIENT REVIEWS ON FIVERR", "COMMERCIAL EDITING",
+    "LOGO ANIMATION", "VIRAL SHORTS & REELS", "PODCAST PRODUCTION",
     "MOTION GRAPHICS", "HIGH-IMPACT HOOKS", "AFTER EFFECTS", "PREMIERE PRO"
   ],
   servicesPills: [
-    "Fame (fame.so) Video Partner", "Commercial Editing", "Fiverr Verified Editor", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
+    "Fame (fame.so) Video Partner", "Upwork Top Freelancer", "Commercial Editing", "Check Clients on Fiverr", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
   ],
   // DEDICATED MASTER INTRO SHOWREEL (CINEMA THEATER)
   showreel: {
@@ -542,7 +544,7 @@ const DEFAULT_PORTFOLIO_DATA = {
   ]
 };
 
-const STORAGE_KEY = 'hamza_irfan_portfolio_data_v5';
+const STORAGE_KEY = 'hamza_irfan_portfolio_data_v7';
 
 function getPortfolioData() {
   try {

@@ -123,33 +123,34 @@ function renderPortfolioDOM() {
 
   // 8. Contact Section
   const contactAvail = document.getElementById('domContactAvail');
+  const contactUpworkLink = document.getElementById('domContactUpworkLink');
   const contactEmailLink = document.getElementById('domContactEmailLink');
   const copyMailBtn = document.getElementById('copyMail');
-  const contactCardEmail = document.getElementById('domContactCardEmail');
+  const contactCardUpwork = document.getElementById('domContactCardUpwork');
   const contactCardLoc = document.getElementById('domContactCardLoc');
   const contactCardFocus = document.getElementById('domContactCardFocus');
 
   if (contactAvail) contactAvail.innerHTML = `<i></i> ${p.availability}`;
+  if (contactUpworkLink) contactUpworkLink.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
   if (contactEmailLink) contactEmailLink.href = `mailto:${p.email}`;
   if (copyMailBtn) copyMailBtn.dataset.mail = p.email;
-  if (contactCardEmail) {
-    contactCardEmail.textContent = p.email;
-    const parentA = contactCardEmail.closest('a');
-    if (parentA) parentA.href = `mailto:${p.email}`;
+  if (contactCardUpwork) {
+    const parentA = contactCardUpwork.closest('a');
+    if (parentA) parentA.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
   }
   if (contactCardLoc) contactCardLoc.textContent = p.location;
   if (contactCardFocus) contactCardFocus.textContent = p.focus;
 
   // 9. Footer
   const ftHireText = document.getElementById('domFtHireText');
-  const ftEmailLink = document.getElementById('domFtEmailLink');
-  const ftEmailTop = document.getElementById('domFtEmailTop');
+  const ftUpworkLink = document.getElementById('domFtUpworkLink');
+  const ftUpworkTop = document.getElementById('domFtUpworkTop');
   const ftName = document.getElementById('ftName');
   const ftCopy = document.getElementById('domFtCopy');
 
   if (ftHireText) ftHireText.textContent = p.hireText || 'Ready to turn raw ideas into scroll-stopping video content?';
-  if (ftEmailLink) ftEmailLink.href = `mailto:${p.email}`;
-  if (ftEmailTop) ftEmailTop.href = `mailto:${p.email}`;
+  if (ftUpworkLink) ftUpworkLink.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
+  if (ftUpworkTop) ftUpworkTop.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
   if (ftName) {
     ftName.textContent = p.name;
     initFooterNameAnimation();
@@ -663,16 +664,10 @@ function init3DCurvedSlider() {
   const CARD_WIDTH = 190;
   const STEP = CARD_WIDTH + 20;
 
-  // Build items array with vertical logo reveals & master showreel in center
-  const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' || v.categoryKey === 'showreel');
-  const sliderItems = verticalItems.length >= 6 ? verticalItems : (data.videos || []);
+  // Build items array strictly with vertical reels & logo animations (NO intro video)
+  const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' && v.id !== 'master-showreel');
+  const sliderItems = verticalItems.length ? verticalItems : (data.videos || []);
   const items = sliderItems.map(v => ({ id: v.id, src: v.poster, title: v.title }));
-  const centerPos = Math.min(2, items.length);
-  items.splice(centerPos, 0, {
-    me: true,
-    src: data.profile.avatar || "pic/intro-showreel.jpg",
-    title: data.profile.name || "Hamza Irfan"
-  });
 
   const TOTAL_ITEMS = items.length;
   if (TOTAL_ITEMS === 0) return;
@@ -689,10 +684,7 @@ function init3DCurvedSlider() {
     card.className = 'cf-card';
     card.innerHTML = `
       <img alt="${item.title}" draggable="false" src="${item.src}">
-      ${item.me 
-        ? `<div class="cf-me"><b>${data.profile.name || 'Hamza Irfan'}</b><span>Lead Editor & Motion</span></div>` 
-        : `<span class="cf-play" title="Play"></span>`
-      }
+      <span class="cf-play" title="Play"></span>
     `;
 
     card.addEventListener('click', () => {
@@ -961,7 +953,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4' || e.key === 'hamza_khan_portfolio_data_v1') {
+  if (e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
     renderPortfolioDOM();
   }
 });
