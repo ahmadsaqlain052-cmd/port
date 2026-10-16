@@ -28,14 +28,14 @@
     </a>
     <ul class="nav-links">
       <li><a href="#showreel" style="color:var(--text); font-weight:600;"><span style="color:var(--accent);">▶</span> Showreel</a></li>
+      <li><a href="#landscapeSlider">16:9 Showcase</a></li>
       <li><a href="#videos">Videos</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener" class="nav-fiverr"><span class="fiverr-badge-dot"></span> Fiverr ↗</a></li>
       <li><a href="admin.html" style="color:var(--accent);">Dashboard ⚡</a></li>
     </ul>
-    <a class="nav-cta" href="#contact">Hire Me <span>↗</span></a>
+    <a class="nav-cta" href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener">Hire on Fiverr ↗</a>
     <button class="burger" id="burger" aria-label="Toggle navigation menu" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -46,15 +46,18 @@
     <!-- HERO SECTION WITH 3D CURVED CAROUSEL -->
     <div class="hz" id="home">
       <div class="hz-tag" id="domHeroBadge">
-        <b>●</b> Video Editor · Motion Designer · Logo Animator
+        <b>●</b> Video Editor &amp; Motion Designer · Freelance Editor at Fame (fame.so)
       </div>
       <h1 id="domHeroH1">I edit stories.<br>I animate identities.</h1>
       <p class="hz-sub" id="domHeroSub">
-        I turn raw footage into polished, engaging content — and bring static logos to life with clean, memorable motion.
+        Freelance video editor for Fame (fame.so) for more than 2+ years. I turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.
       </p>
       <div class="hz-btns">
-        <a class="pill-o" href="#videos">See Selected Work <span>↘</span></a>
-        <a class="pill-g" href="#contact">Start a Project <span>↗</span></a>
+        <a class="pill-o" href="#showreel">Watch Showreel <span>▶</span></a>
+        <a class="pill-fiverr" href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener">
+          <span class="fiverr-badge-icon">fi</span> Order on Fiverr <span>↗</span>
+        </a>
+        <a class="pill-g" href="#contact">Direct Inquiry <span>↘</span></a>
       </div>
 
       <!-- 3D Interactive Curved Slider -->
@@ -95,7 +98,7 @@
 
           <!-- Cinema Player Container -->
           <div class="theater-screen">
-            <video id="theaterVideo" poster="pic/intro-showreel.jpg" playsinline preload="metadata">
+            <video id="theaterVideo" poster="pic/intro-showreel.jpg" playsinline preload="auto" autoplay muted loop>
               <source src="vid/intro-showreel.mp4" type="video/mp4">
             </video>
 
@@ -126,6 +129,34 @@
                   <span>⛶</span> Fullscreen Mode
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LANDSCAPE 3D CURVED CAROUSEL SHOWCASE (16:9 Commercial Hooks, Podcasts, Motion) -->
+        <div class="theater-landscape-showcase" id="landscapeSlider">
+          <div class="landscape-header">
+            <div class="lc-badge">
+              <span class="lc-pulse"></span>
+              <span>✦ 16:9 WIDESCREEN &amp; COMMERCIAL EDITS</span>
+            </div>
+            <h3 class="lc-title">3D CURVED LANDSCAPE &amp; PODCAST SUITE</h3>
+            <p class="lc-desc">
+              Explore 16:9 commercial hooks, multi-cam podcast productions for <b>Fame (fame.so)</b>, and kinetic motion identities. Drag horizontally to interact in 3D cylindrical perspective.
+            </p>
+          </div>
+
+          <!-- 3D Cylindrical Landscape Carousel -->
+          <div class="cf-landscape" id="cfLandscape" aria-label="Interactive 3D Landscape Video Carousel">
+            <!-- Dynamically populated from 16:9 videos by script.js -->
+          </div>
+
+          <div class="landscape-footer-bar">
+            <div class="lf-hint">⟵ Drag horizontally or swipe to rotate in 3D ⟶</div>
+            <div class="lf-actions">
+              <a class="btn-fiverr-accent" href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener">
+                <span class="fi-pill">fi</span> Book Commercial / Podcast Edit on Fiverr ↗
+              </a>
             </div>
           </div>
         </div>
@@ -193,6 +224,19 @@
         </div>
 
         <div class="ct-side">
+          <a class="cc cc-fiverr" href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener">
+            <div class="cc-icon cc-icon-fiverr">
+              <span class="fiverr-badge-symbol">fi</span>
+            </div>
+            <div>
+              <div class="cc-lbl">Fiverr Verified Gig</div>
+              <div class="cc-val">fiverr.com/hamzairfaan ↗</div>
+            </div>
+            <svg class="cc-arr" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7M8 7h9v9"/>
+            </svg>
+          </a>
+
           <a class="cc" href="mailto:hamzairfan.edits@gmail.com">
             <div class="cc-icon">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -215,8 +259,8 @@
               </svg>
             </div>
             <div>
-              <div class="cc-lbl">Location &amp; Remote</div>
-              <div class="cc-val" id="domContactCardLoc">Worldwide / Remote Collaboration</div>
+              <div class="cc-lbl">Client Collaboration</div>
+              <div class="cc-val">Fame (fame.so) · Worldwide Remote</div>
             </div>
           </div>
 
@@ -228,7 +272,7 @@
             </div>
             <div>
               <div class="cc-lbl">Primary Focus</div>
-              <div class="cc-val" id="domContactCardFocus">Video Editing + Logo Animation</div>
+              <div class="cc-val" id="domContactCardFocus">Commercial Hooks · Fame.so Podcasts · Logo 2D/3D</div>
             </div>
           </div>
         </div>
@@ -239,10 +283,12 @@
   <!-- FOOTER WITH GIANT LETTER REVEAL -->
   <footer>
     <div class="ft-top">
+      <a href="#showreel">Showreel</a>
+      <a href="#landscapeSlider">16:9 Showcase</a>
       <a href="#videos">Videos</a>
       <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
+      <a href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener" style="color:#1dbf73; font-weight:700;">Fiverr (hamzairfaan) ↗</a>
       <a href="mailto:hamzairfan.edits@gmail.com" id="domFtEmailTop">Email</a>
     </div>
 
@@ -251,7 +297,12 @@
         <div class="ft-avail"><i></i> Ready for new collaborations</div>
         <h2 id="domFtHireText">Ready to turn raw ideas into scroll-stopping video content?</h2>
       </div>
-      <a class="btn-br" id="domFtEmailLink" href="mailto:hamzairfan.edits@gmail.com"><span>Hire Me ↗</span></a>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn-br" id="domFtEmailLink" href="mailto:hamzairfan.edits@gmail.com"><span>Send Email ↗</span></a>
+        <a class="pill-fiverr" href="https://www.fiverr.com/hamzairfaan" target="_blank" rel="noopener" style="padding:14px 28px;">
+          <span class="fiverr-badge-icon">fi</span> Order on Fiverr ↗
+        </a>
+      </div>
     </div>
 
     <!-- Edge-to-edge auto-scaled typography reveal -->

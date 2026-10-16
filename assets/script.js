@@ -160,6 +160,7 @@ function renderPortfolioDOM() {
   bindVideoCardClicks();
   initObserverAndBars();
   init3DCurvedSlider();
+  init3DCurvedLandscapeSlider();
 }
 
 // Bind Video Click handlers to Lightbox
@@ -223,6 +224,37 @@ function initShowreelTheater() {
   const fsBtn = document.getElementById('theaterFullscreenBtn');
 
   if (!screen || !video) return;
+
+  // Start intro video playing automatically (browser-compliant muted autoplay)
+  video.muted = true;
+  video.loop = true;
+  const startTheaterPlayback = () => {
+    video.play().then(() => {
+      screen.classList.add('playing');
+    }).catch(() => {});
+  };
+  startTheaterPlayback();
+
+  // Trigger playback when scrolled into view
+  if ('IntersectionObserver' in window) {
+    const showreelObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && video.paused) {
+          startTheaterPlayback();
+        }
+      });
+    }, { threshold: 0.15 });
+    showreelObserver.observe(screen);
+  }
+
+  // Fallback trigger on first user interaction
+  const onFirstInteraction = () => {
+    if (video.paused) startTheaterPlayback();
+    window.removeEventListener('scroll', onFirstInteraction);
+    window.removeEventListener('pointerdown', onFirstInteraction);
+  };
+  window.addEventListener('scroll', onFirstInteraction, { passive: true, once: true });
+  window.addEventListener('pointerdown', onFirstInteraction, { once: true });
 
   function togglePlay() {
     if (video.paused || video.ended) {
@@ -721,6 +753,126 @@ function init3DCurvedSlider() {
   container.addEventListener('mouseleave', () => { velocity = 0.55; });
 }
 
+// 3D Curved Infinity Landscape Slider (16:9 Commercial & Podcast Showcase)
+let landscapeSliderAnimId = null;
+
+function init3DCurvedLandscapeSlider() {
+  const container = document.getElementById('cfLandscape');
+  if (!container) return;
+  if (landscapeSliderAnimId) cancelAnimationFrame(landscapeSliderAnimId);
+  container.innerHTML = '';
+
+  const CARD_WIDTH = container.clientWidth < 768 ? 270 : 330;
+  const STEP = CARD_WIDTH + 24;
+
+  // Filter strictly 16:9 landscape videos (commercial hooks, podcasts, motion)
+  const landscapeVideos = (data.videos || []).filter(v => v.aspect === '16:9' || v.orientation === 'landscape');
+  const items = landscapeVideos.map(v => ({
+    id: v.id,
+    src: v.poster,
+    title: v.title,
+    cat: v.cat || 'Commercial Edit',
+    dur: v.dur || '00:30',
+    aspect: v.aspect || '16:9'
+  }));
+
+  // Add Fame (fame.so) feature spotlight card in center position
+  const centerPos = Math.min(2, items.length);
+  items.splice(centerPos, 0, {
+    fame: true,
+    src: "pic/podcast-studio-1.jpg",
+    title: "Fame (fame.so) Lead Podcast & Commercial Video Editor",
+    cat: "Fame.so Partner · 2+ Years",
+    dur: "2+ YRS",
+    aspect: "16:9"
+  });
+
+  const TOTAL_ITEMS = items.length;
+  if (TOTAL_ITEMS === 0) return;
+  const TOTAL_WIDTH = TOTAL_ITEMS * STEP;
+  let offset = 0;
+  let velocity = 0.48;
+  let isDragging = false;
+  let startX = 0;
+  let startOffset = 0;
+  let dragDistance = 0;
+
+  const cardElements = items.map(item => {
+    const card = document.createElement('div');
+    card.className = `cf-landscape-card ${item.fame ? 'fame-card' : ''}`;
+    card.innerHTML = `
+      <img alt="${item.title}" draggable="false" src="${item.src}">
+      <span class="cfl-tag">${item.fame ? 'FAME.SO PARTNER' : item.aspect}</span>
+      <span class="cfl-dur">${item.dur}</span>
+      <div class="cfl-play"><i></i></div>
+      <div class="cfl-info">
+        <span class="cfl-cat">${item.cat}</span>
+        <span class="cfl-title">${item.title}</span>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      if (dragDistance < 6) {
+        if (item.fame) {
+          window.open('https://fame.so', '_blank', 'noopener');
+        } else if (item.id) {
+          const allIds = data.videos.map(v => v.id);
+          openLightbox(allIds, allIds.indexOf(item.id));
+        }
+      }
+    });
+
+    container.appendChild(card);
+    return card;
+  });
+
+  function renderLandscapeFrame() {
+    if (!isDragging) {
+      offset += velocity;
+    }
+    const halfWidth = container.clientWidth / 2;
+    const scaleFactor = container.clientWidth < 700 ? 0.85 : 1.0;
+
+    cardElements.forEach((card, i) => {
+      const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
+      const d = rel / halfWidth;
+      const absD = Math.min(Math.abs(d), 1);
+      const x = rel * (0.6 + 0.4 * absD);
+      const rot = -Math.max(-1.1, Math.min(1.1, d)) * 32;
+      const scale = (0.55 + 0.55 * Math.pow(absD, 1.25)) * scaleFactor;
+
+      card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
+      card.style.zIndex = Math.round(absD * 100);
+    });
+
+    landscapeSliderAnimId = requestAnimationFrame(renderLandscapeFrame);
+  }
+  renderLandscapeFrame();
+
+  container.addEventListener('pointerdown', e => {
+    isDragging = true;
+    dragDistance = 0;
+    startX = e.clientX;
+    startOffset = offset;
+    container.classList.add('drag');
+  });
+
+  window.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    dragDistance = Math.max(dragDistance, Math.abs(e.clientX - startX));
+    offset = startOffset - (e.clientX - startX);
+  });
+
+  window.addEventListener('pointerup', () => {
+    isDragging = false;
+    container.classList.remove('drag');
+    setTimeout(() => { dragDistance = 0; }, 50);
+  });
+
+  container.addEventListener('mouseenter', () => { velocity = 0.12; });
+  container.addEventListener('mouseleave', () => { velocity = 0.48; });
+}
+
 // Lightbox Video Player Modal
 let currentLightboxList = [];
 let currentLightboxIdx = 0;
@@ -809,7 +961,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'hamza_irfan_portfolio_data_v4' || e.key === 'hamza_khan_portfolio_data_v1') {
+  if (e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4' || e.key === 'hamza_khan_portfolio_data_v1') {
     renderPortfolioDOM();
   }
 });

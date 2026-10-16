@@ -354,6 +354,63 @@ nav.scrolled {
   background: rgba(232, 69, 26, 0.2);
 }
 
+/* FIVERR BRANDED BUTTONS & PILLS */
+.pill-fiverr {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #1dbf73;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(29, 191, 115, 0.35);
+  transition: all 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-family: inherit;
+}
+
+.pill-fiverr:hover {
+  background: #19a463;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(29, 191, 115, 0.55);
+  color: #fff;
+}
+
+.fiverr-badge-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  color: #1dbf73;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.nav-fiverr {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  color: #1dbf73 !important;
+  font-weight: 700 !important;
+}
+
+.nav-fiverr:hover {
+  color: #2fe08b !important;
+}
+
+.fiverr-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1dbf73;
+  box-shadow: 0 0 10px #1dbf73;
+}
+
 /* 3D CURVED CAROUSEL / SLIDER */
 .cf {
   position: relative;
@@ -812,6 +869,309 @@ section {
   border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(232, 69, 26, 0.4);
+}
+
+/* ========================================================
+   LANDSCAPE 3D CURVED CAROUSEL SHOWCASE (16:9 Widescreen)
+   ======================================================== */
+.theater-landscape-showcase {
+  margin-top: 72px;
+  padding-top: 52px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.landscape-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 28px;
+}
+
+.lc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(232, 69, 26, 0.12);
+  border: 1px solid rgba(232, 69, 26, 0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.lc-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.lc-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.lc-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.lc-desc b {
+  color: #1dbf73;
+  font-weight: 700;
+}
+
+/* 3D Curved Landscape Infinity Container */
+.cf-landscape {
+  position: relative;
+  height: 380px;
+  margin: 20px 0 32px;
+  perspective: 1400px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cf-landscape.drag {
+  cursor: grabbing;
+}
+
+.cf-landscape-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 330px;
+  height: 186px;
+  margin: -93px 0 0 -165px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.7);
+  will-change: transform;
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.cf-landscape-card:hover {
+  border-color: rgba(232, 69, 26, 0.8);
+  box-shadow: 0 28px 65px rgba(232, 69, 26, 0.25);
+}
+
+.cf-landscape-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  transition: transform 0.4s ease;
+}
+
+.cf-landscape-card:hover img {
+  transform: scale(1.06);
+}
+
+.cf-landscape-card .cfl-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  color: var(--accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(232, 69, 26, 0.4);
+}
+
+.cf-landscape-card .cfl-dur {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 10.5px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cf-landscape-card .cfl-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease, background 0.25s ease;
+  z-index: 2;
+}
+
+.cf-landscape-card:hover .cfl-play {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: var(--accent-hover);
+}
+
+.cf-landscape-card .cfl-play i {
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #fff;
+  margin-left: 3px;
+}
+
+.cf-landscape-card .cfl-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+  z-index: 2;
+  text-align: left;
+}
+
+.cf-landscape-card .cfl-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.cf-landscape-card .cfl-cat {
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+
+/* Feature Spotlight card for Fame.so */
+.cf-landscape-card.fame-card {
+  border-color: rgba(29, 191, 115, 0.7);
+  box-shadow: 0 24px 60px rgba(29, 191, 115, 0.25);
+}
+
+.cf-landscape-card.fame-card .cfl-tag {
+  color: #1dbf73;
+  border-color: rgba(29, 191, 115, 0.5);
+}
+
+.cf-landscape-card.fame-card .cfl-cat {
+  color: #1dbf73;
+}
+
+/* Bottom Actions & Hint Bar */
+.landscape-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.lf-hint {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.btn-fiverr-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  background: rgba(29, 191, 115, 0.15);
+  border: 1px solid rgba(29, 191, 115, 0.45);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-fiverr-accent:hover {
+  background: #1dbf73;
+  border-color: #1dbf73;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 191, 115, 0.4);
+  color: #fff;
+}
+
+.fi-pill {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: #1dbf73;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+}
+
+.btn-fiverr-accent:hover .fi-pill {
+  background: #fff;
+  color: #1dbf73;
+}
+
+/* Contact Card Fiverr Styling */
+.cc-fiverr {
+  border-color: rgba(29, 191, 115, 0.4) !important;
+  background: linear-gradient(135deg, rgba(29, 191, 115, 0.1), rgba(20, 20, 20, 0.85)) !important;
+}
+
+.cc-fiverr:hover {
+  border-color: #1dbf73 !important;
+  box-shadow: 0 12px 30px rgba(29, 191, 115, 0.25) !important;
+}
+
+.cc-icon-fiverr {
+  background: rgba(29, 191, 115, 0.15) !important;
+  border: 1px solid rgba(29, 191, 115, 0.3) !important;
+}
+
+.fiverr-badge-symbol {
+  font-size: 16px;
+  font-weight: 900;
+  color: #1dbf73;
+  font-family: 'Inter', sans-serif;
 }
 
 /* VIDEOS / REELS GRID */

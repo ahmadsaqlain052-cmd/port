@@ -8,27 +8,30 @@ const DEFAULT_PORTFOLIO_DATA = {
   profile: {
     name: "Hamza Irfan",
     initials: "HI",
-    badge: "Video Editor · Motion Designer · Logo Animator",
+    badge: "Video Editor & Motion Designer · Freelance Editor at Fame (fame.so)",
     headline: "I edit stories.<br>I animate identities.",
-    subhead: "I turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
+    subhead: "Freelance video editor for Fame (fame.so) for more than 2+ years. I turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
     email: "hamzairfan.edits@gmail.com",
+    fiverr: "https://www.fiverr.com/hamzairfaan",
+    fame: "https://fame.so",
     location: "Worldwide / Remote Collaboration",
-    focus: "Commercial Editing · Logo Animation · Viral Shorts",
-    availability: "Available for freelance & remote contracts",
+    focus: "Commercial Editing · Fame (fame.so) Editor · Logo Animation",
+    availability: "Available for freelance & remote contracts (Direct & Fiverr)",
     avatar: "pic/intro-showreel.jpg",
-    hireText: "Ready to turn raw ideas into scroll-stopping video content?",
+    hireText: "Ready to turn raw ideas into scroll-stopping video content? Order on Fiverr or reach out directly.",
     stats: [
+      { num: "2+ Yrs", label: "Editor at Fame (fame.so)" },
       { num: "6+", label: "Years Video Editing" },
-      { num: "2+", label: "Years Logo Animation" },
       { num: "150+", label: "Videos Delivered" }
     ]
   },
   marquee: [
+    "FREELANCE VIDEO EDITOR FOR FAME (FAME.SO)", "2+ YEARS AT FAME.SO", "ORDER ON FIVERR: FIVERR.COM/HAMZAIRFAAN",
     "COMMERCIAL EDITING", "LOGO ANIMATION", "VIRAL SHORTS & REELS", "PODCAST PRODUCTION",
     "MOTION GRAPHICS", "HIGH-IMPACT HOOKS", "AFTER EFFECTS", "PREMIERE PRO"
   ],
   servicesPills: [
-    "Commercial Editing", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
+    "Fame (fame.so) Video Partner", "Commercial Editing", "Fiverr Verified Editor", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
   ],
   // DEDICATED MASTER INTRO SHOWREEL (CINEMA THEATER)
   showreel: {
@@ -426,13 +429,13 @@ const DEFAULT_PORTFOLIO_DATA = {
     },
     {
       id: 5,
-      videoId: 15,
-      company: "Podcast Production",
-      name: "Studio Multi-Cam Podcast Post-Production",
-      desc: "Full episode post-production and short-form snippet extraction. Filler removal, multi-camera rhythm, audio noise gating, and mobile-optimized visual framing.",
-      typeBadge: "Podcast Editing · 16:9 Widescreen",
+      videoId: 18,
+      company: "Fame (fame.so)",
+      name: "Fame.so — B2B Podcast Production & Commercial Video Suite",
+      desc: "Working for Fame (fame.so) for more than 2+ years as a freelance video editor. Full episode post-production, multi-camera synchronicity, vocal noise gating, narrative trimming, and retention-optimized social cutdowns.",
+      typeBadge: "Fame (fame.so) Partner · 2+ Years",
       countBadge: "05",
-      tags: ["Podcast Editing", "Multi-Cam", "Audio Clean", "Speaker Switching"],
+      tags: ["Fame.so", "2+ Years", "Podcast Production", "Multi-Cam", "Retention Sound"],
       mainImg: "pic/podcast-studio-1.jpg",
       stripImages: [
         "pic/podcast-studio-1.jpg",
@@ -504,14 +507,24 @@ const DEFAULT_PORTFOLIO_DATA = {
   experience: [
     {
       id: 1,
-      period: "CURRENT",
-      role: "Lead Video Editor & Motion Designer",
-      company: "Freelance Collaboration",
-      desc: "Directing end-to-end post-production on commercial video hooks, viral reels, master showreels, kinetic logo animations, and YouTube episodic content.",
-      color: "#E8451A"
+      period: "2+ YEARS (CURRENT)",
+      role: "Freelance Video Editor & Podcast Specialist",
+      company: "Fame (fame.so)",
+      companyUrl: "https://fame.so",
+      desc: "Working for Fame (fame.so) for more than 2+ years as a dedicated freelance video editor. Directing end-to-end post-production across high-impact B2B podcast episodes, dynamic commercial video hooks, multi-cam rhythm assemblies, audio sweetening, and viral multi-platform cutdowns.",
+      color: "#1dbf73"
     },
     {
       id: 2,
+      period: "CURRENT",
+      role: "Lead Video Editor & Motion Designer",
+      company: "Fiverr Freelance & Remote Contracts",
+      companyUrl: "https://www.fiverr.com/hamzairfaan",
+      desc: "Delivering commercial video hooks, viral reels, master showreels, kinetic logo animations, and YouTube episodic content with 5-star client ratings on Fiverr.",
+      color: "#E8451A"
+    },
+    {
+      id: 3,
       period: "2025—2026",
       role: "Logo Animator & Video Editor",
       company: "SN Solution",
@@ -519,7 +532,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       color: "#E8451A"
     },
     {
-      id: 3,
+      id: 4,
       period: "ONGOING",
       role: "Motion Design & Digital Content Creator",
       company: "Independent Studio",
@@ -529,7 +542,7 @@ const DEFAULT_PORTFOLIO_DATA = {
   ]
 };
 
-const STORAGE_KEY = 'hamza_irfan_portfolio_data_v4';
+const STORAGE_KEY = 'hamza_irfan_portfolio_data_v5';
 
 function getPortfolioData() {
   try {

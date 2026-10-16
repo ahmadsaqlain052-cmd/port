@@ -597,6 +597,17 @@
             </div>
           </div>
 
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fiverr Profile URL</label>
+              <input type="url" id="profFiverr" placeholder="https://www.fiverr.com/hamzairfaan" />
+            </div>
+            <div class="form-group">
+              <label>Fame.so Website URL (Freelance Video Editor)</label>
+              <input type="url" id="profFame" placeholder="https://fame.so" />
+            </div>
+          </div>
+
           <div class="form-group">
             <label>Availability Badge Status</label>
             <input type="text" id="profAvailability" placeholder="Available for freelance & remote projects" />
@@ -1072,6 +1083,8 @@
       document.getElementById('profEmail').value = p.email || '';
       document.getElementById('profLocation').value = p.location || '';
       document.getElementById('profFocus').value = p.focus || '';
+      document.getElementById('profFiverr').value = p.fiverr || 'https://www.fiverr.com/hamzairfaan';
+      document.getElementById('profFame').value = p.fame || 'https://fame.so';
       document.getElementById('profAvailability').value = p.availability || '';
       document.getElementById('profAvatar').value = p.avatar || '';
 
@@ -1099,6 +1112,8 @@
       appData.profile.email = document.getElementById('profEmail').value.trim();
       appData.profile.location = document.getElementById('profLocation').value.trim();
       appData.profile.focus = document.getElementById('profFocus').value.trim();
+      appData.profile.fiverr = document.getElementById('profFiverr').value.trim();
+      appData.profile.fame = document.getElementById('profFame').value.trim();
       appData.profile.availability = document.getElementById('profAvailability').value.trim();
       appData.profile.avatar = document.getElementById('profAvatar').value.trim();
 
