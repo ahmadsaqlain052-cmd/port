@@ -775,11 +775,13 @@ section {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 45px rgba(232, 69, 26, 0.2);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(232, 69, 26, 0.15);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .theater-screen video {
@@ -789,42 +791,36 @@ section {
   display: block;
 }
 
-/* Overlay & Big Play Button */
-.theater-overlay {
+/* Center Play/Pause Button (Clean, Visible when paused, Fades when playing) */
+.theater-center-action {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.75) 100%);
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  gap: 12px;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.6) 100%);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
 }
 
-.theater-screen.playing .theater-overlay {
+.theater-screen.playing .theater-center-action {
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
 }
 
-.theater-screen.playing .theater-bar {
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-}
-
-.theater-screen.playing:hover .theater-bar {
+.theater-screen.playing.user-paused .theater-center-action {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
   pointer-events: auto;
 }
 
-.theater-play-btn {
+.tca-btn {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   background: var(--accent);
   border: none;
@@ -832,74 +828,131 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 12px 36px rgba(232, 69, 26, 0.55);
+  box-shadow: 0 10px 30px rgba(232, 69, 26, 0.6);
+  transition: transform 0.25s ease, background 0.25s ease;
+  pointer-events: auto;
 }
 
-.theater-play-btn:hover {
+.tca-btn:hover {
   transform: scale(1.1);
   background: var(--accent-hover);
-  box-shadow: 0 16px 45px rgba(232, 69, 26, 0.75);
 }
 
-.tp-ring {
+.tca-ring {
   position: absolute;
-  inset: -12px;
+  inset: -10px;
   border-radius: 50%;
-  border: 2px solid rgba(232, 69, 26, 0.5);
-  animation: tpPulse 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  border: 2px solid rgba(232, 69, 26, 0.45);
+  animation: tpPulse 2.4s infinite;
   pointer-events: none;
 }
 
-@keyframes tpPulse {
-  0% { transform: scale(0.9); opacity: 0.8; }
-  50% { transform: scale(1.25); opacity: 0; }
-  100% { transform: scale(1.25); opacity: 0; }
-}
-
-.tp-icon i {
+.tca-icon-play i {
   display: block;
   width: 0;
   height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 24px solid #ffffff;
-  margin-left: 5px;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-left: 20px solid #ffffff;
+  margin-left: 4px;
 }
 
-.theater-overlay-txt {
-  text-align: center;
-}
-
-.theater-overlay-txt b {
-  display: block;
-  font-size: 16px;
-  letter-spacing: 2.5px;
-  color: #fff;
+.tca-label {
+  font-size: 11.5px;
   font-weight: 800;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
 }
 
-.theater-overlay-txt span {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.5px;
-}
-
-/* Bottom Theater Bar */
-.theater-bar {
+/* Discreet Top-Right Sound Button (Small & Never Obstructive) */
+.theater-discreet-sound {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  padding: 16px 24px;
+  top: 12px;
+  right: 12px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.theater-discreet-sound:hover {
+  background: rgba(232, 69, 26, 0.85);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Discreet Bottom-Right Fullscreen Button */
+.theater-discreet-fs {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 6;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(12, 12, 12, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 15px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.theater-discreet-fs:hover {
+  background: rgba(232, 69, 26, 0.85);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Subtle auto-fade for controls when playing */
+.theater-screen.playing:not(:hover) .theater-discreet-sound,
+.theater-screen.playing:not(:hover) .theater-discreet-fs {
+  opacity: 0.35;
+}
+
+.theater-screen:hover .theater-discreet-sound,
+.theater-screen:hover .theater-discreet-fs,
+.theater-screen.user-active .theater-discreet-sound,
+.theater-screen.user-active .theater-discreet-fs {
+  opacity: 1 !important;
+}
+
+/* Metadata Bar OUTSIDE the Video (Zero obstruction of the actual footage) */
+.theater-meta-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
 }
 
 .theater-tags {
@@ -912,43 +965,68 @@ section {
 .tt-tag {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(232, 69, 26, 0.35);
+  background: rgba(232, 69, 26, 0.1);
+  border: 1px solid rgba(232, 69, 26, 0.3);
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
-.theater-ctrls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.theater-btn {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
+.theater-meta-hint {
+  font-size: 12px;
+  color: var(--muted);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-  font-family: inherit;
+  gap: 7px;
 }
 
-.theater-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(232, 69, 26, 0.4);
+.live-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #14a800;
+  box-shadow: 0 0 8px #14a800;
+  animation: pulse2 2s infinite;
+}
+
+@media (max-width: 650px) {
+  .theater-screen {
+    border-radius: 14px;
+  }
+  .tca-btn {
+    width: 58px;
+    height: 58px;
+  }
+  .tca-icon-play i {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid #ffffff;
+  }
+  .theater-discreet-sound {
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .theater-discreet-fs {
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .theater-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .tt-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
 }
 
 /* ========================================================

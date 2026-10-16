@@ -84,39 +84,42 @@
             <!-- Ambient Dynamic Video Backdrop Glow -->
             <div class="theater-backdrop-glow"></div>
 
-            <!-- Cinema Player Container -->
-            <div class="theater-screen">
+            <!-- Cinema Player Container (Clean & Unobstructed) -->
+            <div class="theater-screen" id="theaterScreen">
               <video id="theaterVideo" poster="pic/intro-showreel.jpg" playsinline preload="auto" autoplay muted loop>
                 <source src="vid/intro-showreel.mp4" type="video/mp4">
               </video>
 
-              <!-- Interactive Cinema Overlay -->
-              <div class="theater-overlay" id="theaterOverlay">
-                <button class="theater-play-btn" id="theaterPlayBtn" type="button" aria-label="Play Master Showreel">
-                  <span class="tp-ring"></span>
-                  <span class="tp-icon"><i></i></span>
+              <!-- Central Play/Pause Action Button (Fades out when playing) -->
+              <div class="theater-center-action" id="theaterCenterAction" aria-label="Toggle Play/Pause">
+                <button class="tca-btn" id="theaterPlayBtn" type="button" aria-label="Play Video">
+                  <span class="tca-ring"></span>
+                  <span class="tca-icon-play"><i></i></span>
                 </button>
-                <div class="theater-overlay-txt">
-                  <b>WATCH SHOWREEL</b>
-                  <span>Full Cinema Edition · 01:01</span>
-                </div>
+                <span class="tca-label" id="tcaLabel">Tap to Play</span>
               </div>
 
-              <!-- Sleek Bottom Theater Control Bar -->
-              <div class="theater-bar">
-                <div class="theater-tags" id="domShowreelHighlights">
-                  <span class="tt-tag">16:9 Widescreen</span>
-                  <span class="tt-tag">1080p 60fps</span>
-                  <span class="tt-tag">Master Cut</span>
-                </div>
-                <div class="theater-ctrls">
-                  <button class="theater-btn" id="theaterMuteBtn" type="button">
-                    <span id="theaterMuteIcon">🔊</span> <span id="theaterMuteTxt">Unmute Sound</span>
-                  </button>
-                  <button class="theater-btn" id="theaterFullscreenBtn" type="button">
-                    <span>⛶</span> Fullscreen Mode
-                  </button>
-                </div>
+              <!-- Top-Right Discreet Sound Toggle -->
+              <button class="theater-discreet-sound" id="theaterMuteBtn" type="button" aria-label="Toggle Sound" title="Toggle Sound">
+                <span id="theaterMuteIcon">🔇</span>
+                <span id="theaterMuteTxt">Muted</span>
+              </button>
+
+              <!-- Bottom-Right Discreet Fullscreen Button -->
+              <button class="theater-discreet-fs" id="theaterFullscreenBtn" type="button" aria-label="Fullscreen" title="Fullscreen Mode">
+                <span>⛶</span>
+              </button>
+            </div>
+
+            <!-- Clean Metadata & Tags Row (OUTSIDE the video, so video stays 100% unobstructed!) -->
+            <div class="theater-meta-bar">
+              <div class="theater-tags" id="domShowreelHighlights">
+                <span class="tt-tag">16:9 Cinema 1080p 60fps</span>
+                <span class="tt-tag">Master Cut</span>
+                <span class="tt-tag">Commercial &amp; Viral Formats</span>
+              </div>
+              <div class="theater-meta-hint">
+                <span class="live-pulse-dot"></span> Autoplays in view · Tap video to play/pause
               </div>
             </div>
           </div>

@@ -214,11 +214,14 @@ function renderShowreelTheater() {
 }
 
 let theaterEventsBound = false;
+let userManuallyPaused = false;
+let controlsFadeTimeout = null;
+
 function initShowreelTheater() {
   const screen = document.querySelector('.theater-screen');
   const video = document.getElementById('theaterVideo');
   const playBtn = document.getElementById('theaterPlayBtn');
-  const overlay = document.getElementById('theaterOverlay');
+  const centerAction = document.getElementById('theaterCenterAction');
   const muteBtn = document.getElementById('theaterMuteBtn');
   const muteIcon = document.getElementById('theaterMuteIcon');
   const muteTxt = document.getElementById('theaterMuteTxt');
@@ -226,77 +229,103 @@ function initShowreelTheater() {
 
   if (!screen || !video) return;
 
+  function pingControls() {
+    screen.classList.add('user-active');
+    clearTimeout(controlsFadeTimeout);
+    if (!video.paused) {
+      controlsFadeTimeout = setTimeout(() => {
+        screen.classList.remove('user-active');
+      }, 2400);
+    }
+  }
+
   // Start intro video playing automatically (browser-compliant muted autoplay)
   video.muted = true;
   video.loop = true;
+
   const startTheaterPlayback = () => {
+    if (userManuallyPaused) return;
     video.play().then(() => {
       screen.classList.add('playing');
+      screen.classList.remove('user-paused');
+      pingControls();
     }).catch(() => {});
   };
   startTheaterPlayback();
 
-  // Trigger playback when scrolled into view
+  // Auto-pause immediately when scrolled away or scrolled up
   if ('IntersectionObserver' in window) {
     const showreelObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && video.paused) {
-          startTheaterPlayback();
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.25) {
+          // Scrolled away / out of view -> PAUSE immediately
+          if (!video.paused) {
+            video.pause();
+            screen.classList.remove('playing');
+          }
+        } else {
+          // Scrolled back into view -> resume if not manually paused
+          if (video.paused && !userManuallyPaused) {
+            startTheaterPlayback();
+          }
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: [0, 0.25, 0.5, 0.75] });
     showreelObserver.observe(screen);
   }
 
-  // Fallback trigger on first user interaction
-  const onFirstInteraction = () => {
-    if (video.paused) startTheaterPlayback();
-    window.removeEventListener('scroll', onFirstInteraction);
-    window.removeEventListener('pointerdown', onFirstInteraction);
-  };
-  window.addEventListener('scroll', onFirstInteraction, { passive: true, once: true });
-  window.addEventListener('pointerdown', onFirstInteraction, { once: true });
+  // Scroll listener fallback: if video is scrolled off screen, pause immediately
+  window.addEventListener('scroll', () => {
+    const rect = screen.getBoundingClientRect();
+    if (rect.bottom < 50 || rect.top > (window.innerHeight - 50)) {
+      if (!video.paused) {
+        video.pause();
+        screen.classList.remove('playing');
+      }
+    }
+  }, { passive: true });
 
   function togglePlay() {
     if (video.paused || video.ended) {
-      // Pause any active lightbox video to avoid audio clash
+      userManuallyPaused = false;
       const activeLbVideo = document.getElementById('lbVideo');
       if (activeLbVideo && !activeLbVideo.paused) {
         activeLbVideo.pause();
       }
       video.play().then(() => {
         screen.classList.add('playing');
+        screen.classList.remove('user-paused');
+        pingControls();
       }).catch(err => {
-        console.warn('Theater playback requires user interaction:', err);
+        console.warn('Theater playback requires interaction:', err);
       });
     } else {
+      userManuallyPaused = true;
       video.pause();
       screen.classList.remove('playing');
+      screen.classList.add('user-paused');
+      screen.classList.add('user-active');
     }
   }
 
   if (!theaterEventsBound) {
     theaterEventsBound = true;
 
-    if (playBtn) {
-      playBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        togglePlay();
-      });
-    }
-
-    if (overlay) {
-      overlay.addEventListener('click', () => {
-        togglePlay();
-      });
-    }
-
-    video.addEventListener('click', () => {
+    // Tapping the screen or play button toggles play/pause
+    screen.addEventListener('click', e => {
+      if (e.target.closest('#theaterMuteBtn') || e.target.closest('#theaterFullscreenBtn')) {
+        return;
+      }
       togglePlay();
     });
 
+    screen.addEventListener('mousemove', pingControls);
+    screen.addEventListener('touchstart', pingControls, { passive: true });
+
     video.addEventListener('play', () => {
       screen.classList.add('playing');
+      screen.classList.remove('user-paused');
+      pingControls();
     });
 
     video.addEventListener('pause', () => {
@@ -305,6 +334,7 @@ function initShowreelTheater() {
 
     video.addEventListener('ended', () => {
       screen.classList.remove('playing');
+      screen.classList.add('user-paused');
       video.currentTime = 0;
     });
 
@@ -315,12 +345,13 @@ function initShowreelTheater() {
         if (muteIcon && muteTxt) {
           if (video.muted) {
             muteIcon.textContent = '🔇';
-            muteTxt.textContent = 'Unmute Sound';
+            muteTxt.textContent = 'Muted';
           } else {
             muteIcon.textContent = '🔊';
-            muteTxt.textContent = 'Mute Sound';
+            muteTxt.textContent = 'Sound On';
           }
         }
+        pingControls();
       });
     }
 
@@ -340,6 +371,7 @@ function initShowreelTheater() {
             document.exitFullscreen();
           }
         }
+        pingControls();
       });
     }
   }
