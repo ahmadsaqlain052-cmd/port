@@ -566,9 +566,15 @@ function loadCurrentVideo() {
   const videoData = (data.videos || []).find(v => v.id === vidId);
   if (!videoData) return;
 
-  lbVideo.src = videoData.src;
-  lbVideo.poster = videoData.poster;
-  lbVideo.play().catch(() => {});
+  if (videoData.src && videoData.src.trim() !== '') {
+    lbVideo.src = videoData.src;
+    lbVideo.poster = videoData.poster || '';
+    lbVideo.play().catch(() => {});
+  } else {
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.poster = videoData.poster || '';
+  }
   if (lbCaption) {
     lbCaption.textContent = `${videoData.title} — ${videoData.cat}`;
   }

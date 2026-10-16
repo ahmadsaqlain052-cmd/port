@@ -1,0 +1,12 @@
+# Video media files (keep placeholders and posters in pic/ only)
+vid/
+final for webs ite/
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# OS & Temp files
+.DS_Store
+Thumbs.db
+*.tmp

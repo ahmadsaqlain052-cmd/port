@@ -39,7 +39,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Beth Wood",
       desc: "High-retention mobile short edit with punchy hook pacing, custom sound design, dynamic zooms, and kinetic subtitles.",
       poster: "pic/beth-wood.jpg",
-      src: "vid/Beth Wood - YT Short 1.mp4"
+      src: ""
     },
     {
       id: 2,
@@ -50,7 +50,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Guga Gotsadze",
       desc: "Fast-paced visual storytelling, seamless B-roll cut-ins, motion graphic accents, and animated captions optimized for YouTube Shorts.",
       poster: "pic/guga-gotsadze.jpg",
-      src: "vid/Guga Gotsadze - YT Short 2_V05.mp4"
+      src: ""
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Hub Identity",
       desc: "Fluid vector logo reveal with smooth kinetic motion and brand audio synchronization crafted in Adobe After Effects.",
       poster: "pic/hub.jpg",
-      src: "vid/hub.mp4"
+      src: ""
     },
     {
       id: 4,
@@ -72,7 +72,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Jeffrey Bowers",
       desc: "Episodic podcast clipping, filler word removal, clear audio mixing, and engaging vertical framing for viral social sharing.",
       poster: "pic/jeffrey-bowers.jpg",
-      src: "vid/Jeffrey Bowers - YT Short 3.mp4"
+      src: ""
     },
     {
       id: 5,
@@ -83,7 +83,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Joseph Lee",
       desc: "Retention-first narrative editing, smooth transitions, atmospheric soundscapes, and bold graphic callouts.",
       poster: "pic/joseph-lee.jpg",
-      src: "vid/Joseph Lee - YT Short 2.mp4"
+      src: ""
     },
     {
       id: 6,
@@ -94,7 +94,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Roddy Kok",
       desc: "Dynamic hook construction, fast rhythm cuts, animated captions, and sound effects built to maximize viewer completion rate.",
       poster: "pic/roddy-kok.jpg",
-      src: "vid/Roddy Kok - YT Short 1.mp4"
+      src: ""
     },
     {
       id: 7,
@@ -105,7 +105,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Brand Systems",
       desc: "Energetic 2D motion graphics stinger with custom sound effects designed for video intros and YouTube branding.",
       poster: "pic/whatsapp-logo-1.jpg",
-      src: "vid/WhatsApp Video 2026-10-06 at 4.04.32 PM.mp4"
+      src: ""
     },
     {
       id: 8,
@@ -116,7 +116,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Motion Identity",
       desc: "Minimalist vector logo animation with elegant easing curves, shape morphs, and clean brand delivery.",
       poster: "pic/whatsapp-logo-2.jpg",
-      src: "vid/WhatsApp Video 2026-10-06 at 4.04.32 PM (1).mp4"
+      src: ""
     },
     {
       id: 9,
@@ -127,7 +127,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Social Branding",
       desc: "Short-form brand stinger for Instagram Reels, YouTube Shorts, and corporate digital presentations.",
       poster: "pic/whatsapp-logo-3.jpg",
-      src: "vid/WhatsApp Video 2026-10-06 at 4.04.32 PM (2).mp4"
+      src: ""
     },
     {
       id: 10,
@@ -138,7 +138,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Micro Branding",
       desc: "Ultra-fast kinetic logo bumper for rapid video transitions and channel watermarks.",
       poster: "pic/whatsapp-logo-4.jpg",
-      src: "vid/WhatsApp Video 2026-10-06 at 4.04.31 PM.mp4"
+      src: ""
     }
   ],
   projects: [
@@ -263,7 +263,7 @@ const DEFAULT_PORTFOLIO_DATA = {
   ]
 };
 
-const STORAGE_KEY = 'hamza_khan_portfolio_data_v1';
+const STORAGE_KEY = 'hamza_irfan_portfolio_data_v2';
 
 function getPortfolioData() {
   try {
