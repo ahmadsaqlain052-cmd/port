@@ -27,6 +27,7 @@
       <span class="logo-sub" id="domBrandName">Hamza Irfan</span>
     </a>
     <ul class="nav-links">
+      <li><a href="#showreel" style="color:var(--text); font-weight:600;"><span style="color:var(--accent);">▶</span> Showreel</a></li>
       <li><a href="#videos">Videos</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -73,10 +74,71 @@
       </div>
     </section>
 
+    <!-- DEDICATED MASTER SHOWREEL CINEMA THEATER -->
+    <section class="showreel-theater" id="showreel" aria-label="Master Showreel Cinema">
+      <div class="theater-glow"></div>
+      <div class="theater-inner">
+        <div class="theater-header">
+          <div class="theater-badge">
+            <span class="theater-pulse"></span>
+            <span id="domShowreelBadge">2026 OFFICIAL SHOWREEL</span>
+          </div>
+          <h2 class="theater-title" id="domShowreelTitle">MASTER EDITING &amp; MOTION REEL</h2>
+          <p class="theater-desc" id="domShowreelDesc">
+            60 seconds of high-impact commercial editing, kinetic motion graphics, retention sound design, and narrative pacing.
+          </p>
+        </div>
+
+        <div class="theater-stage" id="theaterStage">
+          <!-- Ambient Dynamic Video Backdrop Glow -->
+          <div class="theater-backdrop-glow"></div>
+
+          <!-- Cinema Player Container -->
+          <div class="theater-screen">
+            <video id="theaterVideo" poster="pic/intro-showreel.jpg" playsinline preload="metadata">
+              <source src="vid/intro-showreel.mp4" type="video/mp4">
+            </video>
+
+            <!-- Interactive Cinema Overlay -->
+            <div class="theater-overlay" id="theaterOverlay">
+              <button class="theater-play-btn" id="theaterPlayBtn" type="button" aria-label="Play Master Showreel">
+                <span class="tp-ring"></span>
+                <span class="tp-icon"><i></i></span>
+              </button>
+              <div class="theater-overlay-txt">
+                <b>WATCH SHOWREEL</b>
+                <span>Full Cinema Edition · 01:01</span>
+              </div>
+            </div>
+
+            <!-- Sleek Bottom Theater Control Bar -->
+            <div class="theater-bar">
+              <div class="theater-tags" id="domShowreelHighlights">
+                <span class="tt-tag">16:9 Widescreen</span>
+                <span class="tt-tag">1080p 60fps</span>
+                <span class="tt-tag">Master Cut</span>
+              </div>
+              <div class="theater-ctrls">
+                <button class="theater-btn" id="theaterMuteBtn" type="button">
+                  <span id="theaterMuteIcon">🔊</span> <span id="theaterMuteTxt">Unmute Sound</span>
+                </button>
+                <button class="theater-btn" id="theaterFullscreenBtn" type="button">
+                  <span>⛶</span> Fullscreen Mode
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- VIDEOS SHOWCASE SECTION -->
     <section class="videos" id="videos">
       <div class="sec-lbl">Showreel &amp; Edits</div>
       <h2 class="sec-title">FEATURED VIDEO WORK</h2>
+      <div class="vid-filters" id="domVidFilters">
+        <!-- Rendered dynamically -->
+      </div>
       <div class="vid-grid" id="domVidGrid">
         <!-- Dynamically rendered -->
       </div>

@@ -638,8 +638,34 @@
       <section class="view-panel" id="tab-videos">
         <div class="panel-head">
           <div>
-            <h2>Featured Videos Showcase</h2>
-            <p>Add, edit, upload posters, or delete video clips featured in your grid and 3D carousel.</p>
+            <h2>Dedicated Master Showreel Theater</h2>
+            <p>The cinematic centerpiece showcased on your homepage right below the hero marquee.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openShowreelModal()">Edit Showreel ✎</button>
+        </div>
+
+        <!-- Master Showreel Spotlight Card -->
+        <div style="background:var(--card); border:1px solid rgba(232,69,26,0.3); border-radius:12px; padding:20px; margin-bottom:32px; display:grid; grid-template-columns:300px 1fr; gap:24px; align-items:center;">
+          <div style="aspect-ratio:16/9; background:#000; border-radius:8px; overflow:hidden; position:relative; border:1px solid var(--bdr);">
+            <img id="adminShowreelThumb" src="pic/intro-showreel.jpg" alt="Master Showreel" style="width:100%; height:100%; object-fit:cover;" />
+            <span style="position:absolute; top:8px; left:8px; background:var(--accent); color:#fff; font-size:10px; font-weight:800; padding:2px 8px; border-radius:4px; letter-spacing:1px;">MASTER SHOWREEL</span>
+            <span id="adminShowreelDur" style="position:absolute; bottom:8px; right:8px; background:rgba(0,0,0,0.8); font-size:11px; padding:2px 6px; border-radius:4px;">01:01</span>
+          </div>
+          <div>
+            <div style="font-size:11px; text-transform:uppercase; color:var(--accent); font-weight:700; letter-spacing:1px;" id="adminShowreelBadge">2026 OFFICIAL SHOWREEL</div>
+            <h3 style="font-size:18px; margin:6px 0;" id="adminShowreelTitle">Hamza Irfan — Master Video &amp; Motion Showreel</h3>
+            <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:14px;" id="adminShowreelDesc">A 60-second high-octane montage showcasing commercial video editing, kinetic motion graphics, and sound design.</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn btn-sm btn-primary" onclick="openShowreelModal()">Edit Showreel Details ✎</button>
+              <a href="index.html#showreel" target="_blank" class="btn btn-sm">Preview Cinema Theater ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-head" style="margin-top:20px;">
+          <div>
+            <h2>Client Project Videos Grid (20 Works)</h2>
+            <p>Add, edit, upload posters, or manage video clips featured in your showcase grid and 3D slider.</p>
           </div>
           <button class="btn btn-primary" onclick="openVideoModal()">+ Add New Video</button>
         </div>
@@ -699,6 +725,56 @@
     </main>
   </div>
 
+  <!-- MASTER SHOWREEL MODAL -->
+  <div class="modal-overlay" id="modalShowreel">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modalShowreel')">×</button>
+      <h3 style="margin-bottom: 20px; font-size: 20px;">Edit Dedicated Master Showreel</h3>
+      <form id="formShowreel">
+        <div class="form-group">
+          <label>Showreel Headline / Title</label>
+          <input type="text" id="srTitle" placeholder="e.g. Hamza Irfan — Master Video & Motion Showreel" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Badge Label</label>
+            <input type="text" id="srBadge" placeholder="e.g. 2026 OFFICIAL SHOWREEL" required />
+          </div>
+          <div class="form-group">
+            <label>Duration</label>
+            <input type="text" id="srDur" placeholder="e.g. 01:01" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="srDesc" rows="3" placeholder="Showreel description..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Highlights (Comma separated)</label>
+          <input type="text" id="srHighlights" placeholder="16:9 Cinema 1080p 60fps, Master Cut, Commercial & Viral Formats" />
+        </div>
+        <div class="form-group">
+          <label>Poster Image (URL or Upload Image)</label>
+          <div class="upload-container">
+            <input type="text" id="srPoster" placeholder="pic/intro-showreel.jpg" required />
+            <div class="file-input-wrapper">
+              <button type="button" class="btn">Upload Poster ⤒</button>
+              <input type="file" id="fileSrPoster" accept="image/*" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Video File Source URL</label>
+          <input type="text" id="srSrc" placeholder="vid/intro-showreel.mp4" required />
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+          <button type="button" class="btn" onclick="closeModal('modalShowreel')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Showreel ✓</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- VIDEO MODAL -->
   <div class="modal-overlay" id="modalVideo">
     <div class="modal-content">
@@ -713,16 +789,25 @@
         <div class="form-row">
           <div class="form-group">
             <label>Category Tag</label>
-            <input type="text" id="vidCat" placeholder="e.g. Video Editing" required />
+            <input type="text" id="vidCat" placeholder="e.g. Logo Animation" required />
           </div>
           <div class="form-group">
             <label>Duration</label>
-            <input type="text" id="vidDur" placeholder="e.g. 02:15" required />
+            <input type="text" id="vidDur" placeholder="e.g. 00:07" required />
           </div>
         </div>
-        <div class="form-group">
-          <label>Client / Subtitle Label</label>
-          <input type="text" id="vidCompany" placeholder="e.g. Commercial Brand" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Orientation &amp; Aspect Ratio</label>
+            <select id="vidAspect" style="width:100%; padding:10px 14px; background:#1c1c1c; color:#fff; border:1px solid var(--bdr); border-radius:8px; font-family:inherit;">
+              <option value="16:9">16:9 Landscape (Widescreen / Commercials / Showreel)</option>
+              <option value="9:16">9:16 Vertical (Shorts / Reels / Logo Reveals)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Client / Brand Label</label>
+            <input type="text" id="vidCompany" placeholder="e.g. Fox Interactive" />
+          </div>
         </div>
         <div class="form-group">
           <label>Poster Image (URL or Upload Image)</label>
@@ -914,6 +999,7 @@
     setupFileUploader('fileProfAvatar', 'profAvatar');
     setupFileUploader('fileVidPoster', 'vidPoster');
     setupFileUploader('fileProjMainImg', 'projMainImg');
+    setupFileUploader('fileSrPoster', 'srPoster');
 
     // Populate Overview
     function renderOverview() {
@@ -924,6 +1010,56 @@
       document.getElementById('statTotalSkills').textContent = appData.skills.length;
       document.getElementById('statTotalExp').textContent = appData.experience.length;
     }
+
+    // Master Showreel Management
+    function renderShowreelAdmin() {
+      const sr = appData.showreel || (typeof DEFAULT_PORTFOLIO_DATA !== 'undefined' ? DEFAULT_PORTFOLIO_DATA.showreel : null);
+      if (!sr) return;
+      const thumb = document.getElementById('adminShowreelThumb');
+      const dur = document.getElementById('adminShowreelDur');
+      const badge = document.getElementById('adminShowreelBadge');
+      const title = document.getElementById('adminShowreelTitle');
+      const desc = document.getElementById('adminShowreelDesc');
+
+      if (thumb && sr.poster) thumb.src = sr.poster;
+      if (dur && sr.dur) dur.textContent = sr.dur;
+      if (badge && sr.badge) badge.textContent = sr.badge;
+      if (title && sr.title) title.textContent = sr.title;
+      if (desc && sr.desc) desc.textContent = sr.desc;
+    }
+
+    function openShowreelModal() {
+      const sr = appData.showreel || (typeof DEFAULT_PORTFOLIO_DATA !== 'undefined' ? DEFAULT_PORTFOLIO_DATA.showreel : {});
+      document.getElementById('srTitle').value = sr.title || '';
+      document.getElementById('srBadge').value = sr.badge || '';
+      document.getElementById('srDur').value = sr.dur || '';
+      document.getElementById('srDesc').value = sr.desc || '';
+      document.getElementById('srHighlights').value = (sr.highlights || []).join(', ');
+      document.getElementById('srPoster').value = sr.poster || '';
+      document.getElementById('srSrc').value = sr.src || '';
+      document.getElementById('modalShowreel').classList.add('open');
+    }
+
+    document.getElementById('formShowreel').addEventListener('submit', e => {
+      e.preventDefault();
+      const rawHighlights = document.getElementById('srHighlights').value.split(',').map(s => s.trim()).filter(Boolean);
+      appData.showreel = {
+        id: "master-showreel",
+        title: document.getElementById('srTitle').value.trim(),
+        badge: document.getElementById('srBadge').value.trim(),
+        dur: document.getElementById('srDur').value.trim(),
+        desc: document.getElementById('srDesc').value.trim(),
+        highlights: rawHighlights.length ? rawHighlights : ["16:9 Cinema 1080p 60fps", "Master Cut", "Commercial & Viral Formats"],
+        poster: document.getElementById('srPoster').value.trim(),
+        src: document.getElementById('srSrc').value.trim(),
+        aspect: "16:9",
+        orientation: "landscape"
+      };
+      savePortfolioData(appData);
+      renderShowreelAdmin();
+      closeModal('modalShowreel');
+      showToast("Dedicated Master Showreel saved successfully!");
+    });
 
     // Populate Profile Form
     function renderProfileForm() {
@@ -984,10 +1120,12 @@
       appData.videos.forEach(v => {
         const card = document.createElement('div');
         card.className = 'admin-card';
+        const aspectTag = v.aspect || (v.orientation === 'vertical' ? '9:16' : '16:9');
         card.innerHTML = `
           <div class="card-thumb">
             <img src="${v.poster}" alt="${v.title}">
             <span class="card-badge">${v.cat}</span>
+            <span class="card-badge" style="left:auto; right:10px; background:rgba(232,69,26,0.9); font-weight:700;">${aspectTag}</span>
             <span class="card-dur">${v.dur}</span>
           </div>
           <div class="card-content">
@@ -1013,6 +1151,7 @@
           document.getElementById('vidCat').value = v.cat || '';
           document.getElementById('vidDur').value = v.dur || '';
           document.getElementById('vidCompany').value = v.company || '';
+          document.getElementById('vidAspect').value = v.aspect || (v.orientation === 'vertical' ? '9:16' : '16:9');
           document.getElementById('vidPoster').value = v.poster || '';
           document.getElementById('vidSrc').value = v.src || '';
           document.getElementById('vidDesc').value = v.desc || '';
@@ -1037,11 +1176,14 @@
     document.getElementById('formVideo').addEventListener('submit', e => {
       e.preventDefault();
       const editId = document.getElementById('vidEditId').value;
+      const aspectVal = document.getElementById('vidAspect').value;
       const vData = {
         title: document.getElementById('vidTitle').value.trim(),
         cat: document.getElementById('vidCat').value.trim(),
         dur: document.getElementById('vidDur').value.trim(),
         company: document.getElementById('vidCompany').value.trim(),
+        aspect: aspectVal,
+        orientation: aspectVal === '9:16' ? 'vertical' : 'landscape',
         poster: document.getElementById('vidPoster').value.trim(),
         src: document.getElementById('vidSrc').value.trim(),
         desc: document.getElementById('vidDesc').value.trim()
@@ -1350,6 +1492,7 @@
     function initAll() {
       renderOverview();
       renderProfileForm();
+      renderShowreelAdmin();
       renderVideosList();
       renderProjectsList();
       renderSkillsList();

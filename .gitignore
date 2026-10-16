@@ -1,10 +1,5 @@
-# Video media files (keep placeholders and posters in pic/ only)
-vid/
+# Raw user footage folder (kept safe on disk, not tracked in git)
 final for webs ite/
-*.mp4
-*.mov
-*.avi
-*.mkv
 
 # OS & Temp files
 .DS_Store

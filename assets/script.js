@@ -44,23 +44,12 @@ function renderPortfolioDOM() {
     mqTrack.innerHTML = doubleList.map(item => `<span>${item}</span>`).join('');
   }
 
-  // 4. Featured Videos Showcase Grid
-  const vidGrid = document.getElementById('domVidGrid');
-  if (vidGrid && data.videos) {
-    vidGrid.innerHTML = data.videos.map(v => `
-      <button class="vid-card" type="button" data-video="${v.id}" aria-label="Play ${v.title}">
-        <div class="vid-thumb">
-          <img src="${v.poster}" alt="${v.title}" loading="lazy" />
-          <div class="vid-play"><i></i></div>
-          <div class="vid-dur">${v.dur}</div>
-          <div class="vid-info">
-            <div class="vid-num">${v.num || '0' + v.id} / ${v.cat ? v.cat.toUpperCase() : 'VIDEO'}</div>
-            <div class="vid-title">${v.title}</div>
-          </div>
-        </div>
-      </button>
-    `).join('');
-  }
+  // 3.5 Dedicated Master Showreel Cinema Theater Stage
+  renderShowreelTheater();
+
+  // 4. Category Filters & Featured Videos Showcase Grid
+  renderCategoryFilters();
+  renderFilteredVideos();
 
   // 5. Selected Projects Grid
   const projGrid = document.getElementById('domProjGrid');
@@ -182,6 +171,205 @@ function bindVideoCardClicks() {
       if (!isNaN(id)) {
         openLightbox(allIds, allIds.indexOf(id));
       }
+    });
+  });
+}
+
+// Dedicated Master Showreel Cinema Theater Engine
+function renderShowreelTheater() {
+  const showreel = data.showreel || (typeof DEFAULT_PORTFOLIO_DATA !== 'undefined' ? DEFAULT_PORTFOLIO_DATA.showreel : null);
+  if (!showreel) return;
+
+  const badgeEl = document.getElementById('domShowreelBadge');
+  const titleEl = document.getElementById('domShowreelTitle');
+  const descEl = document.getElementById('domShowreelDesc');
+  const highlightsEl = document.getElementById('domShowreelHighlights');
+  const videoEl = document.getElementById('theaterVideo');
+
+  if (badgeEl) badgeEl.textContent = showreel.badge || '2026 OFFICIAL SHOWREEL';
+  if (titleEl) titleEl.textContent = showreel.title || 'MASTER EDITING & MOTION REEL';
+  if (descEl) descEl.textContent = showreel.desc || '';
+
+  if (highlightsEl && showreel.highlights) {
+    highlightsEl.innerHTML = showreel.highlights.map(h => `<span class="tt-tag">${h}</span>`).join('');
+  }
+
+  if (videoEl) {
+    if (showreel.poster) videoEl.poster = showreel.poster;
+    let sourceEl = videoEl.querySelector('source');
+    if (!sourceEl) {
+      sourceEl = document.createElement('source');
+      videoEl.appendChild(sourceEl);
+    }
+    if (sourceEl.getAttribute('src') !== showreel.src) {
+      sourceEl.src = showreel.src;
+      sourceEl.type = 'video/mp4';
+      videoEl.load();
+    }
+  }
+
+  initShowreelTheater();
+}
+
+let theaterEventsBound = false;
+function initShowreelTheater() {
+  const screen = document.querySelector('.theater-screen');
+  const video = document.getElementById('theaterVideo');
+  const playBtn = document.getElementById('theaterPlayBtn');
+  const overlay = document.getElementById('theaterOverlay');
+  const muteBtn = document.getElementById('theaterMuteBtn');
+  const muteIcon = document.getElementById('theaterMuteIcon');
+  const muteTxt = document.getElementById('theaterMuteTxt');
+  const fsBtn = document.getElementById('theaterFullscreenBtn');
+
+  if (!screen || !video) return;
+
+  function togglePlay() {
+    if (video.paused || video.ended) {
+      // Pause any active lightbox video to avoid audio clash
+      const activeLbVideo = document.getElementById('lbVideo');
+      if (activeLbVideo && !activeLbVideo.paused) {
+        activeLbVideo.pause();
+      }
+      video.play().then(() => {
+        screen.classList.add('playing');
+      }).catch(err => {
+        console.warn('Theater playback requires user interaction:', err);
+      });
+    } else {
+      video.pause();
+      screen.classList.remove('playing');
+    }
+  }
+
+  if (!theaterEventsBound) {
+    theaterEventsBound = true;
+
+    if (playBtn) {
+      playBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        togglePlay();
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        togglePlay();
+      });
+    }
+
+    video.addEventListener('click', () => {
+      togglePlay();
+    });
+
+    video.addEventListener('play', () => {
+      screen.classList.add('playing');
+    });
+
+    video.addEventListener('pause', () => {
+      screen.classList.remove('playing');
+    });
+
+    video.addEventListener('ended', () => {
+      screen.classList.remove('playing');
+      video.currentTime = 0;
+    });
+
+    if (muteBtn) {
+      muteBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        if (muteIcon && muteTxt) {
+          if (video.muted) {
+            muteIcon.textContent = '🔇';
+            muteTxt.textContent = 'Unmute Sound';
+          } else {
+            muteIcon.textContent = '🔊';
+            muteTxt.textContent = 'Mute Sound';
+          }
+        }
+      });
+    }
+
+    if (fsBtn) {
+      fsBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (!document.fullscreenElement) {
+          if (screen.requestFullscreen) {
+            screen.requestFullscreen();
+          } else if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      });
+    }
+  }
+}
+
+let activeCategory = 'all';
+
+function renderCategoryFilters() {
+  const filtersContainer = document.getElementById('domVidFilters');
+  if (!filtersContainer) return;
+  const cats = data.categories || [
+    { key: "all", label: "All Works (20)" },
+    { key: "shorts", label: "Vertical Shorts (9:16)" },
+    { key: "logo", label: "Logo Animations" },
+    { key: "hooks", label: "Commercial Hooks" },
+    { key: "podcast", label: "Podcast Production" },
+    { key: "motion", label: "Motion Graphics" }
+  ];
+
+  filtersContainer.innerHTML = cats.map(c => `
+    <button class="vid-filter-btn ${c.key === activeCategory ? 'active' : ''}" type="button" data-cat="${c.key}">
+      ${c.label}
+    </button>
+  `).join('');
+
+  filtersContainer.querySelectorAll('.vid-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      renderCategoryFilters();
+      renderFilteredVideos();
+    });
+  });
+}
+
+function renderFilteredVideos() {
+  const vidGrid = document.getElementById('domVidGrid');
+  if (!vidGrid || !data.videos) return;
+
+  const filtered = activeCategory === 'all' 
+    ? data.videos 
+    : data.videos.filter(v => v.categoryKey === activeCategory);
+
+  vidGrid.innerHTML = filtered.map(v => `
+    <button class="vid-card ${v.orientation || (v.aspect === '16:9' ? 'landscape' : 'vertical')}" type="button" data-video="${v.id}" aria-label="Play ${v.title}">
+      <div class="vid-thumb">
+        <img src="${v.poster}" alt="${v.title}" loading="lazy" />
+        <span class="vid-aspect-badge">${v.aspect || (v.orientation === 'vertical' ? '9:16' : '16:9')}</span>
+        <div class="vid-play"><i></i></div>
+        <div class="vid-dur">${v.dur}</div>
+        <div class="vid-info">
+          <div class="vid-num">${v.num || '0' + v.id} / ${(v.cat || 'VIDEO').toUpperCase()}</div>
+          <div class="vid-title">${v.title}</div>
+        </div>
+      </div>
+    </button>
+  `).join('');
+
+  vidGrid.querySelectorAll('.vid-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const vidId = parseInt(btn.dataset.video, 10);
+      const allIds = filtered.map(item => item.id);
+      const idx = allIds.indexOf(vidId);
+      openLightbox(allIds, idx >= 0 ? idx : 0);
     });
   });
 }
@@ -443,12 +631,14 @@ function init3DCurvedSlider() {
   const CARD_WIDTH = 190;
   const STEP = CARD_WIDTH + 20;
 
-  // Build items array with Hamza's identity card in center
-  const items = (data.videos || []).map(v => ({ id: v.id, src: v.poster, title: v.title }));
+  // Build items array with vertical logo reveals & master showreel in center
+  const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' || v.categoryKey === 'showreel');
+  const sliderItems = verticalItems.length >= 6 ? verticalItems : (data.videos || []);
+  const items = sliderItems.map(v => ({ id: v.id, src: v.poster, title: v.title }));
   const centerPos = Math.min(2, items.length);
   items.splice(centerPos, 0, {
     me: true,
-    src: data.profile.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+    src: data.profile.avatar || "pic/intro-showreel.jpg",
     title: data.profile.name || "Hamza Irfan"
   });
 
@@ -563,8 +753,15 @@ function closeLightbox() {
 
 function loadCurrentVideo() {
   const vidId = currentLightboxList[currentLightboxIdx];
-  const videoData = (data.videos || []).find(v => v.id === vidId);
+  const videoData = (data.videos || []).find(v => v.id === vidId)
+    || ((data.showreel && (data.showreel.id === vidId || vidId === 'master-showreel')) ? data.showreel : null);
   if (!videoData) return;
+
+  const lbInner = document.querySelector('.lb-inner');
+  const orientation = videoData.orientation || (videoData.aspect === '16:9' ? 'landscape' : 'vertical');
+  if (lbInner) {
+    lbInner.className = `lb-inner ${orientation}`;
+  }
 
   if (videoData.src && videoData.src.trim() !== '') {
     lbVideo.src = videoData.src;
@@ -576,7 +773,8 @@ function loadCurrentVideo() {
     lbVideo.poster = videoData.poster || '';
   }
   if (lbCaption) {
-    lbCaption.textContent = `${videoData.title} — ${videoData.cat}`;
+    const aspectTag = videoData.aspect ? `[${videoData.aspect}] ` : '';
+    lbCaption.textContent = `${aspectTag}${videoData.title} — ${videoData.cat}`;
   }
 }
 
@@ -611,7 +809,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'hamza_khan_portfolio_data_v1') {
+  if (e.key === 'hamza_irfan_portfolio_data_v4' || e.key === 'hamza_khan_portfolio_data_v1') {
     renderPortfolioDOM();
   }
 });
