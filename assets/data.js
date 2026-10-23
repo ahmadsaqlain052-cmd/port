@@ -1,51 +1,51 @@
 /* ========================================================
-   HAMZA IRFAN PORTFOLIO — CENTRAL DATA STORE & CMS ENGINE
+   OPENVIEW CREATIVES — CENTRAL DATA STORE & CMS ENGINE
    Dedicated Master Showreel Theater + 20 Client Project Videos
    Supports real-time localStorage persistence, import & export
    ======================================================== */
 
 const DEFAULT_PORTFOLIO_DATA = {
   profile: {
-    name: "Hamza Irfan",
-    initials: "HI",
-    badge: "Video Editor & Motion Designer · Freelance Editor at Fame (fame.so)",
-    headline: "I edit stories.<br>I animate identities.",
-    subhead: "Freelance video editor for Fame (fame.so) for more than 2+ years. I turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
-    email: "hamzairfan.edits@gmail.com",
+    name: "OpenView Creatives",
+    initials: "OVC",
+    badge: "OpenView Creatives · Video Production & Motion Design Studio",
+    headline: "We edit stories.<br>We animate identities.",
+    subhead: "OpenView Creatives — Freelance video production & editing partner for Fame (fame.so) for more than 2+ years. We turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
+    email: "",
     upwork: "https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5",
     fiverr: "https://www.fiverr.com/hamzairfaan",
     fame: "https://fame.so",
     location: "Worldwide / Remote Collaboration",
-    focus: "Commercial Editing · Fame (fame.so) Editor · Logo Animation",
-    availability: "Available for freelance contracts on Upwork & Remote Projects",
+    focus: "Commercial Editing · Fame (fame.so) Partner · Logo Animation",
+    availability: "Available for client projects on Upwork & Remote Contracts",
     avatar: "pic/intro-showreel.jpg",
-    hireText: "Ready to turn raw ideas into scroll-stopping video content? Hire directly on Upwork or check past client reviews on Fiverr.",
+    hireText: "Ready to turn raw ideas into scroll-stopping video content? Connect directly on Upwork or check past client reviews on Fiverr.",
     stats: [
-      { num: "2+ Yrs", label: "Editor at Fame (fame.so)" },
-      { num: "6+", label: "Years Video Editing" },
+      { num: "2+ Yrs", label: "Partner at Fame (fame.so)" },
+      { num: "6+", label: "Years Video Production" },
       { num: "150+", label: "Videos Delivered" }
     ]
   },
   marquee: [
-    "HIRE ON UPWORK: UPWORK.COM/FREELANCERS/~01EA31FF7F87E0ACB5", "FREELANCE VIDEO EDITOR FOR FAME (FAME.SO)",
+    "OPENVIEW CREATIVES", "HIRE ON UPWORK: UPWORK.COM/FREELANCERS/~01EA31FF7F87E0ACB5", "FREELANCE VIDEO PARTNER FOR FAME (FAME.SO)",
     "2+ YEARS AT FAME.SO", "CHECK CLIENT REVIEWS ON FIVERR", "COMMERCIAL EDITING",
     "LOGO ANIMATION", "VIRAL SHORTS & REELS", "PODCAST PRODUCTION",
     "MOTION GRAPHICS", "HIGH-IMPACT HOOKS", "AFTER EFFECTS", "PREMIERE PRO"
   ],
   servicesPills: [
-    "Fame (fame.so) Video Partner", "Upwork Top Freelancer", "Commercial Editing", "Check Clients on Fiverr", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
+    "OpenView Creatives", "Fame (fame.so) Video Partner", "Upwork Top Freelancer", "Commercial Editing", "Check Clients on Fiverr", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
   ],
   // DEDICATED MASTER INTRO SHOWREEL (CINEMA THEATER)
   showreel: {
     id: "master-showreel",
     badge: "2026 OFFICIAL SHOWREEL",
-    title: "Hamza Irfan — Master Video & Motion Showreel",
+    title: "OpenView Creatives — Master Video & Motion Showreel",
     dur: "01:01",
     aspect: "16:9",
     orientation: "landscape",
     desc: "A 60-second high-octane montage showcasing commercial video editing, kinetic motion graphics, high-impact sound design, and viral retention pacing.",
     poster: "pic/intro-showreel.jpg",
-    src: "vid/intro-showreel.mp4",
+    src: "compressed/intro-showreel.mp4",
     highlights: ["16:9 Cinema 1080p 60fps", "Master Montage", "Commercial & Viral Formats"]
   },
   categories: [
@@ -70,7 +70,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Charles Buingey",
       desc: "Cinematic 2D/3D organic foliage motion graphics and smooth visual transitions crafted for brand campaigns.",
       poster: "pic/anim-charles-buingey.jpg",
-      src: "vid/anim-charles-buingey.mp4",
+      src: "compressed/anim-charles-buingey.mp4",
       featured: false
     },
     {
@@ -85,7 +85,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Creative Studio",
       desc: "Rhythmic typography animation with fluid circular path tracking, custom easing curves, and audio synchronization.",
       poster: "pic/anim-circle-text.jpg",
-      src: "vid/anim-circle-text.mp4",
+      src: "compressed/anim-circle-text.mp4",
       featured: true
     },
     {
@@ -100,7 +100,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Violet Studio",
       desc: "Contemporary gradient-mesh logo animation and futuristic atmospheric motion graphic ident.",
       poster: "pic/anim-violet-brand.jpg",
-      src: "vid/anim-violet-brand.mp4",
+      src: "compressed/anim-violet-brand.mp4",
       featured: false
     },
     // 4-9. Logo Animations (9:16 Vertical)
@@ -116,7 +116,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Fox Interactive",
       desc: "Vibrant vector character animation, organic tail whip reveal, and playful brand personality motion.",
       poster: "pic/anim-fox-logo.jpg",
-      src: "vid/anim-fox-logo.mp4",
+      src: "compressed/anim-fox-logo.mp4",
       featured: true
     },
     {
@@ -131,7 +131,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Hub Technologies",
       desc: "Fluid architectural letterform reveal with kinetic particle motion and sound synchronization.",
       poster: "pic/anim-hub-logo.jpg",
-      src: "vid/anim-hub-logo.mp4",
+      src: "compressed/anim-hub-logo.mp4",
       featured: true
     },
     {
@@ -146,7 +146,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Mobius Studio",
       desc: "Smooth continuous loop ribbon reveal with glossy gradient shading and minimal brand elegance.",
       poster: "pic/anim-mobius-logo.jpg",
-      src: "vid/anim-mobius-logo.mp4",
+      src: "compressed/anim-mobius-logo.mp4",
       featured: false
     },
     {
@@ -161,7 +161,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Panda Brand",
       desc: "Dynamic vector scale anticipation, clean bouncy easing, and memorable mascot stinger.",
       poster: "pic/anim-panda-logo.jpg",
-      src: "vid/anim-panda-logo.mp4",
+      src: "compressed/anim-panda-logo.mp4",
       featured: false
     },
     {
@@ -176,7 +176,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Neon Grid",
       desc: "High-energy chromatic aberration, digital glitch distortions, and cyberpunk brand sound fx.",
       poster: "pic/anim-cyberpunk-stinger.jpg",
-      src: "vid/anim-cyberpunk-stinger.mp4",
+      src: "compressed/anim-cyberpunk-stinger.mp4",
       featured: false
     },
     {
@@ -191,7 +191,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Bingo Media",
       desc: "Snappy kinetic pop-in logo stinger engineered for high-retention video watermarks.",
       poster: "pic/anim-bingo-logo.jpg",
-      src: "vid/anim-bingo-logo.mp4",
+      src: "compressed/anim-bingo-logo.mp4",
       featured: false
     },
     // 10-14. Commercial Hooks (16:9 Landscape)
@@ -207,7 +207,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Tina Gavel",
       desc: "High-conversion opening hook with dynamic sound design, split-second B-roll cuts, and kinetic titles.",
       poster: "pic/hook-tina-gavel.jpg",
-      src: "vid/hook-tina-gavel.mp4",
+      src: "compressed/hook-tina-gavel.mp4",
       featured: true
     },
     {
@@ -222,7 +222,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Apex Media",
       desc: "Scroll-stopping commercial hook engineered to capture audience attention in the first 3 seconds.",
       poster: "pic/hook-commercial-1.jpg",
-      src: "vid/hook-commercial-1.mp4",
+      src: "compressed/hook-commercial-1.mp4",
       featured: false
     },
     {
@@ -237,7 +237,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Venture Vision",
       desc: "Atmospheric visual pacing with tension-building soundscapes and dramatic typography reveals.",
       poster: "pic/hook-commercial-2.jpg",
-      src: "vid/hook-commercial-2.mp4",
+      src: "compressed/hook-commercial-2.mp4",
       featured: false
     },
     {
@@ -252,7 +252,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Prime Motion",
       desc: "Rapid-fire visual sequencing, multi-layered SFX, and seamless transitions for commercial impact.",
       poster: "pic/hook-commercial-3.jpg",
-      src: "vid/hook-commercial-3.mp4",
+      src: "compressed/hook-commercial-3.mp4",
       featured: false
     },
     {
@@ -267,7 +267,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "NextGen",
       desc: "Clean modern product teaser cut with sleek motion graphics and engaging musical sync.",
       poster: "pic/hook-commercial-4.jpg",
-      src: "vid/hook-commercial-4.mp4",
+      src: "compressed/hook-commercial-4.mp4",
       featured: false
     },
     // 15-17. Podcast Editing (16:9 Landscape)
@@ -283,7 +283,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Talk Studio",
       desc: "Multi-camera speaker switching, noise removal, dynamic sound mixing, and engaging lower thirds.",
       poster: "pic/podcast-studio-1.jpg",
-      src: "vid/podcast-studio-1.mp4",
+      src: "compressed/podcast-studio-1.mp4",
       featured: true
     },
     {
@@ -298,7 +298,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Audio Wave",
       desc: "Concise conversational clipping, zoom-punches, animated speaker tags, and high audio fidelity.",
       poster: "pic/podcast-highlight-2.jpg",
-      src: "vid/podcast-highlight-2.mp4",
+      src: "compressed/podcast-highlight-2.mp4",
       featured: false
     },
     {
@@ -313,7 +313,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Dialogue Hub",
       desc: "Long-form pacing mastery with seamless interstitial B-roll and branded episode graphics.",
       poster: "pic/podcast-deepdive-3.jpg",
-      src: "vid/podcast-deepdive-3.mp4",
+      src: "compressed/podcast-deepdive-3.mp4",
       featured: false
     },
     // 18-20. Short-Form Video & Viral Reels (9:16 Vertical)
@@ -329,7 +329,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Viral Reel",
       desc: "Dynamic auto-captions, fast zoom punches, sound effects on every beat, and maximum retention framing.",
       poster: "pic/snippet-vertical-1.jpg",
-      src: "vid/snippet-vertical-1.mp4",
+      src: "compressed/snippet-vertical-1.mp4",
       featured: true
     },
     {
@@ -344,7 +344,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Creator Studio",
       desc: "Emotional storytelling arc compressed into 40 seconds with cinematic color grading and pacing.",
       poster: "pic/snippet-vertical-2.jpg",
-      src: "vid/snippet-vertical-2.mp4",
+      src: "compressed/snippet-vertical-2.mp4",
       featured: false
     },
     {
@@ -359,7 +359,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Growth Media",
       desc: "Bold visual overlays, sticker pop-ins, and fast-paced editing designed for TikTok and Instagram Reels.",
       poster: "pic/snippet-vertical-3.jpg",
-      src: "vid/snippet-vertical-3.mp4",
+      src: "compressed/snippet-vertical-3.mp4",
       featured: false
     }
   ],
@@ -520,21 +520,13 @@ const DEFAULT_PORTFOLIO_DATA = {
       id: 2,
       period: "CURRENT",
       role: "Lead Video Editor & Motion Designer",
-      company: "Fiverr Freelance & Remote Contracts",
-      companyUrl: "https://www.fiverr.com/hamzairfaan",
-      desc: "Delivering commercial video hooks, viral reels, master showreels, kinetic logo animations, and YouTube episodic content with 5-star client ratings on Fiverr.",
+      company: "Freelance",
+      companyUrl: "https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5",
+      desc: "Delivering commercial video hooks, viral reels, master showreels, kinetic logo animations, and YouTube episodic content with 5-star client satisfaction.",
       color: "#E8451A"
     },
     {
       id: 3,
-      period: "2025—2026",
-      role: "Logo Animator & Video Editor",
-      company: "SN Solution",
-      desc: "Delivered custom 2D logo animations, brand identity reveal stingers (Hub Logo, Fox Animation, Mobius Ident), and short-form marketing content.",
-      color: "#E8451A"
-    },
-    {
-      id: 4,
       period: "ONGOING",
       role: "Motion Design & Digital Content Creator",
       company: "Independent Studio",
@@ -544,7 +536,7 @@ const DEFAULT_PORTFOLIO_DATA = {
   ]
 };
 
-const STORAGE_KEY = 'hamza_irfan_portfolio_data_v7';
+const STORAGE_KEY = 'openviewcreatives_portfolio_data_v1';
 
 function getPortfolioData() {
   try {
@@ -588,7 +580,7 @@ function exportPortfolioData() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `hamza-irfan-portfolio-data-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `openviewcreatives-portfolio-data-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }

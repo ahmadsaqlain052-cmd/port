@@ -144,18 +144,19 @@ nav.scrolled {
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  gap: clamp(10px, 1.4vw, 24px);
   list-style: none;
   margin: 0 auto;
 }
 
 .nav-links a {
   position: relative;
-  font-size: 13px;
+  font-size: clamp(11px, 0.82vw, 13px);
   font-weight: 500;
   color: var(--muted);
   text-decoration: none;
   padding: 6px 0;
+  white-space: nowrap;
   transition: color 0.25s;
 }
 
@@ -187,10 +188,12 @@ nav.scrolled {
   background: #ffffff;
   color: #111111;
   border-radius: 999px;
-  padding: 10px 22px;
-  font-size: 13px;
+  padding: 8px 18px;
+  font-size: 12.5px;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: transform 0.2s, background 0.2s, color 0.2s;
 }
 
@@ -2381,120 +2384,686 @@ footer {
   to { opacity: 1; transform: none; }
 }
 
-/* RESPONSIVE MEDIA QUERIES */
-@media (max-width: 900px) {
-  .ct-grid {
-    grid-template-columns: 1fr;
+/* ========================================================
+   RESPONSIVE DESIGN SYSTEM (Mobile, Tablet, PC & Ultra-Wide)
+   ======================================================== */
+
+/* 1. Ultra-Wide & 4K Monitors (1441px+) */
+@media (min-width: 1441px) {
+  :root {
+    --pad: 72px;
+  }
+  .hz {
+    max-width: 1240px;
+    margin: 20px auto 0;
+  }
+  section {
+    max-width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-@media (max-width: 768px) {
+/* 2. Laptops & Small Desktops (1025px - 1280px) */
+@media (max-width: 1280px) {
+  .nav-links {
+    gap: 14px;
+  }
+  .nav-links a {
+    font-size: 12px;
+  }
+  .nav-cta {
+    padding: 7px 15px;
+    font-size: 12px;
+  }
+}
+
+/* 3. Tablets & Compact Laptops (769px - 1024px) */
+@media (max-width: 1024px) {
   .burger {
     display: block;
-  }
-
-  nav .nav-links {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    background: rgba(12, 10, 9, 0.98);
-    border: 1px solid var(--bdr);
-    border-radius: 16px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-
-  nav .nav-links.open {
-    max-height: 340px;
-    padding: 10px 0;
-  }
-
-  nav .nav-links li a {
-    display: block;
-    padding: 14px 24px;
-    font-size: 14.5px;
-    border-top: 0.5px solid rgba(255, 255, 255, 0.05);
   }
 
   .nav-cta {
     display: none;
   }
 
-  .hz {
-    padding-top: 120px;
-    border-radius: 22px;
+  nav .nav-links {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(14, 12, 11, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--bdr);
+    border-radius: 18px;
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    transition: max-height 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), padding 0.3s ease;
+  }
+
+  nav .nav-links.open {
+    max-height: min(85vh, 580px);
+    padding: 12px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav .nav-links li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 24px;
+    font-size: 14.5px;
+    font-weight: 600;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .ct-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .vid-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 18px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .cf-landscape {
+    height: 340px;
+  }
+
+  .cf-landscape-card {
+    width: 290px;
+    height: 163px;
+    margin: -81px 0 0 -145px;
   }
 
   .cf {
-    height: 330px;
-    margin-top: 36px;
+    height: 360px;
+  }
+
+  .cf-card {
+    width: 170px;
+    height: 302px;
+    margin: -151px 0 0 -85px;
+  }
+
+  .lb-prev { left: 12px; }
+  .lb-next { right: 12px; }
+}
+
+/* 4. Mobile Phones & Mini-Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  nav {
+    top: 12px;
+    width: calc(100% - 24px);
+    padding: 8px 14px 8px 18px !important;
+    border-radius: 16px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+
+  .hz {
+    padding-top: 98px;
+    padding-bottom: 32px;
+    border-radius: 20px;
+    margin-top: 8px;
+    width: calc(100% - 20px);
+  }
+
+  .hz-tag {
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    padding: 7px 14px;
+    line-height: 1.4;
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
+
+  .hz h1 {
+    font-size: clamp(28px, 6.5vw, 44px);
+    line-height: 1.12;
+    margin-bottom: 16px;
+    word-break: break-word;
+  }
+
+  .hz-sub {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .hz-btns {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+
+  .pill-upwork, .pill-o, .pill-fiverr, .pill-g {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 18px;
+    font-size: 13.5px;
+  }
+
+  .showreel-theater {
+    padding: 24px 0 16px;
+  }
+
+  .theater-header {
+    margin-bottom: 20px;
+  }
+
+  .theater-title {
+    font-size: clamp(22px, 5.5vw, 36px);
+  }
+
+  .theater-desc {
+    font-size: 13.5px;
+  }
+
+  .theater-screen {
+    border-radius: 12px;
+  }
+
+  .theater-discreet-sound {
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    font-size: 10.5px;
+  }
+
+  .theater-discreet-fs {
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .tca-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .theater-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .theater-tags {
+    gap: 6px;
+  }
+
+  .tt-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  /* 3D Landscape Carousel Mobile */
+  .cf-landscape {
+    height: 300px;
+    margin: 12px 0 20px;
+  }
+
+  .cf-landscape-card {
+    width: 270px;
+    height: 152px;
+    margin: -76px 0 0 -135px;
+    border-radius: 12px;
+  }
+
+  .cf-landscape-card .cfl-title {
+    font-size: 11px;
+  }
+
+  .cf-landscape-card .cfl-tag {
+    font-size: 8.5px;
+    padding: 2px 6px;
+  }
+
+  .cf-landscape-card .cfl-dur {
+    font-size: 9.5px;
+    padding: 2px 5px;
+  }
+
+  .cf-landscape-card .cfl-play {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cf-landscape-card .cfl-play i {
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 9px;
+  }
+
+  .landscape-footer-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .lf-actions {
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .lf-actions a {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  /* 3D Vertical Reels Carousel Mobile */
+  .cf {
+    height: 320px;
+    margin-top: 24px;
+  }
+
+  .cf-card {
+    width: 150px;
+    height: 266px;
+    margin: -133px 0 0 -75px;
+    border-radius: 12px;
+  }
+
+  .cf-play {
+    width: 28px;
+    height: 28px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .cf-play::after {
+    left: 11px;
+    top: 9px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 8px;
   }
 
   .hz-serv {
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11.5px;
+    padding: 10px 16px;
+    gap: 8px 12px;
+    margin-top: 20px;
   }
 
   .marquee {
-    padding: 16px 0;
+    padding: 14px 0;
+    margin-top: 18px;
   }
 
   .mq-track span {
-    font-size: 18px;
-    padding: 0 18px;
-    gap: 36px;
+    font-size: 16px;
+    padding: 0 14px;
+    gap: 24px;
   }
 
+  section {
+    padding: 56px var(--side);
+  }
+
+  .sec-title {
+    font-size: clamp(24px, 5vw, 36px);
+    margin-bottom: 26px;
+  }
+
+  .vid-filters {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .vid-filter-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  /* Video Grid on Mobile: 2 Columns for Vertical, 1 Column for Landscape */
   .vid-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
   }
 
+  .vid-card.landscape {
+    grid-column: span 2;
+  }
+
+  .vid-play {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vid-play i {
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 13px;
+  }
+
+  .vid-title {
+    font-size: 12.5px;
+  }
+
+  .vid-dur {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .vid-aspect-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+
+  /* Projects Section Mobile */
+  .proj-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .proj-thumb {
+    height: 160px;
+  }
+
+  .proj-body {
+    padding: 18px;
+  }
+
+  .proj-name {
+    font-size: 15px;
+  }
+
+  .proj-desc {
+    font-size: 12.5px;
+    margin-bottom: 12px;
+  }
+
+  /* Skills Section Mobile */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .sk {
+    padding: 16px 14px;
+  }
+
+  .sk-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .sk-name {
+    font-size: 13px;
+  }
+
+  .sk-desc {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  /* Experience & Timeline Mobile */
   .tl-item {
-    grid-template-columns: 75px 1px 1fr;
-    gap: 0 14px;
+    grid-template-columns: 78px 1px 1fr;
+    gap: 0 12px;
+    padding-bottom: 26px;
+  }
+
+  .tl-date {
+    font-size: 11.5px;
+  }
+
+  .tl-title {
+    font-size: 14.5px;
+  }
+
+  .tl-company {
+    font-size: 12px;
+  }
+
+  .tl-desc {
+    font-size: 12px;
   }
 
   .stats {
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 22px;
+    justify-content: space-between;
   }
 
-  .lb-close {
-    right: 8px;
-    top: 8px;
-    z-index: 5;
+  .sn {
+    font-size: 28px;
   }
 
-  .lb-prev { left: 6px; z-index: 5; }
-  .lb-next { right: 6px; z-index: 5; }
-  .lb-nav {
-    top: auto;
-    bottom: 14px;
-    transform: none;
+  .sl {
+    font-size: 10px;
   }
 
-  .ft-cta {
-    padding: 44px 0 28px;
+  /* Contact Section Mobile */
+  .ct-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .btn-br {
+  .ct-main {
+    padding: 24px 18px;
+  }
+
+  .ct-main h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .ct-main p {
+    font-size: 13.5px;
+    margin-bottom: 22px;
+  }
+
+  .ct-actions {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    gap: 10px;
+  }
+
+  .btn-upwork, .btn-br, .ct-copy {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 13px 20px;
+    font-size: 13px;
+  }
+
+  .cc {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .cc-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .cc-lbl {
+    font-size: 10px;
+  }
+
+  .cc-val {
+    font-size: 13px;
+  }
+
+  /* Footer Mobile */
+  footer {
+    padding: 48px 16px 20px;
+  }
+
+  .ft-top {
+    justify-content: center;
+    gap: 8px 16px;
     text-align: center;
   }
 
-  footer {
-    padding-top: 60px;
+  .ft-top a {
+    font-size: 11.5px;
+  }
+
+  .ft-cta {
+    padding: 30px 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .ft-cta h2 {
+    font-size: 20px;
+  }
+
+  .ft-cta div:last-child {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ft-cta div:last-child a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 13px 20px;
+  }
+
+  .ft-name {
+    margin: 10px 0 6px;
+  }
+
+  .ft-copy {
+    font-size: 11px;
+    margin-top: 16px;
+  }
+
+  /* Lightbox Mobile */
+  .lb {
+    padding: 10px;
+  }
+
+  .lb-inner.landscape {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .lb-inner.vertical {
+    width: min(92vw, calc(78vh * 0.5625));
+  }
+
+  .lb-close {
+    top: -42px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .lb-nav {
+    top: auto;
+    bottom: -46px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    transform: none;
+  }
+
+  .lb-prev { left: 15%; }
+  .lb-next { right: 15%; }
+
+  .lb-cap {
+    bottom: -44px;
+    font-size: 11px;
+    max-width: 60%;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .floating-admin-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 14px;
+    font-size: 11.5px;
   }
 }
 
-@media (max-width: 480px) {
-  .vid-grid {
+/* 5. Extra Small Mobile Phones (max-width: 420px) */
+@media (max-width: 420px) {
+  .hz h1 {
+    font-size: 25px;
+  }
+
+  .cf-landscape {
+    height: 250px;
+  }
+
+  .cf-landscape-card {
+    width: 230px;
+    height: 130px;
+    margin: -65px 0 0 -115px;
+  }
+
+  .cf {
+    height: 280px;
+  }
+
+  .cf-card {
+    width: 125px;
+    height: 222px;
+    margin: -111px 0 0 -62px;
+  }
+
+  .skills-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tl-item {
+    grid-template-columns: 68px 1px 1fr;
+    gap: 0 10px;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
   }
 }
 

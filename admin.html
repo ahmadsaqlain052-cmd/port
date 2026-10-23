@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamza Irfan — Portfolio Content Management Dashboard</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%23E8451A%27/><text x=%2750%27 y=%2770%27 font-size=%2758%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27 font-weight=%27bold%27>HI</text></svg>">
+  <title>OpenView Creatives — Portfolio Content Management Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%23E8451A%27/><text x=%2750%27 y=%2768%27 font-size=%2746%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27 font-weight=%27bold%27>OVC</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -471,9 +471,9 @@
   <!-- TOP HEADER -->
   <header>
     <a href="index.html" class="brand">
-      <div class="brand-badge" id="headerInitials">HI</div>
+      <div class="brand-badge" id="headerInitials">OVC</div>
       <div>
-        <div class="brand-title" id="headerName">Hamza Irfan Portfolio</div>
+        <div class="brand-title" id="headerName">OpenView Creatives Portfolio</div>
         <div class="brand-sub">Real-Time Content Manager</div>
       </div>
     </a>
@@ -508,7 +508,7 @@
         <div class="panel-head">
           <div>
             <h2>Dashboard Overview</h2>
-            <p>Welcome, Hamza. Manage, edit, upload, or delete all content across your portfolio site.</p>
+            <p>Welcome to OpenView Creatives. Manage, edit, upload, or delete all content across your portfolio site.</p>
           </div>
           <a href="index.html" target="_blank" class="btn btn-primary">Open Live Portfolio ↗</a>
         </div>
@@ -559,11 +559,11 @@
           <div class="form-row">
             <div class="form-group">
               <label>Full Name</label>
-              <input type="text" id="profName" placeholder="e.g. Hamza Irfan" required />
+              <input type="text" id="profName" placeholder="e.g. OpenView Creatives" required />
             </div>
             <div class="form-group">
               <label>Initials / Monogram</label>
-              <input type="text" id="profInitials" placeholder="e.g. HI" maxlength="4" required />
+              <input type="text" id="profInitials" placeholder="e.g. OVC" maxlength="4" required />
             </div>
           </div>
 
@@ -582,11 +582,7 @@
             <textarea id="profSubhead" rows="3"></textarea>
           </div>
 
-          <div class="form-row-3">
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" id="profEmail" placeholder="hamzairfan.edits@gmail.com" required />
-            </div>
+          <div class="form-row">
             <div class="form-group">
               <label>Location</label>
               <input type="text" id="profLocation" placeholder="Worldwide / Remote Collaboration" />
@@ -668,7 +664,7 @@
           </div>
           <div>
             <div style="font-size:11px; text-transform:uppercase; color:var(--accent); font-weight:700; letter-spacing:1px;" id="adminShowreelBadge">2026 OFFICIAL SHOWREEL</div>
-            <h3 style="font-size:18px; margin:6px 0;" id="adminShowreelTitle">Hamza Irfan — Master Video &amp; Motion Showreel</h3>
+            <h3 style="font-size:18px; margin:6px 0;" id="adminShowreelTitle">OpenView Creatives — Master Video &amp; Motion Showreel</h3>
             <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:14px;" id="adminShowreelDesc">A 60-second high-octane montage showcasing commercial video editing, kinetic motion graphics, and sound design.</p>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <button class="btn btn-sm btn-primary" onclick="openShowreelModal()">Edit Showreel Details ✎</button>
@@ -748,7 +744,7 @@
       <form id="formShowreel">
         <div class="form-group">
           <label>Showreel Headline / Title</label>
-          <input type="text" id="srTitle" placeholder="e.g. Hamza Irfan — Master Video & Motion Showreel" required />
+          <input type="text" id="srTitle" placeholder="e.g. OpenView Creatives — Master Video & Motion Showreel" required />
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -780,7 +776,7 @@
         </div>
         <div class="form-group">
           <label>Video File Source URL</label>
-          <input type="text" id="srSrc" placeholder="vid/intro-showreel.mp4" required />
+          <input type="text" id="srSrc" placeholder="compressed/intro-showreel.mp4" required />
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
           <button type="button" class="btn" onclick="closeModal('modalShowreel')">Cancel</button>
@@ -1018,8 +1014,8 @@
 
     // Populate Overview
     function renderOverview() {
-      document.getElementById('headerInitials').textContent = appData.profile.initials || 'HI';
-      document.getElementById('headerName').textContent = (appData.profile.name || 'Hamza Irfan') + ' Portfolio';
+      document.getElementById('headerInitials').textContent = appData.profile.initials || 'OVC';
+      document.getElementById('headerName').textContent = (appData.profile.name || 'OpenView Creatives') + ' Portfolio';
       document.getElementById('statTotalVideos').textContent = appData.videos.length;
       document.getElementById('statTotalProjects').textContent = appData.projects.length;
       document.getElementById('statTotalSkills').textContent = appData.skills.length;
@@ -1084,7 +1080,6 @@
       document.getElementById('profBadge').value = p.badge || '';
       document.getElementById('profHeadline').value = p.headline || '';
       document.getElementById('profSubhead').value = p.subhead || '';
-      document.getElementById('profEmail').value = p.email || '';
       document.getElementById('profLocation').value = p.location || '';
       document.getElementById('profFocus').value = p.focus || '';
       document.getElementById('profUpwork').value = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
@@ -1114,7 +1109,7 @@
       appData.profile.badge = document.getElementById('profBadge').value.trim();
       appData.profile.headline = document.getElementById('profHeadline').value.trim();
       appData.profile.subhead = document.getElementById('profSubhead').value.trim();
-      appData.profile.email = document.getElementById('profEmail').value.trim();
+      appData.profile.email = '';
       appData.profile.location = document.getElementById('profLocation').value.trim();
       appData.profile.focus = document.getElementById('profFocus').value.trim();
       appData.profile.upwork = document.getElementById('profUpwork').value.trim();
@@ -1500,7 +1495,7 @@
     });
 
     document.getElementById('btnReset').addEventListener('click', () => {
-      if (!confirm("Are you sure you want to reset everything back to Hamza Irfan's original defaults?")) return;
+      if (!confirm("Are you sure you want to reset everything back to OpenView Creatives' original defaults?")) return;
       appData = resetPortfolioData();
       initAll();
       showToast("Reset to defaults complete.");

@@ -121,27 +121,7 @@ function renderPortfolioDOM() {
     `).join('');
   }
 
-  // 8. Contact Section
-  const contactAvail = document.getElementById('domContactAvail');
-  const contactUpworkLink = document.getElementById('domContactUpworkLink');
-  const contactEmailLink = document.getElementById('domContactEmailLink');
-  const copyMailBtn = document.getElementById('copyMail');
-  const contactCardUpwork = document.getElementById('domContactCardUpwork');
-  const contactCardLoc = document.getElementById('domContactCardLoc');
-  const contactCardFocus = document.getElementById('domContactCardFocus');
-
-  if (contactAvail) contactAvail.innerHTML = `<i></i> ${p.availability}`;
-  if (contactUpworkLink) contactUpworkLink.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
-  if (contactEmailLink) contactEmailLink.href = `mailto:${p.email}`;
-  if (copyMailBtn) copyMailBtn.dataset.mail = p.email;
-  if (contactCardUpwork) {
-    const parentA = contactCardUpwork.closest('a');
-    if (parentA) parentA.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
-  }
-  if (contactCardLoc) contactCardLoc.textContent = p.location;
-  if (contactCardFocus) contactCardFocus.textContent = p.focus;
-
-  // 9. Footer
+  // 8. Footer (No email section)
   const ftHireText = document.getElementById('domFtHireText');
   const ftUpworkLink = document.getElementById('domFtUpworkLink');
   const ftUpworkTop = document.getElementById('domFtUpworkTop');
@@ -152,10 +132,10 @@ function renderPortfolioDOM() {
   if (ftUpworkLink) ftUpworkLink.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
   if (ftUpworkTop) ftUpworkTop.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
   if (ftName) {
-    ftName.textContent = p.name;
+    ftName.textContent = p.name || 'OpenView Creatives';
     initFooterNameAnimation();
   }
-  if (ftCopy) ftCopy.textContent = `© 2026 ${p.name} — Video Editor & Motion Designer. All rights reserved.`;
+  if (ftCopy) ftCopy.textContent = `© 2026 ${p.name || 'OpenView Creatives'} — Video Production & Motion Design. All rights reserved.`;
 
   // Re-bind interactive events
   bindVideoCardClicks();
@@ -483,6 +463,13 @@ if (burger && navMenu) {
       burger.setAttribute('aria-expanded', 'false');
     });
   });
+
+  document.addEventListener('click', (e) => {
+    if (!burger.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('open')) {
+      navMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 // Scroll Reveal + Skill Bars + Counter Tickers
@@ -657,32 +644,6 @@ function initFooterNameAnimation() {
   });
 })();
 
-// Contact Spotlight Mouse-Tracking & Copy Email
-document.querySelectorAll('.cc').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-    card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-  });
-});
-
-const copyBtn = document.getElementById('copyMail');
-if (copyBtn) {
-  copyBtn.addEventListener('click', () => {
-    const email = copyBtn.dataset.mail || 'hamzairfan.edits@gmail.com';
-    const originalText = copyBtn.textContent;
-    const showCopied = () => {
-      copyBtn.textContent = 'Copied ✓';
-      setTimeout(() => { copyBtn.textContent = originalText; }, 1800);
-    };
-
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(email).then(showCopied, showCopied);
-    } else {
-      showCopied();
-    }
-  });
-}
 
 // 3D Curved Infinity Slider (Hero Carousel)
 let sliderAnimId = null;
@@ -693,8 +654,8 @@ function init3DCurvedSlider() {
   if (sliderAnimId) cancelAnimationFrame(sliderAnimId);
   container.innerHTML = '';
 
-  const CARD_WIDTH = 190;
-  const STEP = CARD_WIDTH + 20;
+  const CARD_WIDTH = container.clientWidth < 440 ? 125 : (container.clientWidth < 768 ? 150 : (container.clientWidth < 1024 ? 170 : 190));
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 12 : 20);
 
   // Build items array strictly with vertical reels & logo animations (NO intro video)
   const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' && v.id !== 'master-showreel');
@@ -786,8 +747,8 @@ function init3DCurvedLandscapeSlider() {
   if (landscapeSliderAnimId) cancelAnimationFrame(landscapeSliderAnimId);
   container.innerHTML = '';
 
-  const CARD_WIDTH = container.clientWidth < 768 ? 270 : 330;
-  const STEP = CARD_WIDTH + 24;
+  const CARD_WIDTH = container.clientWidth < 440 ? 230 : (container.clientWidth < 768 ? 270 : (container.clientWidth < 1024 ? 290 : 330));
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 14 : 24);
 
   // Filter strictly 16:9 landscape videos (commercial hooks, podcasts, motion)
   const landscapeVideos = (data.videos || []).filter(v => v.aspect === '16:9' || v.orientation === 'landscape');
@@ -897,6 +858,16 @@ function init3DCurvedLandscapeSlider() {
   container.addEventListener('mouseleave', () => { velocity = 0.48; });
 }
 
+// Auto-recalculate 3D sliders on screen resize / phone orientation change
+let carouselResizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(carouselResizeTimer);
+  carouselResizeTimer = setTimeout(() => {
+    init3DCurvedSlider();
+    init3DCurvedLandscapeSlider();
+  }, 180);
+});
+
 // Lightbox Video Player Modal
 let currentLightboxList = [];
 let currentLightboxIdx = 0;
@@ -985,7 +956,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
+  if (e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
     renderPortfolioDOM();
   }
 });
