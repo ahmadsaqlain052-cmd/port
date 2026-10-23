@@ -334,12 +334,12 @@ function renderCategoryFilters() {
   const filtersContainer = document.getElementById('domVidFilters');
   if (!filtersContainer) return;
   const cats = data.categories || [
-    { key: "all", label: "All Works (20)" },
-    { key: "shorts", label: "Vertical Shorts (9:16)" },
-    { key: "logo", label: "Logo Animations" },
+    { key: "all", label: `All Works (${data.videos.length})` },
     { key: "hooks", label: "Commercial Hooks" },
     { key: "podcast", label: "Podcast Production" },
-    { key: "motion", label: "Motion Graphics" }
+    { key: "motion", label: "Motion Graphics" },
+    { key: "shorts", label: "Viral Shorts (9:16)" },
+    { key: "logo", label: "Logo Animations" }
   ];
 
   filtersContainer.innerHTML = cats.map(c => `
@@ -382,10 +382,10 @@ function renderFilteredVideos() {
 
   vidGrid.querySelectorAll('.vid-card').forEach(btn => {
     btn.addEventListener('click', () => {
-      const vidId = parseInt(btn.dataset.video, 10);
-      const allIds = filtered.map(item => item.id);
-      const idx = allIds.indexOf(vidId);
-      openLightbox(allIds, idx >= 0 ? idx : 0);
+      const vidId = btn.dataset.video;
+      const allIds = filtered.map(item => String(item.id));
+      const idx = allIds.indexOf(String(vidId));
+      openLightbox(filtered.map(item => item.id), idx >= 0 ? idx : 0);
     });
   });
 }
@@ -927,7 +927,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
+  if (e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
     renderPortfolioDOM();
   }
 });
