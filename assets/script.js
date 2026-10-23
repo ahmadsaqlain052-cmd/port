@@ -51,36 +51,7 @@ function renderPortfolioDOM() {
   renderCategoryFilters();
   renderFilteredVideos();
 
-  // 5. Selected Projects Grid
-  const projGrid = document.getElementById('domProjGrid');
-  if (projGrid && data.projects) {
-    projGrid.innerHTML = data.projects.map(proj => `
-      <article class="proj-card">
-        <div class="proj-thumb" data-video="${proj.videoId || (data.videos[0] ? data.videos[0].id : 1)}">
-          <img class="pt-img" src="${proj.mainImg}" alt="${proj.name}" />
-          <div class="proj-play"><div class="proj-play-icon"></div></div>
-          <div class="proj-type">${proj.typeBadge || 'Featured Project'}</div>
-          <div class="pt-count">${proj.countBadge || '0' + proj.id}</div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-company">${proj.company}</div>
-          <h3 class="proj-name">${proj.name}</h3>
-          <p class="proj-desc">${proj.desc}</p>
-          <div class="proj-tags">
-            ${(proj.tags || []).map(t => `<span class="tag-pill">${t}</span>`).join('')}
-          </div>
-          ${proj.stripImages && proj.stripImages.length > 1 ? `
-            <div class="pt-strip">
-              ${proj.stripImages.map(img => `
-                <button type="button" data-video="${proj.videoId || 1}"><img src="${img}" alt="Thumbnail" /></button>
-              `).join('')}
-            </div>
-          ` : ''}
-          <button class="proj-link" type="button" data-video="${proj.videoId || 1}">Watch project showreel <span>↗</span></button>
-        </div>
-      </article>
-    `).join('');
-  }
+
 
   // 6. Skills & Toolkit Grid
   const skillsGrid = document.getElementById('domSkillsGrid');
