@@ -1,7 +1,8 @@
-HAMZA IRAFAAAN — PORTFOLIO SITE (CINEMATIC 3D MOTION EDITION)
+OPENVIEW CREATIVES — PORTFOLIO SITE (CINEMATIC 3D MOTION EDITION)
 ==================================================================
 
-An exact architectural & motion graphics adaptation inspired by riyanhafeez.netlify.app, customized for Hamza Irafaaan (Video Editor, Motion Designer & Logo Animator).
+Commercial video production & motion design portfolio for OpenView Creatives.
+Live site: https://openviewcreatives.netlify.app
 
 Files:
 - index.html        : Semantic markup, accessible navigation, 3D carousel container, video showcase, and lightbox modal.
