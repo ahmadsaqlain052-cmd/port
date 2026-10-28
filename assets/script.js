@@ -162,7 +162,7 @@ function renderShowreelTheater() {
 
   if (videoEl) {
     if (showreel.poster) videoEl.poster = showreel.poster;
-    const targetSrc = showreel.src || 'compressed/intro-showreel.mp4';
+    const targetSrc = showreel.src || 'vid/intro-showreel.mp4';
     const sourceChild = videoEl.querySelector('source');
     if (sourceChild) sourceChild.remove();
     if (videoEl.getAttribute('src') !== targetSrc) {
@@ -957,7 +957,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'openviewcreatives_portfolio_data_v4' || e.key === 'openviewcreatives_portfolio_data_v3' || e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
+  if (e.key === 'openviewcreatives_portfolio_data_v6' || e.key === 'openviewcreatives_portfolio_data_v5' || e.key === 'openviewcreatives_portfolio_data_v4' || e.key === 'openviewcreatives_portfolio_data_v3' || e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
     renderPortfolioDOM();
   }
 });

@@ -10,7 +10,7 @@ const DEFAULT_PORTFOLIO_DATA = {
     initials: "OVC",
     badge: "OpenView Creatives · Video Production & Motion Design Studio",
     headline: "We edit stories.<br>We animate identities.",
-    subhead: "OpenView Creatives — Freelance video production & editing partner for Fame (fame.so) for more than 2+ years. We turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
+    subhead: "OpenView Creatives — With 5+ years of freelance video editor and animator experience and over 3,000+ projects delivered, we turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
     email: "",
     upwork: "",
     fiverr: "",
@@ -21,19 +21,18 @@ const DEFAULT_PORTFOLIO_DATA = {
     avatar: "pic/intro-showreel.jpg",
     hireText: "Ready to turn raw ideas into scroll-stopping video content?",
     stats: [
-      { num: "2+ Yrs", label: "Partner at Fame (fame.so)" },
-      { num: "6+", label: "Years Video Production" },
-      { num: "150+", label: "Videos Delivered" }
+      { num: "5+ Yrs", label: "Freelance Video Editor & Animator Experience" },
+      { num: "3000+", label: "Projects Delivered" }
     ]
   },
   marquee: [
-    "OPENVIEW CREATIVES", "VIDEO PRODUCTION & MOTION DESIGN", "FREELANCE VIDEO PARTNER FOR FAME (FAME.SO)",
-    "2+ YEARS AT FAME.SO", "COMMERCIAL EDITING",
+    "OPENVIEW CREATIVES", "VIDEO PRODUCTION & MOTION DESIGN", "5+ YEARS FREELANCE VIDEO EDITOR & ANIMATOR EXPERIENCE",
+    "3000+ PROJECTS DELIVERED", "COMMERCIAL EDITING",
     "LOGO ANIMATION", "VIRAL SHORTS & REELS", "PODCAST PRODUCTION",
     "MOTION GRAPHICS", "HIGH-IMPACT HOOKS", "AFTER EFFECTS", "PREMIERE PRO"
   ],
   servicesPills: [
-    "OpenView Creatives", "Fame (fame.so) Video Partner", "Commercial Editing", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
+    "OpenView Creatives", "5+ Years Experience", "3000+ Projects", "Commercial Editing", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
   ],
   // DEDICATED MASTER INTRO SHOWREEL (CINEMA THEATER)
   showreel: {
@@ -45,7 +44,7 @@ const DEFAULT_PORTFOLIO_DATA = {
     orientation: "landscape",
     desc: "A 60-second high-octane montage showcasing commercial video editing, kinetic motion graphics, high-impact sound design, and viral retention pacing.",
     poster: "pic/intro-showreel.jpg",
-    src: "compressed/intro-showreel.mp4",
+    src: "vid/intro-showreel.mp4",
     highlights: ["16:9 Cinema 1080p 60fps", "Master Montage", "Commercial & Viral Formats"]
   },
   categories: [
@@ -70,7 +69,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "OpenView Creatives",
       desc: "A 60-second high-octane montage showcasing commercial video editing, kinetic motion graphics, and sound design.",
       poster: "pic/intro-showreel.jpg",
-      src: "compressed/intro-showreel.mp4",
+      src: "vid/intro-showreel.mp4",
       featured: true
     },
     {
@@ -85,7 +84,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Tina Gavel",
       desc: "High-conversion opening hook with dynamic sound design, split-second B-roll cuts, and kinetic titles.",
       poster: "pic/hook-tina-gavel.jpg",
-      src: "compressed/hook-tina-gavel.mp4",
+      src: "vid/hook-tina-gavel.mp4",
       featured: true
     },
     {
@@ -100,7 +99,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Apex Media",
       desc: "Scroll-stopping commercial hook engineered to capture audience attention in the first 3 seconds.",
       poster: "pic/hook-commercial-1.jpg",
-      src: "compressed/hook-commercial-1.mp4",
+      src: "vid/hook-commercial-1.mp4",
       featured: false
     },
     {
@@ -115,7 +114,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Venture Vision",
       desc: "Atmospheric visual pacing with tension-building soundscapes and dramatic typography reveals.",
       poster: "pic/hook-commercial-2.jpg",
-      src: "compressed/hook-commercial-2.mp4",
+      src: "vid/hook-commercial-2.mp4",
       featured: false
     },
     {
@@ -130,7 +129,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Prime Motion",
       desc: "Rapid-fire visual sequencing, multi-layered SFX, and seamless transitions for commercial impact.",
       poster: "pic/hook-commercial-3.jpg",
-      src: "compressed/hook-commercial-3.mp4",
+      src: "vid/hook-commercial-3.mp4",
       featured: false
     },
     {
@@ -145,7 +144,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "NextGen",
       desc: "Clean modern product teaser cut with sleek motion graphics and engaging musical sync.",
       poster: "pic/hook-commercial-4.jpg",
-      src: "compressed/hook-commercial-4.mp4",
+      src: "vid/hook-commercial-4.mp4",
       featured: false
     },
 
@@ -162,7 +161,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Talk Studio",
       desc: "Multi-camera speaker switching, noise removal, dynamic sound mixing, and engaging lower thirds.",
       poster: "pic/podcast-studio-1.jpg",
-      src: "compressed/podcast-studio-1.mp4",
+      src: "vid/podcast-studio-1.mp4",
       featured: true
     },
     {
@@ -177,7 +176,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Audio Wave",
       desc: "Concise conversational clipping, zoom-punches, animated speaker tags, and high audio fidelity.",
       poster: "pic/podcast-highlight-2.jpg",
-      src: "compressed/podcast-highlight-2.mp4",
+      src: "vid/podcast-highlight-2.mp4",
       featured: false
     },
     {
@@ -192,7 +191,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Dialogue Hub",
       desc: "Long-form pacing mastery with seamless interstitial B-roll and branded episode graphics.",
       poster: "pic/podcast-deepdive-3.jpg",
-      src: "compressed/podcast-deepdive-3.mp4",
+      src: "vid/podcast-deepdive-3.mp4",
       featured: false
     },
 
@@ -209,7 +208,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Charles Buingey",
       desc: "Cinematic 2D/3D organic foliage motion graphics and smooth visual transitions crafted for brand campaigns.",
       poster: "pic/anim-charles-buingey.jpg",
-      src: "compressed/anim-charles-buingey.mp4",
+      src: "vid/anim-charles-buingey.mp4",
       featured: false
     },
     {
@@ -224,7 +223,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Creative Studio",
       desc: "Rhythmic typography animation with fluid circular path tracking, custom easing curves, and audio synchronization.",
       poster: "pic/anim-circle-text.jpg",
-      src: "compressed/anim-circle-text.mp4",
+      src: "vid/anim-circle-text.mp4",
       featured: true
     },
     {
@@ -239,7 +238,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Violet Studio",
       desc: "Contemporary gradient-mesh logo animation and futuristic atmospheric motion graphic ident.",
       poster: "pic/anim-violet-brand.jpg",
-      src: "compressed/anim-violet-brand.mp4",
+      src: "vid/anim-violet-brand.mp4",
       featured: false
     },
 
@@ -256,7 +255,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Fox Interactive",
       desc: "Vibrant vector character animation, organic tail whip reveal, and playful brand personality motion.",
       poster: "pic/anim-fox-logo.jpg",
-      src: "compressed/anim-fox-logo.mp4",
+      src: "vid/anim-fox-logo.mp4",
       featured: true
     },
     {
@@ -271,7 +270,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Hub Technologies",
       desc: "Fluid architectural letterform reveal with kinetic particle motion and sound synchronization.",
       poster: "pic/anim-hub-logo.jpg",
-      src: "compressed/anim-hub-logo.mp4",
+      src: "vid/anim-hub-logo.mp4",
       featured: true
     },
     {
@@ -286,7 +285,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Mobius Studio",
       desc: "Smooth continuous loop ribbon reveal with glossy gradient shading and minimal brand elegance.",
       poster: "pic/anim-mobius-logo.jpg",
-      src: "compressed/anim-mobius-logo.mp4",
+      src: "vid/anim-mobius-logo.mp4",
       featured: false
     },
     {
@@ -301,7 +300,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Panda Brand",
       desc: "Dynamic vector scale anticipation, clean bouncy easing, and memorable mascot stinger.",
       poster: "pic/anim-panda-logo.jpg",
-      src: "compressed/anim-panda-logo.mp4",
+      src: "vid/anim-panda-logo.mp4",
       featured: false
     },
     {
@@ -316,7 +315,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Neon Grid",
       desc: "High-energy chromatic aberration, digital glitch distortions, and cyberpunk brand sound fx.",
       poster: "pic/anim-cyberpunk-stinger.jpg",
-      src: "compressed/anim-cyberpunk-stinger.mp4",
+      src: "vid/anim-cyberpunk-stinger.mp4",
       featured: false
     },
     {
@@ -331,7 +330,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Bingo Media",
       desc: "Snappy kinetic pop-in logo stinger engineered for high-retention video watermarks.",
       poster: "pic/anim-bingo-logo.jpg",
-      src: "compressed/anim-bingo-logo.mp4",
+      src: "vid/anim-bingo-logo.mp4",
       featured: false
     },
 
@@ -348,7 +347,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Viral Reel",
       desc: "Dynamic auto-captions, fast zoom punches, sound effects on every beat, and maximum retention framing.",
       poster: "pic/snippet-vertical-1.jpg",
-      src: "compressed/snippet-vertical-1.mp4",
+      src: "vid/snippet-vertical-1.mp4",
       featured: true
     },
     {
@@ -363,7 +362,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Creator Studio",
       desc: "Emotional storytelling arc compressed into 40 seconds with cinematic color grading and pacing.",
       poster: "pic/snippet-vertical-2.jpg",
-      src: "compressed/snippet-vertical-2.mp4",
+      src: "vid/snippet-vertical-2.mp4",
       featured: false
     },
     {
@@ -378,7 +377,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       company: "Growth Media",
       desc: "Bold visual overlays, sticker pop-ins, and fast-paced editing designed for TikTok and Instagram Reels.",
       poster: "pic/snippet-vertical-3.jpg",
-      src: "compressed/snippet-vertical-3.mp4",
+      src: "vid/snippet-vertical-3.mp4",
       featured: false
     }
   ],
@@ -451,12 +450,12 @@ const DEFAULT_PORTFOLIO_DATA = {
     {
       id: 5,
       videoId: 18,
-      company: "Fame (fame.so)",
-      name: "Fame.so — B2B Podcast Production & Commercial Video Suite",
-      desc: "Working for Fame (fame.so) for more than 2+ years as a freelance video editor. Full episode post-production, multi-camera synchronicity, vocal noise gating, narrative trimming, and retention-optimized social cutdowns.",
-      typeBadge: "Fame (fame.so) Partner · 2+ Years",
+      company: "Podcast & Commercial Production",
+      name: "B2B Podcast Production & Commercial Video Suite",
+      desc: "5+ years of freelance video editor and animator experience. Full episode post-production, multi-camera synchronicity, vocal noise gating, narrative trimming, and retention-optimized social cutdowns.",
+      typeBadge: "Podcast Production · 5+ Years Experience",
       countBadge: "05",
-      tags: ["Fame.so", "2+ Years", "Podcast Production", "Multi-Cam", "Retention Sound"],
+      tags: ["5+ Years Experience", "Podcast Production", "Multi-Cam", "Retention Sound"],
       mainImg: "pic/podcast-studio-1.jpg",
       stripImages: [
         "pic/podcast-studio-1.jpg",
@@ -528,34 +527,26 @@ const DEFAULT_PORTFOLIO_DATA = {
   experience: [
     {
       id: 1,
-      period: "2+ YEARS (CURRENT)",
-      role: "Freelance Video Editor & Podcast Specialist",
-      company: "Fame (fame.so)",
-      companyUrl: "",
-      desc: "Working for Fame (fame.so) for more than 2+ years as a dedicated freelance video editor. Directing end-to-end post-production across high-impact B2B podcast episodes, dynamic commercial video hooks, multi-cam rhythm assemblies, audio sweetening, and viral multi-platform cutdowns.",
-      color: "#1dbf73"
-    },
-    {
-      id: 2,
-      period: "CURRENT",
-      role: "Lead Video Editor & Motion Designer",
+      period: "5+ YEARS (CURRENT)",
+      role: "Freelance Video Editor & Animator Experience",
       company: "OpenView Creatives",
       companyUrl: "",
-      desc: "Delivering commercial video hooks, viral reels, master showreels, kinetic logo animations, and YouTube episodic content with 5-star client satisfaction.",
+      desc: "Over 5+ years of freelance video editing and motion animation experience with more than 3,000+ projects delivered—directing end-to-end post-production across high-impact podcast episodes, dynamic commercial video hooks, multi-cam rhythm assemblies, 2D/3D logo animations, and viral short-form reels.",
       color: "#E8451A"
     },
     {
-      id: 3,
+      id: 2,
       period: "ONGOING",
-      role: "Motion Design & Digital Content Creator",
-      company: "Independent Studio",
-      desc: "End-to-end visual content workflow — footage ingestion, rough cut assembly, sound design, logo branding, and multi-platform publishing optimization.",
+      role: "Motion Design & Digital Content Studio",
+      company: "OpenView Creatives",
+      companyUrl: "",
+      desc: "End-to-end visual content workflow — footage ingestion, rough cut assembly, sound design, kinetic typography, logo branding, and multi-platform publishing optimization.",
       color: "#FF8C5A"
     }
   ]
 };
 
-const STORAGE_KEY = 'openviewcreatives_portfolio_data_v4';
+const STORAGE_KEY = 'openviewcreatives_portfolio_data_v6';
 
 function getPortfolioData() {
   try {
