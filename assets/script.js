@@ -514,7 +514,7 @@ function initObserverAndBars() {
   });
 }
 
-// Split hero headline into kinetic letter elements
+// Split hero headline into kinetic word elements (one-word animation keeping existing style)
 function initHeroTitleAnimation() {
   const h1 = document.querySelector('.hz h1');
   if (!h1) return;
@@ -532,13 +532,11 @@ function initHeroTitleAnimation() {
           }
           const word = document.createElement('span');
           word.className = 'wd';
-          [...token].forEach(char => {
-            const letter = document.createElement('i');
-            letter.className = 'ch';
-            letter.style.setProperty('--i', counter++);
-            letter.textContent = char;
-            word.appendChild(letter);
-          });
+          const wordAnim = document.createElement('i');
+          wordAnim.className = 'ch';
+          wordAnim.style.setProperty('--i', counter++);
+          wordAnim.textContent = token;
+          word.appendChild(wordAnim);
           frag.appendChild(word);
         });
         child.replaceWith(frag);
@@ -550,16 +548,15 @@ function initHeroTitleAnimation() {
   walk(h1);
 }
 
-// Giant Footer Name Letter Slice & Responsive Auto-Fit
+// Giant Footer Name Word Slice & Responsive Auto-Fit
 function initFooterNameAnimation() {
   const ft = document.getElementById('ftName');
   if (!ft) return;
   const rawText = ft.textContent.trim();
-  ft.innerHTML = [...rawText].map((char, idx) => {
-    return char === ' ' 
-      ? '<span class="sp"></span>' 
-      : `<span class="fc"><i style="--i:${idx}">${char}</i></span>`;
-  }).join('');
+  const words = rawText.split(/\s+/);
+  ft.innerHTML = words.map((word, idx) => {
+    return `<span class="fc"><i style="--i:${idx}">${word}</i></span>`;
+  }).join('<span class="sp"></span>');
   ft.setAttribute('aria-label', rawText);
 
   const fitName = () => {
@@ -690,18 +687,28 @@ function init3DCurvedSlider() {
       offset += velocity;
     }
     const halfWidth = container.clientWidth / 2;
-    const scaleFactor = container.clientWidth < 700 ? 0.82 : 1.0;
+    const scaleFactor = container.clientWidth < 700 ? 0.85 : 1.0;
 
     cardElements.forEach((card, i) => {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
-      const absD = Math.min(Math.abs(d), 1);
-      const x = rel * (0.5 + 0.5 * absD);
-      const rot = -Math.max(-1.2, Math.min(1.2, d)) * 40;
-      const scale = (0.5 + 0.62 * Math.pow(absD, 1.3)) * scaleFactor;
+      const absD = Math.min(Math.abs(d), 1.25);
+      const frontFactor = Math.max(0, 1 - Math.min(absD, 1));
 
-      card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
-      card.style.zIndex = Math.round(absD * 100);
+      // Convex 3D Coverflow / Cylinder: Center pops forward to the front!
+      const x = rel * (0.92 - 0.16 * Math.min(absD, 1));
+      const y = Math.pow(Math.min(absD, 1), 1.7) * 22;
+      const z = (Math.pow(frontFactor, 1.35) * 150) - 95;
+      const rotY = -Math.max(-1.15, Math.min(1.15, d)) * 42;
+      const rotX = Math.pow(frontFactor, 2) * 3 - 2;
+      const rotZ = -d * 3.5;
+      const scale = (0.58 + 0.56 * Math.pow(frontFactor, 1.35)) * scaleFactor;
+      const brightness = 0.42 + 0.66 * Math.pow(frontFactor, 1.15);
+
+      card.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
+      card.style.zIndex = Math.round(frontFactor * 100);
+      card.style.filter = `brightness(${brightness.toFixed(2)})`;
+      card.classList.toggle('is-front', frontFactor > 0.78);
     });
 
     sliderAnimId = requestAnimationFrame(renderFrame);
@@ -796,18 +803,28 @@ function init3DCurvedLandscapeSlider() {
       offset += velocity;
     }
     const halfWidth = container.clientWidth / 2;
-    const scaleFactor = container.clientWidth < 700 ? 0.85 : 1.0;
+    const scaleFactor = container.clientWidth < 700 ? 0.86 : 1.0;
 
     cardElements.forEach((card, i) => {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
-      const absD = Math.min(Math.abs(d), 1);
-      const x = rel * (0.6 + 0.4 * absD);
-      const rot = -Math.max(-1.1, Math.min(1.1, d)) * 32;
-      const scale = (0.55 + 0.55 * Math.pow(absD, 1.25)) * scaleFactor;
+      const absD = Math.min(Math.abs(d), 1.25);
+      const frontFactor = Math.max(0, 1 - Math.min(absD, 1));
 
-      card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
-      card.style.zIndex = Math.round(absD * 100);
+      // Convex 3D Coverflow / Cylinder: Center pops forward to the front!
+      const x = rel * (0.90 - 0.15 * Math.min(absD, 1));
+      const y = Math.pow(Math.min(absD, 1), 1.7) * 18;
+      const z = (Math.pow(frontFactor, 1.35) * 140) - 85;
+      const rotY = -Math.max(-1.1, Math.min(1.1, d)) * 36;
+      const rotX = Math.pow(frontFactor, 2) * 2.5 - 1.5;
+      const rotZ = -d * 2.8;
+      const scale = (0.60 + 0.52 * Math.pow(frontFactor, 1.3)) * scaleFactor;
+      const brightness = 0.45 + 0.63 * Math.pow(frontFactor, 1.15);
+
+      card.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
+      card.style.zIndex = Math.round(frontFactor * 100);
+      card.style.filter = `brightness(${brightness.toFixed(2)})`;
+      card.classList.toggle('is-front', frontFactor > 0.78);
     });
 
     landscapeSliderAnimId = requestAnimationFrame(renderLandscapeFrame);
