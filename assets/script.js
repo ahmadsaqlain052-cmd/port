@@ -26,7 +26,7 @@ function renderPortfolioDOM() {
   const heroSub = document.getElementById('domHeroSub');
   const servPills = document.getElementById('domServPills');
 
-  if (heroBadge) heroBadge.innerHTML = `<b>●</b> ${p.badge}`;
+  if (heroBadge) heroBadge.innerHTML = `<img src="pic/ovc-logo-icon.png" alt="" class="hz-tag-logo" /><b>●</b> ${p.badge}`;
   if (heroH1) {
     heroH1.innerHTML = p.headline;
     initHeroTitleAnimation();

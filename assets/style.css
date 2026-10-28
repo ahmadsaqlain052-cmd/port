@@ -70,12 +70,15 @@ body {
 .loader span {
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
   font-family: 'Inter', sans-serif;
   font-size: 72px;
   font-weight: 800;
   letter-spacing: 8px;
   color: var(--accent);
-  padding: 22px 48px 22px 56px;
+  padding: 22px 48px 22px 44px;
   border-radius: 26px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 60%, rgba(232, 69, 26, 0.12) 100%);
   backdrop-filter: blur(22px) saturate(180%);
@@ -86,6 +89,17 @@ body {
     0 0 40px rgba(232, 69, 26, 0.22),
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
   animation: lp 1.0s ease both;
+}
+
+.loader span em {
+  font-style: normal;
+}
+
+.loader-logo-img {
+  height: 68px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 6px 18px rgba(0, 150, 255, 0.45));
 }
 
 .loader span::after {
@@ -159,7 +173,7 @@ nav.scrolled {
 
 .logo {
   font-family: 'Inter', sans-serif;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 800;
   letter-spacing: 1.5px;
   color: var(--accent);
@@ -167,6 +181,28 @@ nav.scrolled {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.nav-brand-icon {
+  height: 32px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 10px rgba(0, 150, 255, 0.45));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.logo:hover .nav-brand-icon {
+  transform: scale(1.08) rotate(-3deg);
+  filter: drop-shadow(0 4px 14px rgba(0, 175, 255, 0.7));
+}
+
+.hz-tag-logo {
+  height: 19px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 6px rgba(0, 150, 255, 0.4));
 }
 
 .logo-sub {
@@ -2415,10 +2451,26 @@ footer {
 .ft-top {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   gap: 14px 24px;
   padding-bottom: 16px;
   border-bottom: 0.5px solid var(--bdr);
+}
+
+.ft-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+
+.ft-brand-icon {
+  height: 26px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 150, 255, 0.45));
 }
 
 .ft-top a {
@@ -2442,6 +2494,26 @@ footer {
   gap: 32px;
   flex-wrap: wrap;
   padding: 70px 0 40px;
+}
+
+.ft-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ft-full-logo {
+  height: 92px;
+  width: auto;
+  display: block;
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  filter: drop-shadow(0 6px 18px rgba(0, 150, 255, 0.25));
 }
 
 .ft-avail {

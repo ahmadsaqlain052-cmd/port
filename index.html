@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 rx=%2720%27 fill=%27%23E8451A%27/><text x=%2750%27 y=%2768%27 font-size=%2746%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Arial%27 font-weight=%27bold%27>OVC</text></svg>">
+  <link rel="icon" type="image/png" href="pic/ovc-logo-icon.png">
   <title>OpenView Creatives — Video Production &amp; Motion Design</title>
   <meta name="description" content="OpenView Creatives — High-Retention Commercial Video Production, Kinetic Motion Graphics &amp; Logo Animation." />
   <meta name="theme-color" content="#0D0D0D" />
@@ -18,11 +18,17 @@
   <div class="progress" id="progress"></div>
 
   <!-- PRELOADER CURTAIN -->
-  <div class="loader" id="loader"><span id="domLoaderInitials">OVC</span></div>
+  <div class="loader" id="loader">
+    <span class="loader-glass-pill">
+      <img src="pic/ovc-logo-icon.png" alt="OpenView Creatives" class="loader-logo-img" />
+      <em id="domLoaderInitials">OVC</em>
+    </span>
+  </div>
 
   <!-- FLOATING FIXED NAVBAR -->
   <nav id="nav">
     <a href="#home" class="logo">
+      <img src="pic/ovc-logo-icon.png" alt="OpenView Creatives Logo" class="nav-brand-icon" />
       <span id="domBrandInitials">OVC</span>
       <span class="logo-sub" id="domBrandName">OpenView Creatives</span>
     </a>
@@ -45,6 +51,7 @@
     <!-- HERO SECTION WITH TOP INTRODUCTION VIDEO & MASTER SHOWREEL -->
     <div class="hz" id="home">
       <div class="hz-tag" id="domHeroBadge">
+        <img src="pic/ovc-logo-icon.png" alt="" class="hz-tag-logo" />
         <b>●</b> OpenView Creatives · Video Production &amp; Motion Design Studio
       </div>
       <h1 id="domHeroH1">We edit stories.<br>We animate identities.</h1>
@@ -202,6 +209,10 @@
   <!-- FOOTER WITH GIANT LETTER REVEAL -->
   <footer>
     <div class="ft-top">
+      <a href="#home" class="ft-brand-link" aria-label="OpenView Creatives Home">
+        <img src="pic/ovc-logo-icon.png" alt="OpenView Creatives" class="ft-brand-icon" />
+        <span>OpenView Creatives</span>
+      </a>
       <a href="#showreel">Showreel</a>
       <a href="#landscapeSlider">16:9 Showcase</a>
       <a href="#reels">Vertical Reels</a>
@@ -210,9 +221,12 @@
     </div>
 
     <div class="ft-cta">
-      <div>
-        <div class="ft-avail"><i></i> Ready for new collaborations</div>
-        <h2 id="domFtHireText">Ready to turn raw ideas into scroll-stopping video content?</h2>
+      <div class="ft-cta-left">
+        <img src="pic/ovc-logo-full.png" alt="OpenView Creatives Logo" class="ft-full-logo" />
+        <div>
+          <div class="ft-avail"><i></i> Ready for new collaborations</div>
+          <h2 id="domFtHireText">Ready to turn raw ideas into scroll-stopping video content?</h2>
+        </div>
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <a class="pill-o" href="#showreel" style="padding:14px 28px;">
