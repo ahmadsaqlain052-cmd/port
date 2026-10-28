@@ -700,7 +700,7 @@ function init3DCurvedSlider() {
   container.innerHTML = '';
 
   const CARD_WIDTH = container.clientWidth < 440 ? 125 : (container.clientWidth < 768 ? 150 : (container.clientWidth < 1024 ? 170 : 190));
-  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 12 : 20);
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 4 : 8);
 
   // Build items array strictly with vertical reels & logo animations (NO intro video)
   const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' && v.id !== 'master-showreel');
@@ -711,7 +711,7 @@ function init3DCurvedSlider() {
   if (TOTAL_ITEMS === 0) return;
   const TOTAL_WIDTH = TOTAL_ITEMS * STEP;
   let offset = 0;
-  let velocity = 0.55;
+  let velocity = 0.95;
   let isCardHovered = false;
   let isDragging = false;
   let startX = 0;
@@ -757,9 +757,9 @@ function init3DCurvedSlider() {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
       const absD = Math.min(Math.abs(d), 1);
-      const x = rel * (0.5 + 0.5 * absD);
+      const x = rel * (0.46 + 0.48 * absD);
       const rot = -Math.max(-1.2, Math.min(1.2, d)) * 40;
-      const scale = (0.5 + 0.62 * Math.pow(absD, 1.3)) * scaleFactor;
+      const scale = (0.52 + 0.60 * Math.pow(absD, 1.3)) * scaleFactor;
 
       card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
       card.style.zIndex = card.classList.contains('hover-playing') ? 200 : Math.round(absD * 100);
@@ -789,8 +789,8 @@ function init3DCurvedSlider() {
     setTimeout(() => { dragDistance = 0; }, 50);
   });
 
-  container.addEventListener('mouseenter', () => { velocity = 0.15; });
-  container.addEventListener('mouseleave', () => { velocity = 0.55; });
+  container.addEventListener('mouseenter', () => { velocity = 0.45; });
+  container.addEventListener('mouseleave', () => { velocity = 0.95; });
 }
 
 // 3D Curved Infinity Landscape Slider (16:9 Commercial & Podcast Showcase)
@@ -803,7 +803,7 @@ function init3DCurvedLandscapeSlider() {
   container.innerHTML = '';
 
   const CARD_WIDTH = container.clientWidth < 440 ? 230 : (container.clientWidth < 768 ? 270 : (container.clientWidth < 1024 ? 290 : 330));
-  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 14 : 24);
+  const STEP = CARD_WIDTH - (container.clientWidth < 440 ? 8 : 18);
 
   // Filter strictly 16:9 landscape videos (commercial hooks, podcasts, motion)
   const landscapeVideos = (data.videos || []).filter(v => v.aspect === '16:9' || v.orientation === 'landscape');
@@ -821,7 +821,7 @@ function init3DCurvedLandscapeSlider() {
   if (TOTAL_ITEMS === 0) return;
   const TOTAL_WIDTH = TOTAL_ITEMS * STEP;
   let offset = 0;
-  let velocity = 0.48;
+  let velocity = 0.85;
   let isCardHovered = false;
   let isDragging = false;
   let startX = 0;
@@ -873,9 +873,9 @@ function init3DCurvedLandscapeSlider() {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
       const absD = Math.min(Math.abs(d), 1);
-      const x = rel * (0.6 + 0.4 * absD);
+      const x = rel * (0.52 + 0.42 * absD);
       const rot = -Math.max(-1.1, Math.min(1.1, d)) * 32;
-      const scale = (0.55 + 0.55 * Math.pow(absD, 1.25)) * scaleFactor;
+      const scale = (0.56 + 0.54 * Math.pow(absD, 1.25)) * scaleFactor;
 
       card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
       card.style.zIndex = card.classList.contains('hover-playing') ? 200 : Math.round(absD * 100);
@@ -905,8 +905,8 @@ function init3DCurvedLandscapeSlider() {
     setTimeout(() => { dragDistance = 0; }, 50);
   });
 
-  container.addEventListener('mouseenter', () => { velocity = 0.12; });
-  container.addEventListener('mouseleave', () => { velocity = 0.48; });
+  container.addEventListener('mouseenter', () => { velocity = 0.40; });
+  container.addEventListener('mouseleave', () => { velocity = 0.85; });
 }
 
 // Auto-recalculate 3D sliders on screen resize / phone orientation change

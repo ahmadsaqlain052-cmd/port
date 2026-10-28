@@ -558,8 +558,8 @@ nav.scrolled {
 /* 3D CURVED CAROUSEL / SLIDER */
 .cf {
   position: relative;
-  height: 400px;
-  margin-top: 52px;
+  height: 360px;
+  margin-top: 24px;
   perspective: 1400px;
   overflow: hidden;
   cursor: grab;
@@ -1205,8 +1205,8 @@ section {
 /* 3D Curved Landscape Infinity Container */
 .cf-landscape {
   position: relative;
-  height: 380px;
-  margin: 20px 0 32px;
+  height: 250px;
+  margin: 8px 0 18px;
   perspective: 1400px;
   overflow: hidden;
   cursor: grab;
