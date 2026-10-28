@@ -555,13 +555,12 @@ nav.scrolled {
   color: #fff;
 }
 
-/* 3D CURVED CAROUSEL / SLIDER (FORWARD-POPPING DYNAMIC 3D CYLINDER) */
+/* 3D CURVED CAROUSEL / SLIDER */
 .cf {
   position: relative;
-  height: 430px;
+  height: 400px;
   margin-top: 52px;
-  perspective: 1100px;
-  transform-style: preserve-3d;
+  perspective: 1400px;
   overflow: hidden;
   cursor: grab;
   touch-action: pan-y;
@@ -1203,13 +1202,12 @@ section {
   font-weight: 700;
 }
 
-/* 3D Curved Landscape Infinity Container (Forward-Popping 3D Cylinder) */
+/* 3D Curved Landscape Infinity Container */
 .cf-landscape {
   position: relative;
-  height: 390px;
+  height: 380px;
   margin: 20px 0 32px;
-  perspective: 1100px;
-  transform-style: preserve-3d;
+  perspective: 1400px;
   overflow: hidden;
   cursor: grab;
   touch-action: pan-y;

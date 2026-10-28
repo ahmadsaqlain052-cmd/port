@@ -700,7 +700,7 @@ function init3DCurvedSlider() {
   container.innerHTML = '';
 
   const CARD_WIDTH = container.clientWidth < 440 ? 125 : (container.clientWidth < 768 ? 150 : (container.clientWidth < 1024 ? 170 : 190));
-  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 48 : (container.clientWidth < 768 ? 64 : 88));
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 12 : 20);
 
   // Build items array strictly with vertical reels & logo animations (NO intro video)
   const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' && v.id !== 'master-showreel');
@@ -751,28 +751,18 @@ function init3DCurvedSlider() {
       offset += velocity;
     }
     const halfWidth = container.clientWidth / 2;
-    const scaleFactor = container.clientWidth < 700 ? 0.85 : 1.0;
+    const scaleFactor = container.clientWidth < 700 ? 0.82 : 1.0;
 
     cardElements.forEach((card, i) => {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
-      const absD = Math.min(Math.abs(d), 1.25);
-      const frontFactor = Math.max(0, 1 - Math.min(absD, 1));
+      const absD = Math.min(Math.abs(d), 1);
+      const x = rel * (0.5 + 0.5 * absD);
+      const rot = -Math.max(-1.2, Math.min(1.2, d)) * 40;
+      const scale = (0.5 + 0.62 * Math.pow(absD, 1.3)) * scaleFactor;
 
-      // Convex 3D Coverflow / Cylinder with generous spacing so cards never collide
-      const x = rel * (1.06 + 0.08 * frontFactor);
-      const y = Math.pow(Math.min(absD, 1), 1.7) * 20;
-      const z = (Math.pow(frontFactor, 1.35) * 115) - 85;
-      const rotY = -Math.max(-1.15, Math.min(1.15, d)) * 38;
-      const rotX = Math.pow(frontFactor, 2) * 2.5 - 1.5;
-      const rotZ = -d * 3;
-      const scale = (0.62 + 0.44 * Math.pow(frontFactor, 1.35)) * scaleFactor;
-      const brightness = 0.45 + 0.63 * Math.pow(frontFactor, 1.15);
-
-      card.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
-      card.style.zIndex = Math.round(frontFactor * 100);
-      card.style.filter = `brightness(${brightness.toFixed(2)})`;
-      card.classList.toggle('is-front', frontFactor > 0.78);
+      card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
+      card.style.zIndex = card.classList.contains('hover-playing') ? 200 : Math.round(absD * 100);
     });
 
     sliderAnimId = requestAnimationFrame(renderFrame);
@@ -813,7 +803,7 @@ function init3DCurvedLandscapeSlider() {
   container.innerHTML = '';
 
   const CARD_WIDTH = container.clientWidth < 440 ? 230 : (container.clientWidth < 768 ? 270 : (container.clientWidth < 1024 ? 290 : 330));
-  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 55 : (container.clientWidth < 768 ? 78 : 118));
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 14 : 24);
 
   // Filter strictly 16:9 landscape videos (commercial hooks, podcasts, motion)
   const landscapeVideos = (data.videos || []).filter(v => v.aspect === '16:9' || v.orientation === 'landscape');
@@ -877,28 +867,18 @@ function init3DCurvedLandscapeSlider() {
       offset += velocity;
     }
     const halfWidth = container.clientWidth / 2;
-    const scaleFactor = container.clientWidth < 700 ? 0.86 : 1.0;
+    const scaleFactor = container.clientWidth < 700 ? 0.85 : 1.0;
 
     cardElements.forEach((card, i) => {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
-      const absD = Math.min(Math.abs(d), 1.25);
-      const frontFactor = Math.max(0, 1 - Math.min(absD, 1));
+      const absD = Math.min(Math.abs(d), 1);
+      const x = rel * (0.6 + 0.4 * absD);
+      const rot = -Math.max(-1.1, Math.min(1.1, d)) * 32;
+      const scale = (0.55 + 0.55 * Math.pow(absD, 1.25)) * scaleFactor;
 
-      // Convex 3D Coverflow / Cylinder with generous spacing so 16:9 cards never collide
-      const x = rel * (1.06 + 0.08 * frontFactor);
-      const y = Math.pow(Math.min(absD, 1), 1.7) * 16;
-      const z = (Math.pow(frontFactor, 1.35) * 105) - 75;
-      const rotY = -Math.max(-1.1, Math.min(1.1, d)) * 34;
-      const rotX = Math.pow(frontFactor, 2) * 2 - 1;
-      const rotZ = -d * 2.4;
-      const scale = (0.64 + 0.42 * Math.pow(frontFactor, 1.3)) * scaleFactor;
-      const brightness = 0.46 + 0.62 * Math.pow(frontFactor, 1.15);
-
-      card.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(${rotZ}deg) scale(${scale})`;
-      card.style.zIndex = Math.round(frontFactor * 100);
-      card.style.filter = `brightness(${brightness.toFixed(2)})`;
-      card.classList.toggle('is-front', frontFactor > 0.78);
+      card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
+      card.style.zIndex = card.classList.contains('hover-playing') ? 200 : Math.round(absD * 100);
     });
 
     landscapeSliderAnimId = requestAnimationFrame(renderLandscapeFrame);
