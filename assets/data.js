@@ -12,14 +12,14 @@ const DEFAULT_PORTFOLIO_DATA = {
     headline: "We edit stories.<br>We animate identities.",
     subhead: "OpenView Creatives — Freelance video production & editing partner for Fame (fame.so) for more than 2+ years. We turn raw footage into high-retention commercial content, viral vertical reels, and bring brand marks to life with fluid 2D/3D motion graphics.",
     email: "",
-    upwork: "https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5",
-    fiverr: "https://www.fiverr.com/hamzairfaan",
-    fame: "https://fame.so",
+    upwork: "",
+    fiverr: "",
+    fame: "",
     location: "Worldwide / Remote Collaboration",
-    focus: "Commercial Editing · Fame (fame.so) Partner · Logo Animation",
-    availability: "Available for client projects on Upwork & Remote Contracts",
+    focus: "Commercial Editing · Podcast Production · Logo Animation",
+    availability: "Available for Video Production & Motion Design",
     avatar: "pic/intro-showreel.jpg",
-    hireText: "Ready to turn raw ideas into scroll-stopping video content? Connect directly on Upwork or check past client reviews on Fiverr.",
+    hireText: "Ready to turn raw ideas into scroll-stopping video content?",
     stats: [
       { num: "2+ Yrs", label: "Partner at Fame (fame.so)" },
       { num: "6+", label: "Years Video Production" },
@@ -27,13 +27,13 @@ const DEFAULT_PORTFOLIO_DATA = {
     ]
   },
   marquee: [
-    "OPENVIEW CREATIVES", "HIRE ON UPWORK: UPWORK.COM/FREELANCERS/~01EA31FF7F87E0ACB5", "FREELANCE VIDEO PARTNER FOR FAME (FAME.SO)",
-    "2+ YEARS AT FAME.SO", "CHECK CLIENT REVIEWS ON FIVERR", "COMMERCIAL EDITING",
+    "OPENVIEW CREATIVES", "VIDEO PRODUCTION & MOTION DESIGN", "FREELANCE VIDEO PARTNER FOR FAME (FAME.SO)",
+    "2+ YEARS AT FAME.SO", "COMMERCIAL EDITING",
     "LOGO ANIMATION", "VIRAL SHORTS & REELS", "PODCAST PRODUCTION",
     "MOTION GRAPHICS", "HIGH-IMPACT HOOKS", "AFTER EFFECTS", "PREMIERE PRO"
   ],
   servicesPills: [
-    "OpenView Creatives", "Fame (fame.so) Video Partner", "Upwork Top Freelancer", "Commercial Editing", "Check Clients on Fiverr", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
+    "OpenView Creatives", "Fame (fame.so) Video Partner", "Commercial Editing", "Logo Animation", "Viral Vertical Shorts", "Podcast Production", "Motion Graphics", "Sound Design"
   ],
   // DEDICATED MASTER INTRO SHOWREEL (CINEMA THEATER)
   showreel: {
@@ -531,7 +531,7 @@ const DEFAULT_PORTFOLIO_DATA = {
       period: "2+ YEARS (CURRENT)",
       role: "Freelance Video Editor & Podcast Specialist",
       company: "Fame (fame.so)",
-      companyUrl: "https://fame.so",
+      companyUrl: "",
       desc: "Working for Fame (fame.so) for more than 2+ years as a dedicated freelance video editor. Directing end-to-end post-production across high-impact B2B podcast episodes, dynamic commercial video hooks, multi-cam rhythm assemblies, audio sweetening, and viral multi-platform cutdowns.",
       color: "#1dbf73"
     },
@@ -539,8 +539,8 @@ const DEFAULT_PORTFOLIO_DATA = {
       id: 2,
       period: "CURRENT",
       role: "Lead Video Editor & Motion Designer",
-      company: "Freelance",
-      companyUrl: "https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5",
+      company: "OpenView Creatives",
+      companyUrl: "",
       desc: "Delivering commercial video hooks, viral reels, master showreels, kinetic logo animations, and YouTube episodic content with 5-star client satisfaction.",
       color: "#E8451A"
     },
@@ -555,7 +555,7 @@ const DEFAULT_PORTFOLIO_DATA = {
   ]
 };
 
-const STORAGE_KEY = 'openviewcreatives_portfolio_data_v3';
+const STORAGE_KEY = 'openviewcreatives_portfolio_data_v4';
 
 function getPortfolioData() {
   try {

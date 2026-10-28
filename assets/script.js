@@ -755,17 +755,6 @@ function init3DCurvedLandscapeSlider() {
     aspect: v.aspect || '16:9'
   }));
 
-  // Add Fame (fame.so) feature spotlight card in center position
-  const centerPos = Math.min(2, items.length);
-  items.splice(centerPos, 0, {
-    fame: true,
-    src: "pic/podcast-studio-1.jpg",
-    title: "Fame (fame.so) Lead Podcast & Commercial Video Editor",
-    cat: "Fame.so Partner · 2+ Years",
-    dur: "2+ YRS",
-    aspect: "16:9"
-  });
-
   const TOTAL_ITEMS = items.length;
   if (TOTAL_ITEMS === 0) return;
   const TOTAL_WIDTH = TOTAL_ITEMS * STEP;
@@ -778,10 +767,10 @@ function init3DCurvedLandscapeSlider() {
 
   const cardElements = items.map(item => {
     const card = document.createElement('div');
-    card.className = `cf-landscape-card ${item.fame ? 'fame-card' : ''}`;
+    card.className = 'cf-landscape-card';
     card.innerHTML = `
       <img alt="${item.title}" draggable="false" src="${item.src}">
-      <span class="cfl-tag">${item.fame ? 'FAME.SO PARTNER' : item.aspect}</span>
+      <span class="cfl-tag">${item.aspect}</span>
       <span class="cfl-dur">${item.dur}</span>
       <div class="cfl-play"><i></i></div>
       <div class="cfl-info">
@@ -791,14 +780,10 @@ function init3DCurvedLandscapeSlider() {
     `;
 
     card.addEventListener('click', () => {
-      if (dragDistance < 10) {
-        if (item.fame) {
-          window.open('https://fame.so', '_blank', 'noopener');
-        } else if (item.id) {
-          const allIds = data.videos.map(v => v.id);
-          const idx = allIds.findIndex(id => String(id) === String(item.id));
-          openLightbox(allIds, idx >= 0 ? idx : 0);
-        }
+      if (dragDistance < 10 && item.id) {
+        const allIds = data.videos.map(v => v.id);
+        const idx = allIds.findIndex(id => String(id) === String(item.id));
+        openLightbox(allIds, idx >= 0 ? idx : 0);
       }
     });
 
@@ -972,7 +957,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'openviewcreatives_portfolio_data_v3' || e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
+  if (e.key === 'openviewcreatives_portfolio_data_v4' || e.key === 'openviewcreatives_portfolio_data_v3' || e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
     renderPortfolioDOM();
   }
 });

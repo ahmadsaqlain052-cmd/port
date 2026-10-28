@@ -593,24 +593,9 @@
             </div>
           </div>
 
-          <div class="form-row-3">
-            <div class="form-group">
-              <label>Upwork Profile URL</label>
-              <input type="url" id="profUpwork" placeholder="https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5" />
-            </div>
-            <div class="form-group">
-              <label>Fiverr Profile URL</label>
-              <input type="url" id="profFiverr" placeholder="https://www.fiverr.com/hamzairfaan" />
-            </div>
-            <div class="form-group">
-              <label>Fame.so Website URL</label>
-              <input type="url" id="profFame" placeholder="https://fame.so" />
-            </div>
-          </div>
-
           <div class="form-group">
             <label>Availability Badge Status</label>
-            <input type="text" id="profAvailability" placeholder="Available for freelance & remote projects" />
+            <input type="text" id="profAvailability" placeholder="Available for Video Production & Motion Design" />
           </div>
 
           <div class="form-group">
@@ -1082,9 +1067,6 @@
       document.getElementById('profSubhead').value = p.subhead || '';
       document.getElementById('profLocation').value = p.location || '';
       document.getElementById('profFocus').value = p.focus || '';
-      document.getElementById('profUpwork').value = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
-      document.getElementById('profFiverr').value = p.fiverr || 'https://www.fiverr.com/hamzairfaan';
-      document.getElementById('profFame').value = p.fame || 'https://fame.so';
       document.getElementById('profAvailability').value = p.availability || '';
       document.getElementById('profAvatar').value = p.avatar || '';
 
@@ -1112,9 +1094,9 @@
       appData.profile.email = '';
       appData.profile.location = document.getElementById('profLocation').value.trim();
       appData.profile.focus = document.getElementById('profFocus').value.trim();
-      appData.profile.upwork = document.getElementById('profUpwork').value.trim();
-      appData.profile.fiverr = document.getElementById('profFiverr').value.trim();
-      appData.profile.fame = document.getElementById('profFame').value.trim();
+      appData.profile.upwork = '';
+      appData.profile.fiverr = '';
+      appData.profile.fame = '';
       appData.profile.availability = document.getElementById('profAvailability').value.trim();
       appData.profile.avatar = document.getElementById('profAvatar').value.trim();
 
