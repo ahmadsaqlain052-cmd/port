@@ -88,11 +88,16 @@
                 <span class="tca-label" id="tcaLabel">Tap to Play</span>
               </div>
 
-              <!-- Top-Right Discreet Sound Toggle -->
-              <button class="theater-discreet-sound" id="theaterMuteBtn" type="button" aria-label="Toggle Sound" title="Toggle Sound">
-                <span id="theaterMuteIcon">🔇</span>
-                <span id="theaterMuteTxt">Muted</span>
-              </button>
+              <!-- Top-Right Showreel Sound Setting (Unmute/Mute + Volume Slider) -->
+              <div class="theater-sound-panel" id="theaterSoundPanel">
+                <button class="theater-discreet-sound" id="theaterMuteBtn" type="button" aria-label="Toggle Sound" title="Toggle Sound">
+                  <span id="theaterMuteIcon">🔇</span>
+                  <span id="theaterMuteTxt">Unmute</span>
+                </button>
+                <div class="theater-vol-wrap" title="Adjust Showreel Volume">
+                  <input type="range" id="theaterVolumeSlider" class="theater-vol-slider" min="0" max="1" step="0.05" value="1" aria-label="Showreel Volume" />
+                </div>
+              </div>
 
               <!-- Bottom-Right Discreet Fullscreen Button -->
               <button class="theater-discreet-fs" id="theaterFullscreenBtn" type="button" aria-label="Fullscreen" title="Fullscreen Mode">

@@ -1039,34 +1039,100 @@ section {
   backdrop-filter: blur(8px);
 }
 
-/* Discreet Top-Right Sound Button (Small & Never Obstructive) */
-.theater-discreet-sound {
+/* Top-Right Showreel Sound Setting Panel (Unmute/Mute + Volume Slider) */
+.theater-sound-panel {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   z-index: 6;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
+  gap: 8px;
+  padding: 5px 10px 5px 6px;
   border-radius: 999px;
-  background: rgba(12, 12, 12, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(12, 12, 12, 0.78);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  transition: all 0.25s ease;
+}
+
+.theater-sound-panel:hover {
+  border-color: rgba(232, 69, 26, 0.65);
+  background: rgba(16, 16, 16, 0.88);
+}
+
+.theater-discreet-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #fff;
   font-size: 11.5px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.22s ease;
   font-family: inherit;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.theater-discreet-sound.is-muted {
+  background: rgba(232, 69, 26, 0.92);
+  border-color: rgba(255, 160, 122, 0.65);
+  box-shadow: 0 2px 12px rgba(232, 69, 26, 0.5);
 }
 
 .theater-discreet-sound:hover {
-  background: rgba(232, 69, 26, 0.85);
-  border-color: var(--accent);
-  transform: translateY(-1px);
+  background: rgba(232, 69, 26, 1);
+  border-color: #fff;
+  transform: scale(1.04);
+}
+
+.theater-vol-wrap {
+  display: inline-flex;
+  align-items: center;
+  padding-right: 4px;
+}
+
+.theater-vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 68px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  outline: none;
+  cursor: pointer;
+}
+
+.theater-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent, #e8451a);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.theater-vol-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.theater-vol-slider::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent, #e8451a);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 /* Discreet Bottom-Right Fullscreen Button */
@@ -1097,15 +1163,14 @@ section {
   transform: translateY(-1px);
 }
 
-/* Subtle auto-fade for controls when playing */
-.theater-screen.playing:not(:hover) .theater-discreet-sound,
+/* Keep sound panel always clearly visible; subtle auto-fade only for fullscreen button */
 .theater-screen.playing:not(:hover) .theater-discreet-fs {
-  opacity: 0.35;
+  opacity: 0.45;
 }
 
-.theater-screen:hover .theater-discreet-sound,
+.theater-screen:hover .theater-sound-panel,
 .theater-screen:hover .theater-discreet-fs,
-.theater-screen.user-active .theater-discreet-sound,
+.theater-screen.user-active .theater-sound-panel,
 .theater-screen.user-active .theater-discreet-fs {
   opacity: 1 !important;
 }
@@ -1173,11 +1238,18 @@ section {
     border-bottom: 10px solid transparent;
     border-left: 16px solid #ffffff;
   }
-  .theater-discreet-sound {
+  .theater-sound-panel {
     top: 8px;
     right: 8px;
-    padding: 5px 10px;
+    padding: 4px 8px 4px 5px;
+    gap: 6px;
+  }
+  .theater-discreet-sound {
+    padding: 4px 10px;
     font-size: 11px;
+  }
+  .theater-vol-slider {
+    width: 52px;
   }
   .theater-discreet-fs {
     bottom: 8px;

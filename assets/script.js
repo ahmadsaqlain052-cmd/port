@@ -276,6 +276,8 @@ function renderShowreelTheater() {
 
 let theaterEventsBound = false;
 let userManuallyPaused = false;
+let userManuallyMutedShowreel = false;
+let lastTheaterVolume = 1.0;
 let controlsFadeTimeout = null;
 
 function initShowreelTheater() {
@@ -286,6 +288,7 @@ function initShowreelTheater() {
   const muteBtn = document.getElementById('theaterMuteBtn');
   const muteIcon = document.getElementById('theaterMuteIcon');
   const muteTxt = document.getElementById('theaterMuteTxt');
+  const volSlider = document.getElementById('theaterVolumeSlider');
   const fsBtn = document.getElementById('theaterFullscreenBtn');
 
   if (!screen || !video) return;
@@ -301,14 +304,20 @@ function initShowreelTheater() {
   }
 
   function updateTheaterMuteUI() {
+    if (muteBtn) {
+      muteBtn.classList.toggle('is-muted', video.muted || video.volume === 0);
+    }
     if (muteIcon && muteTxt) {
-      if (video.muted) {
+      if (video.muted || video.volume === 0) {
         muteIcon.textContent = '🔇';
-        muteTxt.textContent = 'Tap to Unmute';
+        muteTxt.textContent = 'Unmute';
       } else {
         muteIcon.textContent = '🔊';
         muteTxt.textContent = 'Sound On';
       }
+    }
+    if (volSlider) {
+      volSlider.value = (video.muted || video.volume === 0) ? 0 : video.volume;
     }
   }
 
@@ -316,8 +325,8 @@ function initShowreelTheater() {
 
   const startTheaterPlayback = () => {
     if (userManuallyPaused) return;
-    video.muted = false;
-    video.volume = 1.0;
+    video.muted = userManuallyMutedShowreel;
+    video.volume = lastTheaterVolume;
     video.play().then(() => {
       updateTheaterMuteUI();
       screen.classList.add('playing');
@@ -343,13 +352,24 @@ function initShowreelTheater() {
       if (activeLbVideo && !activeLbVideo.paused) {
         activeLbVideo.pause();
       }
+      if (!userManuallyMutedShowreel) {
+        video.muted = false;
+        video.volume = lastTheaterVolume || 1.0;
+      }
       video.play().then(() => {
+        updateTheaterMuteUI();
         screen.classList.add('playing');
         screen.classList.remove('user-paused');
         pingControls();
       }).catch(err => {
         console.warn('Theater playback requires interaction:', err);
       });
+    } else if (video.muted && !userManuallyMutedShowreel) {
+      // First tap on a browser-muted autoplaying showreel unmutes it instead of pausing!
+      video.muted = false;
+      video.volume = lastTheaterVolume || 1.0;
+      updateTheaterMuteUI();
+      pingControls();
     } else {
       userManuallyPaused = true;
       video.pause();
@@ -405,12 +425,27 @@ function initShowreelTheater() {
       }
     }, { passive: true });
 
-    // Tapping the screen or play button toggles play/pause
+    // Tapping the screen or play button toggles play/pause (or unmutes on first click)
     screen.addEventListener('click', e => {
-      if (e.target.closest('#theaterMuteBtn') || e.target.closest('#theaterFullscreenBtn')) {
+      if (e.target.closest('#theaterSoundPanel') || e.target.closest('#theaterMuteBtn') || e.target.closest('#theaterFullscreenBtn')) {
         return;
       }
       togglePlay();
+    });
+
+    // Hovering over the showreel attempts to enable audio if not manually muted
+    screen.addEventListener('mouseenter', () => {
+      pingControls();
+      if (!video.paused && video.muted && !userManuallyMutedShowreel) {
+        video.muted = false;
+        video.volume = lastTheaterVolume || 1.0;
+        video.play().then(() => {
+          updateTheaterMuteUI();
+        }).catch(() => {
+          video.muted = true;
+          updateTheaterMuteUI();
+        });
+      }
     });
 
     screen.addEventListener('mousemove', pingControls);
@@ -419,6 +454,7 @@ function initShowreelTheater() {
     video.addEventListener('play', () => {
       screen.classList.add('playing');
       screen.classList.remove('user-paused');
+      updateTheaterMuteUI();
       pingControls();
     });
 
@@ -436,18 +472,59 @@ function initShowreelTheater() {
       muteBtn.addEventListener('click', e => {
         e.stopPropagation();
         video.muted = !video.muted;
-        if (muteIcon && muteTxt) {
-          if (video.muted) {
-            muteIcon.textContent = '🔇';
-            muteTxt.textContent = 'Muted';
-          } else {
-            muteIcon.textContent = '🔊';
-            muteTxt.textContent = 'Sound On';
+        userManuallyMutedShowreel = video.muted;
+        if (!video.muted) {
+          if (video.volume === 0) {
+            video.volume = lastTheaterVolume || 1.0;
+          }
+          if (video.paused) {
+            userManuallyPaused = false;
+            video.play().catch(() => {});
           }
         }
+        updateTheaterMuteUI();
         pingControls();
       });
     }
+
+    if (volSlider) {
+      volSlider.addEventListener('click', e => e.stopPropagation());
+      volSlider.addEventListener('input', e => {
+        e.stopPropagation();
+        const val = parseFloat(volSlider.value);
+        video.volume = val;
+        if (val > 0) {
+          lastTheaterVolume = val;
+          video.muted = false;
+          userManuallyMutedShowreel = false;
+          if (video.paused) {
+            userManuallyPaused = false;
+            video.play().catch(() => {});
+          }
+        } else {
+          video.muted = true;
+          userManuallyMutedShowreel = true;
+        }
+        updateTheaterMuteUI();
+        pingControls();
+      });
+    }
+
+    // Clicking any "Watch Showreel" CTA button unmutes and plays the showreel
+    document.querySelectorAll('a[href="#showreel"]').forEach(link => {
+      link.addEventListener('click', () => {
+        userManuallyPaused = false;
+        userManuallyMutedShowreel = false;
+        video.muted = false;
+        video.volume = lastTheaterVolume || 1.0;
+        video.play().then(() => {
+          updateTheaterMuteUI();
+          screen.classList.add('playing');
+          screen.classList.remove('user-paused');
+          pingControls();
+        }).catch(() => {});
+      });
+    });
 
     if (fsBtn) {
       fsBtn.addEventListener('click', e => {
@@ -774,7 +851,7 @@ function init3DCurvedSlider() {
   container.innerHTML = '';
 
   const CARD_WIDTH = container.clientWidth < 440 ? 125 : (container.clientWidth < 768 ? 150 : (container.clientWidth < 1024 ? 170 : 190));
-  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 4 : 8);
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 12 : 20);
 
   // Build items array strictly with vertical reels & logo animations (NO intro video)
   const verticalItems = (data.videos || []).filter(v => v.orientation === 'vertical' && v.id !== 'master-showreel');
@@ -831,9 +908,9 @@ function init3DCurvedSlider() {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
       const absD = Math.min(Math.abs(d), 1);
-      const x = rel * (0.46 + 0.48 * absD);
+      const x = rel * (0.5 + 0.5 * absD);
       const rot = -Math.max(-1.2, Math.min(1.2, d)) * 40;
-      const scale = (0.52 + 0.60 * Math.pow(absD, 1.3)) * scaleFactor;
+      const scale = (0.5 + 0.62 * Math.pow(absD, 1.3)) * scaleFactor;
 
       card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
       card.style.zIndex = card.classList.contains('hover-playing') ? 200 : Math.round(absD * 100);
@@ -877,7 +954,7 @@ function init3DCurvedLandscapeSlider() {
   container.innerHTML = '';
 
   const CARD_WIDTH = container.clientWidth < 440 ? 230 : (container.clientWidth < 768 ? 270 : (container.clientWidth < 1024 ? 290 : 330));
-  const STEP = CARD_WIDTH - (container.clientWidth < 440 ? 8 : 18);
+  const STEP = CARD_WIDTH + (container.clientWidth < 440 ? 14 : 24);
 
   // Filter strictly 16:9 landscape videos (commercial hooks, podcasts, motion)
   const landscapeVideos = (data.videos || []).filter(v => v.aspect === '16:9' || v.orientation === 'landscape');
@@ -947,9 +1024,9 @@ function init3DCurvedLandscapeSlider() {
       const rel = ((((i * STEP - offset) % TOTAL_WIDTH) + TOTAL_WIDTH) % TOTAL_WIDTH) - TOTAL_WIDTH / 2;
       const d = rel / halfWidth;
       const absD = Math.min(Math.abs(d), 1);
-      const x = rel * (0.52 + 0.42 * absD);
+      const x = rel * (0.6 + 0.4 * absD);
       const rot = -Math.max(-1.1, Math.min(1.1, d)) * 32;
-      const scale = (0.56 + 0.54 * Math.pow(absD, 1.25)) * scaleFactor;
+      const scale = (0.55 + 0.55 * Math.pow(absD, 1.25)) * scaleFactor;
 
       card.style.transform = `translate3d(${x}px, 0, 0) rotateY(${rot}deg) scale(${scale})`;
       card.style.zIndex = card.classList.contains('hover-playing') ? 200 : Math.round(absD * 100);
