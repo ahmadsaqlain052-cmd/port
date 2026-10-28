@@ -555,7 +555,7 @@ const DEFAULT_PORTFOLIO_DATA = {
   ]
 };
 
-const STORAGE_KEY = 'openviewcreatives_portfolio_data_v2';
+const STORAGE_KEY = 'openviewcreatives_portfolio_data_v3';
 
 function getPortfolioData() {
   try {

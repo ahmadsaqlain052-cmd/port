@@ -92,16 +92,12 @@ function renderPortfolioDOM() {
     `).join('');
   }
 
-  // 8. Footer (No email section)
+  // 8. Footer
   const ftHireText = document.getElementById('domFtHireText');
-  const ftUpworkLink = document.getElementById('domFtUpworkLink');
-  const ftUpworkTop = document.getElementById('domFtUpworkTop');
   const ftName = document.getElementById('ftName');
   const ftCopy = document.getElementById('domFtCopy');
 
   if (ftHireText) ftHireText.textContent = p.hireText || 'Ready to turn raw ideas into scroll-stopping video content?';
-  if (ftUpworkLink) ftUpworkLink.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
-  if (ftUpworkTop) ftUpworkTop.href = p.upwork || 'https://www.upwork.com/freelancers/~01ea31ff7f87e0acb5';
   if (ftName) {
     ftName.textContent = p.name || 'OpenView Creatives';
     initFooterNameAnimation();
@@ -115,14 +111,31 @@ function renderPortfolioDOM() {
   init3DCurvedLandscapeSlider();
 }
 
-// Bind Video Click handlers to Lightbox
+// Helper: Get fallback path between compressed/ and vid/
+function getFallbackVideoSrc(src) {
+  if (!src) return '';
+  if (src.startsWith('compressed/')) {
+    return src.replace(/^compressed\//, 'vid/');
+  }
+  if (src.startsWith('vid/')) {
+    return src.replace(/^vid\//, 'compressed/');
+  }
+  return '';
+}
+
+// Bind Video Click handlers to Lightbox (excluding .vid-card which binds its own filtered list)
 function bindVideoCardClicks() {
-  document.querySelectorAll('[data-video]').forEach(btn => {
+  document.querySelectorAll('[data-video]:not(.vid-card)').forEach(btn => {
+    if (btn.dataset.boundClick === 'true') return;
+    btn.dataset.boundClick = 'true';
     btn.addEventListener('click', () => {
-      const id = parseInt(btn.dataset.video, 10);
+      const rawId = btn.dataset.video;
       const allIds = data.videos.map(v => v.id);
-      if (!isNaN(id)) {
-        openLightbox(allIds, allIds.indexOf(id));
+      const idx = allIds.findIndex(id => String(id) === String(rawId));
+      if (idx !== -1) {
+        openLightbox(allIds, idx);
+      } else if (rawId === 'master-showreel') {
+        openLightbox(['master-showreel'], 0);
       }
     });
   });
@@ -149,14 +162,12 @@ function renderShowreelTheater() {
 
   if (videoEl) {
     if (showreel.poster) videoEl.poster = showreel.poster;
-    let sourceEl = videoEl.querySelector('source');
-    if (!sourceEl) {
-      sourceEl = document.createElement('source');
-      videoEl.appendChild(sourceEl);
-    }
-    if (sourceEl.getAttribute('src') !== showreel.src) {
-      sourceEl.src = showreel.src;
-      sourceEl.type = 'video/mp4';
+    const targetSrc = showreel.src || 'compressed/intro-showreel.mp4';
+    const sourceChild = videoEl.querySelector('source');
+    if (sourceChild) sourceChild.remove();
+    if (videoEl.getAttribute('src') !== targetSrc) {
+      videoEl.dataset.fallbackTried = 'false';
+      videoEl.src = targetSrc;
       videoEl.load();
     }
   }
@@ -204,38 +215,6 @@ function initShowreelTheater() {
   };
   startTheaterPlayback();
 
-  // Auto-pause immediately when scrolled away or scrolled up
-  if ('IntersectionObserver' in window) {
-    const showreelObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting || entry.intersectionRatio < 0.25) {
-          // Scrolled away / out of view -> PAUSE immediately
-          if (!video.paused) {
-            video.pause();
-            screen.classList.remove('playing');
-          }
-        } else {
-          // Scrolled back into view -> resume if not manually paused
-          if (video.paused && !userManuallyPaused) {
-            startTheaterPlayback();
-          }
-        }
-      });
-    }, { threshold: [0, 0.25, 0.5, 0.75] });
-    showreelObserver.observe(screen);
-  }
-
-  // Scroll listener fallback: if video is scrolled off screen, pause immediately
-  window.addEventListener('scroll', () => {
-    const rect = screen.getBoundingClientRect();
-    if (rect.bottom < 50 || rect.top > (window.innerHeight - 50)) {
-      if (!video.paused) {
-        video.pause();
-        screen.classList.remove('playing');
-      }
-    }
-  }, { passive: true });
-
   function togglePlay() {
     if (video.paused || video.ended) {
       userManuallyPaused = false;
@@ -261,6 +240,49 @@ function initShowreelTheater() {
 
   if (!theaterEventsBound) {
     theaterEventsBound = true;
+
+    // Fallback to vid/ if compressed/ fails to load (or vice versa)
+    video.addEventListener('error', () => {
+      if (video.dataset.fallbackTried === 'true') return;
+      const currentSrc = video.getAttribute('src') || '';
+      const fallbackSrc = getFallbackVideoSrc(currentSrc);
+      if (fallbackSrc) {
+        video.dataset.fallbackTried = 'true';
+        video.src = fallbackSrc;
+        video.load();
+        startTheaterPlayback();
+      }
+    });
+
+    // Auto-pause immediately when scrolled away or scrolled up
+    if ('IntersectionObserver' in window) {
+      const showreelObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.25) {
+            if (!video.paused) {
+              video.pause();
+              screen.classList.remove('playing');
+            }
+          } else {
+            if (video.paused && !userManuallyPaused) {
+              startTheaterPlayback();
+            }
+          }
+        });
+      }, { threshold: [0, 0.25, 0.5, 0.75] });
+      showreelObserver.observe(screen);
+    }
+
+    // Scroll listener fallback: if video is scrolled off screen, pause immediately
+    window.addEventListener('scroll', () => {
+      const rect = screen.getBoundingClientRect();
+      if (rect.bottom < 50 || rect.top > (window.innerHeight - 50)) {
+        if (!video.paused) {
+          video.pause();
+          screen.classList.remove('playing');
+        }
+      }
+    }, { passive: true });
 
     // Tapping the screen or play button toggles play/pause
     screen.addEventListener('click', e => {
@@ -652,9 +674,10 @@ function init3DCurvedSlider() {
     `;
 
     card.addEventListener('click', () => {
-      if (dragDistance < 6 && item.id) {
+      if (dragDistance < 10 && item.id) {
         const allIds = data.videos.map(v => v.id);
-        openLightbox(allIds, allIds.indexOf(item.id));
+        const idx = allIds.findIndex(id => String(id) === String(item.id));
+        openLightbox(allIds, idx >= 0 ? idx : 0);
       }
     });
 
@@ -768,12 +791,13 @@ function init3DCurvedLandscapeSlider() {
     `;
 
     card.addEventListener('click', () => {
-      if (dragDistance < 6) {
+      if (dragDistance < 10) {
         if (item.fame) {
           window.open('https://fame.so', '_blank', 'noopener');
         } else if (item.id) {
           const allIds = data.videos.map(v => v.id);
-          openLightbox(allIds, allIds.indexOf(item.id));
+          const idx = allIds.findIndex(id => String(id) === String(item.id));
+          openLightbox(allIds, idx >= 0 ? idx : 0);
         }
       }
     });
@@ -852,12 +876,16 @@ const lbNext = document.getElementById('lbNext');
 
 function openLightbox(list, index) {
   if (!lb || !lbVideo) return;
+  const theaterVid = document.getElementById('theaterVideo');
+  if (theaterVid && !theaterVid.paused) {
+    theaterVid.pause();
+  }
   currentLightboxList = list;
   currentLightboxIdx = index >= 0 ? index : 0;
-  loadCurrentVideo();
   lb.classList.add('open');
   lb.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  loadCurrentVideo();
 }
 
 function closeLightbox() {
@@ -865,14 +893,29 @@ function closeLightbox() {
   lb.classList.remove('open');
   lb.setAttribute('aria-hidden', 'true');
   lbVideo.pause();
-  lbVideo.src = '';
+  lbVideo.removeAttribute('src');
+  lbVideo.load();
   document.body.style.overflow = '';
+}
+
+if (lbVideo) {
+  lbVideo.addEventListener('error', () => {
+    if (lbVideo.dataset.fallbackTried === 'true') return;
+    const currentSrc = lbVideo.getAttribute('src') || '';
+    const fallbackSrc = getFallbackVideoSrc(currentSrc);
+    if (fallbackSrc) {
+      lbVideo.dataset.fallbackTried = 'true';
+      lbVideo.src = fallbackSrc;
+      lbVideo.load();
+      lbVideo.play().catch(() => {});
+    }
+  });
 }
 
 function loadCurrentVideo() {
   const vidId = currentLightboxList[currentLightboxIdx];
-  const videoData = (data.videos || []).find(v => v.id === vidId)
-    || ((data.showreel && (data.showreel.id === vidId || vidId === 'master-showreel')) ? data.showreel : null);
+  const videoData = (data.videos || []).find(v => String(v.id) === String(vidId))
+    || ((data.showreel && (String(data.showreel.id) === String(vidId) || vidId === 'master-showreel')) ? data.showreel : null);
   if (!videoData) return;
 
   const lbInner = document.querySelector('.lb-inner');
@@ -882,8 +925,10 @@ function loadCurrentVideo() {
   }
 
   if (videoData.src && videoData.src.trim() !== '') {
-    lbVideo.src = videoData.src;
+    lbVideo.dataset.fallbackTried = 'false';
     lbVideo.poster = videoData.poster || '';
+    lbVideo.src = videoData.src;
+    lbVideo.load();
     lbVideo.play().catch(() => {});
   } else {
     lbVideo.pause();
@@ -892,7 +937,7 @@ function loadCurrentVideo() {
   }
   if (lbCaption) {
     const aspectTag = videoData.aspect ? `[${videoData.aspect}] ` : '';
-    lbCaption.textContent = `${aspectTag}${videoData.title} — ${videoData.cat}`;
+    lbCaption.textContent = `${aspectTag}${videoData.title} — ${videoData.cat || 'Showreel'}`;
   }
 }
 
@@ -927,7 +972,7 @@ window.addEventListener('keydown', e => {
 
 // Real-Time Cross-Tab Synchronization with Admin Dashboard
 window.addEventListener('storage', e => {
-  if (e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
+  if (e.key === 'openviewcreatives_portfolio_data_v3' || e.key === 'openviewcreatives_portfolio_data_v2' || e.key === 'openviewcreatives_portfolio_data_v1' || e.key === 'hamza_irfan_portfolio_data_v9' || e.key === 'hamza_irfan_portfolio_data_v8' || e.key === 'hamza_irfan_portfolio_data_v7' || e.key === 'hamza_irfan_portfolio_data_v5' || e.key === 'hamza_irfan_portfolio_data_v4') {
     renderPortfolioDOM();
   }
 });
