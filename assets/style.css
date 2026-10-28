@@ -616,6 +616,36 @@ nav.scrolled {
   -webkit-user-drag: none;
 }
 
+/* Hover-to-Play Inline Video Preview */
+.hover-preview-vid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  background: #000;
+}
+
+.hover-playing .hover-preview-vid {
+  opacity: 1;
+}
+
+.hover-playing .cf-play,
+.hover-playing .cfl-play,
+.hover-playing .vid-play {
+  opacity: 0.25;
+  transform: translate(-50%, -50%) scale(0.82);
+}
+
+.cf-card.hover-playing .cf-play {
+  opacity: 0.25;
+  transform: scale(0.82);
+}
+
 .cf-play {
   position: absolute;
   right: 12px;
