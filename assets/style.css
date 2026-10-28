@@ -645,6 +645,62 @@ nav.scrolled {
   transform: scale(0.82);
 }
 
+/* Hover Audio Toggle Pill on Cards */
+.hover-audio-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.22s ease, transform 0.22s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.cf-landscape-card .hover-audio-btn,
+.vid-card .hover-audio-btn {
+  bottom: auto;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, -4px);
+}
+
+.hover-playing .hover-audio-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cf-landscape-card.hover-playing .hover-audio-btn,
+.vid-card.hover-playing .hover-audio-btn {
+  transform: translate(-50%, 0);
+}
+
+.hover-audio-btn.is-muted {
+  background: rgba(232, 69, 26, 0.92);
+  border-color: #fff;
+}
+
+.hover-audio-btn:hover {
+  background: var(--accent);
+  border-color: #fff;
+}
+
 .cf-play {
   position: absolute;
   right: 12px;

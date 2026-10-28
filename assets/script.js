@@ -123,18 +123,70 @@ function getFallbackVideoSrc(src) {
   return '';
 }
 
-// Helper: Attach Hover-to-Play / Leave-to-Pause inline video preview on any card
+// Helper: Attach Hover-to-Play (with Audio + Unmute/Mute toggle) / Leave-to-Pause inline video preview on any card
+let userMutedHoverPreference = false;
+
 function attachHoverVideoPreview(cardEl, thumbContainer, videoSrc, onHoverChange) {
   if (!cardEl || !thumbContainer || !videoSrc) return;
 
   const hoverVid = document.createElement('video');
   hoverVid.className = 'hover-preview-vid';
-  hoverVid.muted = true;
+  hoverVid.muted = false;
+  hoverVid.volume = 1.0;
   hoverVid.loop = true;
   hoverVid.playsInline = true;
   hoverVid.setAttribute('playsinline', '');
   hoverVid.preload = 'none';
   thumbContainer.appendChild(hoverVid);
+
+  const audioBtn = document.createElement('button');
+  audioBtn.type = 'button';
+  audioBtn.className = 'hover-audio-btn';
+  audioBtn.setAttribute('aria-label', 'Toggle Audio');
+  audioBtn.innerHTML = '🔊 <span>Sound</span>';
+  thumbContainer.appendChild(audioBtn);
+
+  function updateAudioBtnUI() {
+    if (hoverVid.muted) {
+      audioBtn.innerHTML = '🔇 <span>Unmute</span>';
+      audioBtn.classList.add('is-muted');
+    } else {
+      audioBtn.innerHTML = '🔊 <span>Sound On</span>';
+      audioBtn.classList.remove('is-muted');
+    }
+  }
+
+  audioBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    hoverVid.muted = !hoverVid.muted;
+    userMutedHoverPreference = hoverVid.muted;
+    if (!hoverVid.muted) {
+      hoverVid.volume = 1.0;
+      const theaterVid = document.getElementById('theaterVideo');
+      if (theaterVid && !theaterVid.paused) {
+        theaterVid.pause();
+      }
+      hoverVid.play().catch(() => {});
+    }
+    updateAudioBtnUI();
+  });
+
+  function playHoverWithAudioFallback() {
+    const theaterVid = document.getElementById('theaterVideo');
+    if (theaterVid && !theaterVid.paused) {
+      theaterVid.pause();
+    }
+    hoverVid.muted = userMutedHoverPreference;
+    hoverVid.volume = 1.0;
+    hoverVid.play().then(() => {
+      updateAudioBtnUI();
+    }).catch(() => {
+      // Browser blocked unmuted autoplay prior to first user click -> play muted & show Unmute button
+      hoverVid.muted = true;
+      updateAudioBtnUI();
+      hoverVid.play().catch(() => {});
+    });
+  }
 
   hoverVid.addEventListener('error', () => {
     if (hoverVid.dataset.fallbackTried === 'true') return;
@@ -145,7 +197,7 @@ function attachHoverVideoPreview(cardEl, thumbContainer, videoSrc, onHoverChange
       hoverVid.src = fallbackSrc;
       hoverVid.load();
       if (cardEl.classList.contains('hover-playing')) {
-        hoverVid.play().catch(() => {});
+        playHoverWithAudioFallback();
       }
     }
   });
@@ -158,7 +210,7 @@ function attachHoverVideoPreview(cardEl, thumbContainer, videoSrc, onHoverChange
       hoverVid.load();
     }
     cardEl.classList.add('hover-playing');
-    hoverVid.play().catch(() => {});
+    playHoverWithAudioFallback();
   });
 
   cardEl.addEventListener('mouseleave', () => {
@@ -248,17 +300,39 @@ function initShowreelTheater() {
     }
   }
 
-  // Start intro video playing automatically (browser-compliant muted autoplay)
-  video.muted = true;
+  function updateTheaterMuteUI() {
+    if (muteIcon && muteTxt) {
+      if (video.muted) {
+        muteIcon.textContent = '🔇';
+        muteTxt.textContent = 'Tap to Unmute';
+      } else {
+        muteIcon.textContent = '🔊';
+        muteTxt.textContent = 'Sound On';
+      }
+    }
+  }
+
   video.loop = true;
 
   const startTheaterPlayback = () => {
     if (userManuallyPaused) return;
+    video.muted = false;
+    video.volume = 1.0;
     video.play().then(() => {
+      updateTheaterMuteUI();
       screen.classList.add('playing');
       screen.classList.remove('user-paused');
       pingControls();
-    }).catch(() => {});
+    }).catch(() => {
+      // Browser requires muted autoplay until first interaction
+      video.muted = true;
+      updateTheaterMuteUI();
+      video.play().then(() => {
+        screen.classList.add('playing');
+        screen.classList.remove('user-paused');
+        pingControls();
+      }).catch(() => {});
+    });
   };
   startTheaterPlayback();
 
@@ -982,6 +1056,8 @@ function loadCurrentVideo() {
 
   if (videoData.src && videoData.src.trim() !== '') {
     lbVideo.dataset.fallbackTried = 'false';
+    lbVideo.muted = false;
+    lbVideo.volume = 1.0;
     lbVideo.poster = videoData.poster || '';
     lbVideo.src = videoData.src;
     lbVideo.load();
