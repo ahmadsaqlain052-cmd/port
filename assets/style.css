@@ -294,8 +294,8 @@ nav.scrolled {
 
 .hz > * {
   opacity: 0;
-  animation: up 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-  animation-delay: calc(1.65s + var(--k, 0) * 0.15s);
+  animation: up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(1.35s + var(--k, 0) * 0.13s);
 }
 
 .hz-tag {
@@ -327,7 +327,7 @@ nav.scrolled {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
   transform: skewX(-25deg);
-  animation: glassSweep 1.6s 1.95s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation: glassSweep 1.5s 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   pointer-events: none;
 }
 
@@ -353,7 +353,7 @@ nav.scrolled {
 .ch {
   display: inline-block;
   font-style: normal;
-  animation: chUp 0.9s calc(1.75s + var(--i) * 185ms) cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: chUp 0.85s calc(1.42s + var(--i) * 150ms) cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 @keyframes chUp {
